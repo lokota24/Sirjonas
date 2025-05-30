@@ -1,184 +1,333 @@
-/* Reset základních marginů a paddingů */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-/* Tělo stránky - hezké gradientní pozadí */
-body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-  color: #f0f0f0;
+}
+
+/* Body with smooth dark red gradient background */
+body {
+  background: linear-gradient(135deg, #7f0000, #330000);
+  color: #f9f6f2;
   line-height: 1.6;
-  padding: 30px;
   min-height: 100vh;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-/* Kontejner s obsahem, max šířka a střed */
+/* Main container */
 .container {
-  max-width: 900px;
-  margin: 0 auto;
-  background: rgba(20, 30, 50, 0.85);
-  border-radius: 12px;
-  padding: 40px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  background: #2b0a0acc; /* transparent dark red-black */
+  max-width: 1000px;
+  width: 95%;
+  padding: 40px 60px;
+  border-radius: 15px;
+  box-shadow:
+    0 0 15px 2px #ff4444aa,
+    inset 0 0 20px 3px #ff000099;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
-/* Nadpis */
-h1, h2 {
-  color: #ffd700; /* zlatá barva */
+/* Hover glow effect */
+.container:hover {
+  box-shadow:
+    0 0 25px 4px #ff5555dd,
+    inset 0 0 30px 5px #ff111199;
+}
+
+/* Headings style */
+h1, h2, h3 {
+  font-weight: 900;
+  text-shadow: 1px 1px 5px #440000cc;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  user-select: none;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #ff3333;
   text-align: center;
-  margin-bottom: 25px;
-  text-shadow: 2px 2px 6px #000;
+  margin-bottom: 40px;
+  transition: color 0.4s ease;
 }
 
-/* Podnadpisy */
+h1:hover {
+  color: #ff5555;
+  text-shadow: 0 0 15px #ff6666;
+}
+
 h2 {
-  font-size: 1.8rem;
-  margin-top: 40px;
-}
-
-/* Odstavce */
-p {
-  font-size: 1.1rem;
+  font-size: 2rem;
+  color: #ff6666cc;
+  margin-top: 50px;
   margin-bottom: 25px;
-  color: #dcdcdc;
+  border-bottom: 2px solid #ff4444cc;
+  padding-bottom: 6px;
 }
 
-/* Seznamy - speciální styl */
+h3 {
+  font-size: 1.4rem;
+  color: #ee4444aa;
+  margin-bottom: 15px;
+}
+
+/* Paragraphs */
+p {
+  font-size: 1.15rem;
+  color: #f7e8e8;
+  margin-bottom: 25px;
+  text-shadow: 0 0 2px #660000cc;
+  line-height: 1.7;
+}
+
+/* Lists */
 ul, ol {
   margin-left: 25px;
   margin-bottom: 30px;
+  color: #ffbbbbcc;
 }
 
 li {
   margin-bottom: 12px;
   font-size: 1.1rem;
-  color: #c0c0c0;
   cursor: default;
   transition: color 0.3s ease;
+  user-select: none;
 }
 
 li:hover {
-  color: #ffd700;
-  transform: scale(1.05);
+  color: #ff4444;
+  transform: scale(1.08);
 }
 
-/* Obrázky - s rámečkem a stínem */
-img {
-  display: block;
-  max-width: 100%;
-  margin: 30px auto;
-  border-radius: 15px;
-  box-shadow: 0 8px 15px rgba(0,0,0,0.7);
-  transition: transform 0.3s ease;
-}
-
-img:hover {
-  transform: scale(1.05);
-}
-
-/* Odkazy */
+/* Links */
 a {
-  color: #ffd700;
-  text-decoration: none;
-  font-weight: 600;
+  color: #ff2222;
+  font-weight: 700;
+  text-decoration: underline;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #ffa500;
-  text-decoration: underline;
+  color: #ff5555;
+  text-shadow: 0 0 8px #ff6666;
 }
 
-/* Tlačítka */
+/* Buttons */
 button {
-  background-color: #ffd700;
-  color: #1e3c72;
+  background: linear-gradient(45deg, #ff5555, #cc1111);
   border: none;
-  padding: 12px 25px;
+  padding: 15px 30px;
+  border-radius: 50px;
   font-size: 1.1rem;
-  border-radius: 25px;
+  font-weight: 700;
+  color: #f9f6f2;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.6);
-  transition: background-color 0.3s ease;
-  margin: 20px 0;
+  box-shadow:
+    0 4px 10px #aa0000cc,
+    inset 0 -2px 6px #ff6666;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
 }
 
 button:hover {
-  background-color: #ffb700;
+  background: linear-gradient(45deg, #ff7777, #ee2222);
+  box-shadow:
+    0 6px 15px #ff0000dd,
+    inset 0 -3px 9px #ff8888;
 }
 
-/* Speciální box s efektem */
+/* Images */
+img {
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 0 15px #cc2222cc;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 40px auto;
+  display: block;
+  user-select: none;
+}
+
+img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #ff4444dd;
+}
+
+/* Info boxes with glowing borders */
 .info-box {
-  background: rgba(255, 215, 0, 0.1);
-  border: 2px solid #ffd700;
-  border-radius: 15px;
-  padding: 20px 30px;
+  background: #440000dd;
+  border: 2px solid #ff3333;
+  padding: 25px 30px;
   margin-bottom: 30px;
-  color: #222;
+  border-radius: 15px;
+  box-shadow:
+    0 0 10px 2px #ff4444cc,
+    inset 0 0 15px 3px #ff2222bb;
+  color: #ffe3e3;
   font-weight: 600;
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  user-select: none;
+  transition: box-shadow 0.3s ease;
 }
 
-/* Efekt zářícího textu na hover */
-.glow-on-hover:hover {
-  text-shadow:
-    0 0 5px #ffd700,
-    0 0 10px #ffd700,
-    0 0 20px #ffa500,
-    0 0 30px #ffa500;
+.info-box:hover {
+  box-shadow:
+    0 0 20px 4px #ff6666ee,
+    inset 0 0 30px 6px #ff4444dd;
 }
 
-/* Media queries pro mobilní zařízení */
-@media (max-width: 600px) {
-  body {
-    padding: 15px;
+/* Navigation Bar */
+nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 20px;
+  user-select: none;
+}
+
+nav a {
+  color: #ff2222;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 50px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+nav a:hover {
+  border-color: #ff5555;
+  background: #660000bb;
+  color: #ff7777;
+  box-shadow: 0 0 10px #ff5555aa;
+}
+
+/* Animated underlines on links */
+nav a::after {
+  content: '';
+  display: block;
+  width: 0%;
+  height: 2px;
+  background: #ff4444;
+  transition: width 0.4s ease;
+  margin-top: 4px;
+  border-radius: 2px;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Cards container for pieces info */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+/* Individual card */
+.card {
+  background: #660000dd;
+  border-radius: 20px;
+  width: 250px;
+  padding: 25px;
+  box-shadow: 0 0 15px #cc4444cc;
+  color: #ffd6d6;
+  cursor: default;
+  user-select: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px #ff5555dd;
+}
+
+/* Card image */
+.card img {
+  width: 120px;
+  display: block;
+  margin: 0 auto 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 12px #ff2222cc;
+  transition: box-shadow 0.3s ease;
+}
+
+.card img:hover {
+  box-shadow: 0 0 25px #ff4444dd;
+}
+
+/* Card title */
+.card h3 {
+  text-align: center;
+  color: #ff9999;
+  margin-bottom: 10px;
+  font-weight: 900;
+  text-shadow: 0 0 6px #ff3333cc;
+}
+
+/* Card description */
+.card p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #ffcfcf;
+  user-select: text;
+}
+
+/* Footer */
+footer {
+  margin-top: 60px;
+  text-align: center;
+  color: #aa4444cc;
+  font-style: italic;
+  user-select: none;
+}
+
+/* Animations */
+
+/* Pulse animation for emphasis */
+@keyframes pulseRed {
+  0% {
+    box-shadow: 0 0 10px #ff4444cc;
   }
-  .container {
-    padding: 20px;
+  50% {
+    box-shadow: 0 0 25px #ff6666dd;
   }
-  h1 {
-    font-size: 1.8rem;
-  }
-  h2 {
-    font-size: 1.4rem;
-  }
-  p, li {
-    font-size: 1rem;
-  }
-  button {
-    width: 100%;
+  100% {
+    box-shadow: 0 0 10px #ff4444cc;
   }
 }
-Jak to přidat do tvého HTML?
-Přidej do tvého <body> hlavní obsah do kontejneru:
 
-html
-Zkopírovat
-Upravit
-<body>
-  <div class="container">
-    <h1 class="glow-on-hover">♟️ Vítej na mém šachovém webu ♟️</h1>
+.glow-pulse {
+  animation: pulseRed 2.5s infinite;
+}
 
-    <p>Jmenuju se Jonáš a miluju šachy. Na tomhle webu najdeš tipy, strategie, informace o figurkách a moje partie.</p>
+/* Slide in from left */
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
-    <h2 class="glow-on-hover">📘 Tipy pro začátečníky</h2>
-    <ol>
-      <li>Ovládni centrum šachovnice</li>
-      <li>Nevyvíjej dámu příliš brzy</li>
-      <li>Chraň svého krále – rošáda je kámoš</li>
-    </ol>
+.slide-left {
+  animation: slideInLeft 1.2s ease forwards;
+}
 
-    <div class="info-box">
-      <h2>🛡️ Figurky a jejich síla</h2>
-      <p>Pěšec je základ, věž drží linii, jezdec skáče, střelec pálí diagonály, dáma je nejmocnější a král musí přežít!</p>
-    </div>
-
-    <h2>📷 Ukázka šachovnice</h2>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Chess_board_opening_staunton.jpg/800px-Chess_board_opening_staunton.jpg" alt="Šachovnice">
-
-    <button onclick="alert('Šachy jsou super! Začni hrát a zlepšuj se každý den!')">Klikni na mě!</button>
-  </div>
-</body>
+/* Slide in from right */
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px
