@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Šachový web Jonáše</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    function zobrazInfo(figurka) {
+      const info = {
+        pesec: "Pěšec je základní figurka. Může se proměnit na silnější figuru, když dojde na konec šachovnice.",
+        vez: "Věž se pohybuje horizontálně nebo vertikálně. Je silná na otevřených sloupcích.",
+        strelec: "Střelec se pohybuje po diagonálách. Každý zůstává na své barvě.",
+        kun: "Kůň skáče do L a umí přeskočit jiné figurky.",
+        dama: "Dáma je nejsilnější figurka – kombinuje věž i střelce.",
+        kral: "Král je nejdůležitější – když padne, hra končí!"
+      };
+      document.getElementById("info-box").innerText = info[figurka];
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>♟️ Šachový svět Jonáše ♟️</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Domů</a></li>
+        <li><a href="#">O mně</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+    </nav>
+  </header>
 
+  <main>
+    <section>
+      <h2>Figurky</h2>
+      <div class="figurka" onclick="zobrazInfo('pesec')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt60.png" alt="Pěšec" />
+        <p>Pěšec</p>
+      </div>
+      <div class="figurka" onclick="zobrazInfo('vez')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt60.png" alt="Věž" />
+        <p>Věž</p>
+      </div>
+      <div class="figurka" onclick="zobrazInfo('strelec')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Chess_blt60.png" alt="Střelec" />
+        <p>Střelec</p>
+      </div>
+      <div class="figurka" onclick="zobrazInfo('kun')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Chess_nlt60.png" alt="Kůň" />
+        <p>Kůň</p>
+      </div>
+      <div class="figurka" onclick="zobrazInfo('dama')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt60.png" alt="Dáma" />
+        <p>Dáma</p>
+      </div>
+      <div class="figurka" onclick="zobrazInfo('kral')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt60.png" alt="Král" />
+        <p>Král</p>
+      </div>
+    </section>
+
+    <div id="info-box">Klikni na figurku pro více informací.</div>
+  </main>
+
+  <footer>
+    <p>© 2025 Jonáš – Všechna práva vyhrazena</p>
+  </footer>
+</body>
+</html>
