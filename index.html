@@ -3,200 +3,212 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jonášův šachový web</title>
-  <style>
-    /* Základní styly pro hlavní obsah (hlavní část webu) */
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px 80px;
-      color: #e0e0e0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      user-select: text;
-    }
-    main h1 {
-      font-size: 3rem;
-      margin-bottom: 15px;
-      text-align: center;
-      text-shadow: 0 0 10px #89a0f9;
-    }
-    main p.intro {
-      font-size: 1.3rem;
-      max-width: 700px;
-      margin: 0 auto 40px auto;
-      text-align: center;
-      color: #b0b9d6;
-    }
-    section {
-      margin-bottom: 50px;
-      padding: 20px 25px;
-      background: rgba(40, 60, 100, 0.2);
-      border-radius: 15px;
-      box-shadow: 0 0 15px #2a5298cc;
-      transition: box-shadow 0.3s ease;
-    }
-    section:hover {
-      box-shadow: 0 0 30px #6280ffcc;
-    }
-    section h2 {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-      color: #a9b8ff;
-      text-shadow: 0 0 8px #445dff;
-    }
-    section p {
-      font-size: 1.1rem;
-      color: #d0d8f7;
-      margin-bottom: 20px;
-    }
-
-    /* Obrázky figurek */
-    .figures-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 25px;
-      margin-top: 15px;
-    }
-    .figure-card {
-      background: #1e2e50;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 0 12px #5577ffaa;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
-      user-select: none;
-      text-align: center;
-      color: #c0c8e9;
-    }
-    .figure-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 0 25px #84a9ffcc;
-    }
-    .figure-card img {
-      max-width: 80px;
-      margin-bottom: 12px;
-    }
-    .figure-card h3 {
-      margin-bottom: 8px;
-      font-size: 1.4rem;
-      color: #acc4ff;
-      text-shadow: 0 0 5px #4971ff;
-    }
-    .figure-card p {
-      font-size: 1rem;
-      color: #d0d8f7;
-    }
-
-    /* Tipy seznam */
-    .tips-list {
-      list-style: decimal inside;
-      font-size: 1.1rem;
-      color: #c0c8e9;
-    }
-    .tips-list li {
-      margin-bottom: 14px;
-      padding-left: 8px;
-      transition: color 0.2s ease;
-    }
-    .tips-list li:hover {
-      color: #9db8ff;
-    }
-
-    /* Sekce O mně */
-    .about-me {
-      font-size: 1.1rem;
-      color: #ccd6f7;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .about-me strong {
-      color: #a3b8ff;
-    }
-
-    /* Citace v zápatí */
-    footer {
-      margin-top: 60px;
-      padding: 25px 15px;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #8090c1;
-      font-style: italic;
-      border-top: 1px solid #4050a0;
-      user-select: text;
-    }
-
-    /* Odkazy ve stránce */
-    main a {
-      color: #a0baff;
-      text-decoration: underline;
-    }
-    main a:hover,
-    main a:focus {
-      color: #d0dbff;
-      outline: none;
-    }
-  </style>
+  <title>Šachový web Jonáše</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main>
-    <h1>♟️ Vítej na mém šachovém webu ♟️</h1>
-    <p class="intro">
-      Ahoj, já jsem <strong>Jonáš</strong>, vášnivý hráč a fanoušek šachů. Tady najdeš spoustu zajímavostí o šachových figurkách, užitečné tipy a taky něco o mně.
-    </p>
+  <div class="container">
 
-    <section id="figures" aria-label="Šachové figurky">
-      <h2>🧩 Šachové figurky</h2>
-      <p>Každá figurka má svůj význam a sílu. Tady je přehled těch základních, které najdeš na šachovnici.</p>
-      <div class="figures-grid">
-        <div class="figure-card" tabindex="0" aria-describedby="desc-pawn">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg" alt="Pěšec" />
-          <h3>Pěšec</h3>
-          <p id="desc-pawn">Nejslabší, ale důležitá figurka. Dokáže postoupit a proměnit se v silnější.</p>
-        </div>
-        <div class="figure-card" tabindex="0" aria-describedby="desc-rook">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg" alt="Věž" />
-          <h3>Věž</h3>
-          <p id="desc-rook">Silná a nepřekonatelná v přímém útoku. Umí se pohybovat po řadách a sloupcích.</p>
-        </div>
-        <div class="figure-card" tabindex="0" aria-describedby="desc-bishop">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Chess_blt45.svg" alt="Střelec" />
-          <h3>Střelec</h3>
-          <p id="desc-bishop">Pohybuje se diagonálně a dokáže dobře kontrolovat dlouhé vzdálenosti.</p>
-        </div>
-        <div class="figure-card" tabindex="0" aria-describedby="desc-knight">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Chess_nlt45.svg" alt="Jezdec" />
-          <h3>Jezdec</h3>
-          <p id="desc-knight">Figurka, která skáče přes ostatní. Je hodně nevyzpytatelná a užitečná v taktice.</p>
-        </div>
-        <div class="figure-card" tabindex="0" aria-describedby="desc-queen">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg" alt="Dáma" />
-          <h3>Dáma</h3>
-          <p id="desc-queen">Nejsilnější figurka na šachovnici, kombinuje pohyb věže i střelce.</p>
-        </div>
-        <div class="figure-card" tabindex="0" aria-describedby="desc-king">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg" alt="Král" />
-          <h3>Král</h3>
-          <p id="desc-king">Nejdůležitější figurka. Cílem hry je ochránit krále a dát mat soupeři.</p>
-        </div>
+    <h1 class="glow-pulse">♟️ Vítej na šachovém webu Jonáše ♟️</h1>
+
+    <nav>
+      <a href="#uvod">Úvod</a>
+      <a href="#historie">Historie šachu</a>
+      <a href="#figury">Šachové figury</a>
+      <a href="#strategie">Strategie</a>
+      <a href="#taktiky">Taktiky</a>
+      <a href="#slovni-zasoba">Slovní zásoba</a>
+      <a href="#skoleni">Školení</a>
+      <a href="#fotogalerie">Fotogalerie</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <section id="uvod" class="slide-left info-box">
+      <h2>Úvod do šachu</h2>
+      <p>
+        Jmenuju se <strong>Jonáš</strong> a šachy jsou mou vášní. Tento web je tvořen pro všechny, kdo chtějí proniknout do světa šachů od úplných základů až po pokročilé techniky.
+      </p>
+      <p>
+        Najdeš tu spoustu informací o figurách, strategii, taktice a historii. Kromě toho tu budou návody, fotky a spousta inspirace.
+      </p>
+    </section>
+
+    <section id="historie" class="slide-right info-box">
+      <h2>Historie šachu</h2>
+      <p>
+        Šachy mají více než tisíciletou historii, sahající až do Indie a Persie. Postupně se šířily přes Arábii do Evropy, kde získaly svou dnešní podobu.
+      </p>
+      <p>
+        Během středověku a renesance se šachy staly symbolem inteligence a šlechty, a dnes jsou jednou z nejpopulárnějších deskových her na světě.
+      </p>
+    </section>
+
+    <section id="figury" class="slide-left info-box">
+      <h2>Šachové figury</h2>
+
+      <div class="cards">
+
+        <article class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_pawn_stand.svg" alt="Pěšec" />
+          <h3>Pěšec (Pawn)</h3>
+          <p>
+            Nejpočetnější a základní figura na šachovnici. Pohybuje se o jedno pole vpřed, ale na útok diagonálně. Pěšci mají i speciální možnost proměny.
+          </p>
+        </article>
+
+        <article class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rook_stand.svg" alt="Věž" />
+          <h3>Věž (Rook)</h3>
+          <p>
+            Pohybuje se po řadách a sloupcích libovolně daleko. Je velmi silná a spolu s králem tvoří důležitou obranu (rošáda).
+          </p>
+        </article>
+
+        <article class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Chess_knight_stand.svg" alt="Jezdec" />
+          <h3>Jezdec (Knight)</h3>
+          <p>
+            Skáče do tvaru písmene "L" (dva tahy v jednom směru, pak jeden do strany). Je jediná figura, která může přeskočit jiné figurky.
+          </p>
+        </article>
+
+        <article class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Chess_bishop_stand.svg" alt="Střelec" />
+          <h3>Střelec (Bishop)</h3>
+          <p>
+            Pohybuje se diagonálně o libovolný počet polí. Má vynikající dosah a kombinuje dobře s věží a králem.
+          </p>
+        </article>
+
+        <article class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Chess_queen_stand.svg" alt="Dáma" />
+          <h3>Dáma (Queen)</h3>
+          <p>
+            Nejsilnější figura. Pohybuje se jako věž i střelec – tedy po řadách, sloupcích a diagonálách.
+          </p>
+        </article>
+
+        <article class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Chess_king_stand.svg" alt="Král" />
+          <h3>Král (King)</h3>
+          <p>
+            Nejdůležitější figura. Pohybuje se o jedno pole v libovolném směru. Cílem hry je dát soupeři mat, tedy ohrozit jeho krále tak, aby nemohl uniknout.
+          </p>
+        </article>
+
       </div>
     </section>
 
-    <section id="tips" aria-label="Tipy pro začátečníky">
-      <h2>💡 Tipy pro začátečníky</h2>
-      <ul class="tips-list">
-        <li>Ovládni centrum šachovnice – kontrola středu dává velkou strategickou výhodu.</li>
-        <li>Nevyvíjej dámu příliš brzy – může být snadno napadena a ztracena.</li>
-        <li>Chraň svého krále – nezapomínej na rošádu, je to klíčový tah pro bezpečí.</li>
-        <li>Plánuj tahy dopředu – vždy přemýšlej o možných odpovědích soupeře.</li>
-        <li>Neztrácej figurky zbytečně – každá ztráta může být rozhodující.</li>
+    <section id="strategie" class="slide-right info-box">
+      <h2>Základní strategie</h2>
+      <ul>
+        <li>Ovládání centra šachovnice</li>
+        <li>Rychlý rozvoj figur</li>
+        <li>Bezpečnost krále (rošáda)</li>
+        <li>Koordinace figur</li>
+        <li>Plánování tahů dopředu</li>
       </ul>
+      <p>
+        Strategie zahrnuje plánování a dlouhodobé cíle ve hře. Naučit se dobře strategii je klíč k úspěchu.
+      </p>
     </section>
 
-    <section id="about" aria-label="O autorovi">
-      <h2>🧑‍💻 O mně</h2>
-      <p class="about-me">
-        Jmenuji se <strong>Jonáš</strong> a šachy jsou pro mě vášní už od mala. Baví mě studovat strategie a zároveň tvořit vlastní weby, které pomáhají ostatním naučit se šachy lépe a zábavně.
+    <section id="taktiky" class="slide-left info-box">
+      <h2>Taktické prvky</h2>
+      <p>
+        Taktika jsou krátkodobé manévry k získání výhody, například:
       </p>
-      <p class="about-me">
-        Na mém <a href="https://lichess.org/@/SirJonas" target="_blank" rel="noopener noreferrer">Lichess profilu</a> můžeš sledovat mé partie a tipy. Taky se
+      <ul>
+        <li>Vidlička</li>
+        <li>Špendlík</li>
+        <li>Odveta</li>
+        <li>Odkrytí útoku</li>
+        <li>Oběť figur</li>
+      </ul>
+      <p>
+        Taktiky často rozhodují partii a přinášejí rychlé převahy.
+      </p>
+    </section>
+
+    <section id="slovni-zasoba" class="slide-right info-box">
+      <h2>Slovní zásoba šachu</h2>
+      <p>Užitečné termíny:</p>
+      <dl>
+        <dt>Šach</dt><dd>Ohrožení krále soupeře.</dd>
+        <dt>Mat</dt><dd>Stav, kdy král je v šachu a nemůže uniknout.</dd>
+        <dt>Rošáda</dt><dd>Speciální tah krále a věže.</dd>
+        <dt>Pat</dt><dd>Stav remízy, kdy hráč nemůže táhnout, ale není v šachu.</dd>
+      </dl>
+    </section>
+
+    <section id="skoleni" class="slide-left info-box">
+      <h2>Šachové školení</h2>
+      <p>
+        Doporučuji trénovat pravidelně:
+      </p>
+      <ul>
+        <li>Řešení šachových úloh</li>
+        <li>Studium partií mistrů</li>
+        <li>Analýza vlastních partií</li>
+        <li>Online hry a turnaje</li>
+      </ul>
+      <p>
+        Kvalitní školení vede ke zlepšení a radosti ze hry.
+      </p>
+    </section>
+
+    <section id="fotogalerie" class="slide-right info-box">
+      <h2>Fotogalerie šachových momentů</h2>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Chess_board_opening_staunton.jpg/800px-Chess_board_opening_staunton.jpg" alt="Šachovnice" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Chessboard480.svg" alt="Šachovnice diagram" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Chess_Pieces_Sprite.svg" alt="Šachové figury" />
+    </section>
+
+    <section id="kontakt" class="slide-left info-box">
+      <h2>Kontakt</h2>
+      <p>
+        Máš otázky nebo chceš sdílet své partie? Napiš mi na <a href="mailto:sirjonas@example.com">sirjonas@example.com</a>.
+      </p>
+      <p>
+        Díky, že navštěvuješ můj web! ♟️
+      </p>
+    </section>
+
+    <footer>
+      <p>© 2025 Jonáš, šachový nadšenec. Všechny práva vyhrazena.</p>
+    </footer>
+
+  </div>
+</body>
+</html>
+Co to umí a proč je to dobrý?
+Má spoustu různých sekcí
+
+Má navigační menu, které odkazuje na jednotlivé části stránky
+
+Má karty s obrázky figur a textem
+
+Používá efekty z CSS stylu, co jsem ti dal (animace, přechody, stíny)
+
+Je responzivní a čitelný
+
+Je pěkně strukturovaný, takže se ti bude dobře rozšiřovat
+
+Pokud chceš, můžu ti napsat ještě další sekce, třeba třeba:
+
+detailní návody
+
+interaktivní prvky s JavaScriptem
+
+kompletní galerii s více fotkami
+
+šachové partie krok po kroku
+
+Co myslíš? Mám ti to rozšířit? Nebo chceš pomoci
+
+
+
+
+
+
+
