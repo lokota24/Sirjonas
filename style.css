@@ -1,1 +1,107 @@
+/* Reset a základní nastavení */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fdfdfd;
+  color: #333;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Hlavička */
+header {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 2rem;
+  color: #000;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+main {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+/* Figurka */
+.figurka {
+  display: inline-block;
+  width: 180px;
+  text-align: center;
+  margin: 1rem;
+  cursor: pointer;
+  border: 2px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #fafafa;
+}
+
+.figurka:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.figurka img {
+  width: 100px;
+  height: auto;
+}
+
+#info-box {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-left: 5px solid #666;
+  background-color: #f2f2f2;
+  max-width: 600px;
+}
+
+/* Paticka */
+footer {
+  background-color: #fff;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+/* Responzivita */
+@media screen and (max-width: 768px) {
+  .figurka {
+    width: 100%;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
