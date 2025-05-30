@@ -1,1 +1,1 @@
-# Šachy por začátečníky
+# Šachy pro začátečníky
