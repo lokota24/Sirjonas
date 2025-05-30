@@ -504,3 +504,187 @@ footer {
     gap: 15px;
   }
 }
+/* --- Animovaný gradient pozadí --- */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body {
+  background: linear-gradient(270deg, #1e3c72, #2a5298, #153b69, #255aab);
+  background-size: 800% 800%;
+  animation: gradientShift 30s ease infinite;
+  /* plus textura z předchozího stylu */
+  background-image: 
+    linear-gradient(270deg, #1e3c72, #2a5298, #153b69, #255aab),
+    url('https://www.transparenttextures.com/patterns/diagmonds.png');
+  background-blend-mode: overlay;
+  color: #f0f0f0;
+  font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+/* --- Přidání přechodů a animací na karty --- */
+.card {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
+              box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.4s ease;
+  background-color: #183152;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  background-color: #2a5298;
+  transform: translateY(-15px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(42,82,152,0.9);
+}
+
+/* Efekt "světla" přes kartu při hover */
+.card::after {
+  content: "";
+  position: absolute;
+  top: -75%;
+  left: -75%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: rotate(25deg);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+
+.card:hover::after {
+  transform: rotate(25deg) translateX(50%);
+}
+
+/* --- Tooltipy u ikon figurek --- */
+.card img {
+  position: relative;
+  cursor: help;
+}
+
+.card img:hover::after {
+  content: attr(alt);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2a5298dd;
+  padding: 6px 10px;
+  border-radius: 8px;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  color: #fff;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.card img::after {
+  opacity: 0;
+  content: '';
+}
+
+/* --- Hezčí tlačítka s animací --- */
+.contact button {
+  background: linear-gradient(45deg, #2a5298, #183152);
+  box-shadow: 0 8px 15px rgba(42, 82, 152, 0.5);
+  cursor: pointer;
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+  border: none;
+  padding: 14px 0;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 12px;
+}
+
+.contact button:hover,
+.contact button:focus {
+  background: linear-gradient(45deg, #255aab, #112c5c);
+  box-shadow: 0 15px 25px rgba(37, 90, 171, 0.8);
+  outline: none;
+}
+
+/* --- Navigace - přidání aktivního stavu a přechodu --- */
+nav ul li a {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+nav ul li a.active,
+nav ul li a:hover,
+nav ul li a:focus {
+  background-color: #184e8f;
+  color: #fff;
+  box-shadow: 0 0 12px #2a5298cc;
+  outline: none;
+  border-radius: 10px;
+}
+
+/* --- Sekce s fade-in animací při scrollování --- */
+.section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Footer s jemným stínem a středovým textem --- */
+footer {
+  margin-top: 80px;
+  font-size: 0.9rem;
+  color: #a0b0cc;
+  text-align: center;
+  border-top: 1px solid #2a5298;
+  padding: 20px 10px;
+  user-select: none;
+  box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Scrollbar styl pro moderní vzhled --- */
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #183152;
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #2a5298;
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Responsivita - vylepšení --- */
+@media (max-width: 880px) {
+  .cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
