@@ -1,1 +1,1 @@
-# Sirjonas
+# Šachy por začátečníky
