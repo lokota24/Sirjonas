@@ -1,322 +1,184 @@
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jonášův šachový web</title>
-  <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #0e1621;
-      color: #e0e0e0;
-      min-height: 100vh;
-      padding: 40px;
-      transition: background-color 0.3s ease;
-    }
-    a {
-      color: #8ab4f8;
-      text-decoration: none;
-    }
-    a:hover, a:focus {
-      color: #d1d9ff;
-      outline: none;
-    }
+/* Reset základních marginů a paddingů */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    /* --- Hamburger sidebar toggle button --- */
-    .sidebar-toggle {
-      position: fixed;
-      top: 25px;
-      left: 25px;
-      width: 38px;
-      height: 30px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      z-index: 2001;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 0;
-      transition: transform 0.3s ease;
-    }
-    .sidebar-toggle:focus {
-      outline: 2px solid #89a0f9;
-      outline-offset: 2px;
-    }
-    .sidebar-toggle .bar {
-      height: 4px;
-      width: 100%;
-      background-color: #e0e0e0;
-      border-radius: 2px;
-      box-shadow: 0 0 6px #2a5298cc;
-      transition: background-color 0.3s ease;
-    }
-    .sidebar-toggle:hover .bar {
-      background-color: #a1c4fd;
-    }
+/* Tělo stránky - hezké gradientní pozadí */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: #f0f0f0;
+  line-height: 1.6;
+  padding: 30px;
+  min-height: 100vh;
+}
 
-    /* --- Sidebar overlay (dark background when sidebar open) --- */
-    .sidebar-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(18, 35, 70, 0.85);
-      backdrop-filter: blur(4px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 2000;
-    }
-    .sidebar-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
+/* Kontejner s obsahem, max šířka a střed */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(20, 30, 50, 0.85);
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
 
-    /* --- Sidebar styles --- */
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: -320px;
-      width: 320px;
-      height: 100vh;
-      background: linear-gradient(135deg, #1e3c72, #255aab);
-      box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8);
-      padding: 30px 25px;
-      overflow-y: auto;
-      transition: left 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-      z-index: 2002;
-      color: #d0d8f7;
-      font-size: 1rem;
-      user-select: none;
-    }
-    .sidebar.active {
-      left: 0;
-    }
-    .sidebar::-webkit-scrollbar {
-      width: 8px;
-    }
-    .sidebar::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .sidebar::-webkit-scrollbar-thumb {
-      background: #2a5298;
-      border-radius: 4px;
-      box-shadow: inset 0 0 3px #255aab;
-    }
+/* Nadpis */
+h1, h2 {
+  color: #ffd700; /* zlatá barva */
+  text-align: center;
+  margin-bottom: 25px;
+  text-shadow: 2px 2px 6px #000;
+}
 
-    /* Sidebar close button */
-    .sidebar-close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      background: transparent;
-      border: none;
-      font-size: 2.8rem;
-      color: #e0e0e0;
-      cursor: pointer;
-      transition: color 0.3s ease;
-      font-weight: 700;
-      line-height: 1;
-      user-select: none;
-    }
-    .sidebar-close:hover,
-    .sidebar-close:focus {
-      color: #a1c4fd;
-      outline: none;
-    }
+/* Podnadpisy */
+h2 {
+  font-size: 1.8rem;
+  margin-top: 40px;
+}
 
-    /* Sidebar content */
-    .sidebar-content h2 {
-      margin-bottom: 20px;
-      font-size: 2rem;
-      text-shadow: 0 0 10px #84a9ff;
-      user-select: text;
-    }
-    .sidebar-content p {
-      margin-bottom: 15px;
-      font-size: 1.05rem;
-      line-height: 1.4;
-      color: #c0c8e9;
-      user-select: text;
-    }
-    .sidebar-nav ul {
-      list-style: none;
-      padding-left: 0;
-      margin-bottom: 30px;
-    }
-    .sidebar-nav ul li {
-      margin-bottom: 16px;
-    }
-    .sidebar-nav ul li a {
-      color: #b8c6f4;
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding: 6px 10px;
-      display: inline-block;
-      border-radius: 8px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      user-select: text;
-    }
-    .sidebar-nav ul li a:hover,
-    .sidebar-nav ul li a:focus {
-      background-color: #3a69cc;
-      color: #e0e0e0;
-      outline: none;
-    }
+/* Odstavce */
+p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  color: #dcdcdc;
+}
 
-    /* Sidebar contact */
-    .sidebar-contact {
-      border-top: 1px solid #3a69cc;
-      padding-top: 25px;
-    }
-    .sidebar-contact h3 {
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-      color: #a9b8ff;
-      user-select: text;
-    }
-    .sidebar-contact p {
-      font-size: 1rem;
-      color: #ccd6f7;
-      user-select: text;
-      margin-bottom: 8px;
-    }
-    .sidebar-contact a {
-      color: #89a0f9;
-      text-decoration: underline;
-      transition: color 0.3s ease;
-      user-select: text;
-    }
-    .sidebar-contact a:hover,
-    .sidebar-contact a:focus {
-      color: #d1d9ff;
-      outline: none;
-    }
+/* Seznamy - speciální styl */
+ul, ol {
+  margin-left: 25px;
+  margin-bottom: 30px;
+}
 
-    /* Responsive */
-    @media (max-width: 480px) {
-      .sidebar {
-        width: 260px;
-        padding: 25px 15px;
-      }
-      .sidebar-toggle {
-        top: 15px;
-        left: 15px;
-      }
-    }
+li {
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+  color: #c0c0c0;
+  cursor: default;
+  transition: color 0.3s ease;
+}
 
-    /* Example main content */
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding-top: 80px;
-      user-select: text;
-    }
-  </style>
-</head>
+li:hover {
+  color: #ffd700;
+  transform: scale(1.05);
+}
+
+/* Obrázky - s rámečkem a stínem */
+img {
+  display: block;
+  max-width: 100%;
+  margin: 30px auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.7);
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+
+/* Odkazy */
+a {
+  color: #ffd700;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ffa500;
+  text-decoration: underline;
+}
+
+/* Tlačítka */
+button {
+  background-color: #ffd700;
+  color: #1e3c72;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.6);
+  transition: background-color 0.3s ease;
+  margin: 20px 0;
+}
+
+button:hover {
+  background-color: #ffb700;
+}
+
+/* Speciální box s efektem */
+.info-box {
+  background: rgba(255, 215, 0, 0.1);
+  border: 2px solid #ffd700;
+  border-radius: 15px;
+  padding: 20px 30px;
+  margin-bottom: 30px;
+  color: #222;
+  font-weight: 600;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+/* Efekt zářícího textu na hover */
+.glow-on-hover:hover {
+  text-shadow:
+    0 0 5px #ffd700,
+    0 0 10px #ffd700,
+    0 0 20px #ffa500,
+    0 0 30px #ffa500;
+}
+
+/* Media queries pro mobilní zařízení */
+@media (max-width: 600px) {
+  body {
+    padding: 15px;
+  }
+  .container {
+    padding: 20px;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+  p, li {
+    font-size: 1rem;
+  }
+  button {
+    width: 100%;
+  }
+}
+Jak to přidat do tvého HTML?
+Přidej do tvého <body> hlavní obsah do kontejneru:
+
+html
+Zkopírovat
+Upravit
 <body>
+  <div class="container">
+    <h1 class="glow-on-hover">♟️ Vítej na mém šachovém webu ♟️</h1>
 
-  <!-- Hamburger sidebar toggle button -->
-  <button id="sidebarToggle" aria-label="Otevřít menu" aria-expanded="false" aria-controls="sidebarMenu" class="sidebar-toggle">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
+    <p>Jmenuju se Jonáš a miluju šachy. Na tomhle webu najdeš tipy, strategie, informace o figurkách a moje partie.</p>
 
-  <!-- Sidebar -->
-  <aside id="sidebarMenu" class="sidebar" aria-hidden="true">
-    <button id="sidebarClose" aria-label="Zavřít menu" class="sidebar-close">&times;</button>
-    <div class="sidebar-content">
-      <h2>🌟 Extra menu</h2>
-      <p><strong>Jonáš</strong> - šachový nadšenec a tvůrce webu</p>
-      <nav class="sidebar-nav">
-        <ul>
-          <li><a href="#figures">Figurky</a></li>
-          <li><a href="#tips">Tipy pro začátečníky</a></li>
-          <li><a href="#about">O mně</a></li>
-          <li><a href="https://lichess.org/@/SirJonas" target="_blank" rel="noopener noreferrer">Můj Lichess profil</a></li>
-          <li><a href="https://github.com/lokota24/SirJonas" target="_blank" rel="noopener noreferrer">GitHub projekt</a></li>
-        </ul>
-      </nav>
-      <section class="sidebar-contact">
-        <h3>Kontakt</h3>
-        <p>E-mail: <a href="mailto:jonas@example.com">jonas@example.com</a></p>
-        <p>Telefon: +420 123 456 789</p>
-      </section>
+    <h2 class="glow-on-hover">📘 Tipy pro začátečníky</h2>
+    <ol>
+      <li>Ovládni centrum šachovnice</li>
+      <li>Nevyvíjej dámu příliš brzy</li>
+      <li>Chraň svého krále – rošáda je kámoš</li>
+    </ol>
+
+    <div class="info-box">
+      <h2>🛡️ Figurky a jejich síla</h2>
+      <p>Pěšec je základ, věž drží linii, jezdec skáče, střelec pálí diagonály, dáma je nejmocnější a král musí přežít!</p>
     </div>
-  </aside>
 
-  <!-- Overlay -->
-  <div id="sidebarOverlay" class="sidebar-overlay" tabindex="-1" aria-hidden="true"></div>
+    <h2>📷 Ukázka šachovnice</h2>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Chess_board_opening_staunton.jpg/800px-Chess_board_opening_staunton.jpg" alt="Šachovnice">
 
-  <main>
-    <h1>Vítej na mém šachovém webu</h1>
-    <p>Zde můžeš najít vše o figurkách, strategiích a dalších užitečných informacích.</p>
-    <section id="figures">
-      <h2>Figurky</h2>
-      <p>Popis pěšce, věže, střelce, jezdce, dámy a krále.</p>
-    </section>
-    <section id="tips">
-      <h2>Tipy pro začátečníky</h2>
-      <p>Několik užitečných rad, jak začít s šachem.</p>
-    </section>
-    <section id="about">
-      <h2>O mně</h2>
-      <p>Jonáš, vášnivý hráč a programátor, který miluje šachy.</p>
-    </section>
-  </main>
-
-  <script>
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebar = document.getElementById('sidebarMenu');
-    const sidebarClose = document.getElementById('sidebarClose');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
-
-    // Otevře sidebar a overlay
-    function openSidebar() {
-      sidebar.classList.add('active');
-      sidebarOverlay.classList.add('active');
-      sidebarToggle.setAttribute('aria-expanded', 'true');
-      sidebar.setAttribute('aria-hidden', 'false');
-      sidebarClose.focus();
-    }
-
-    // Zavře sidebar a overlay
-    function closeSidebar() {
-      sidebar.classList.remove('active');
-      sidebarOverlay.classList.remove('active');
-      sidebarToggle.setAttribute('aria-expanded', 'false');
-      sidebar.setAttribute('aria-hidden', 'true');
-      sidebarToggle.focus();
-    }
-
-    sidebarToggle.addEventListener('click', () => {
-      if (sidebar.classList.contains('active')) {
-        closeSidebar();
-      } else {
-        openSidebar();
-      }
-    });
-
-    sidebarClose.addEventListener('click', closeSidebar);
-
-    sidebarOverlay.addEventListener('click', closeSidebar);
-
-    // Zavření ESC
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && sidebar.classList.contains('active')) {
-        closeSidebar();
-      }
-    });
-  </script>
-
+    <button onclick="alert('Šachy jsou super! Začni hrát a zlepšuj se každý den!')">Klikni na mě!</button>
+  </div>
 </body>
-</html>
