@@ -1,112 +1,153 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Šachový svět Jonáše</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Šachový web Jonáš – Mistr hry</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    function toggleInfo(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('visible');
+    }
+  </script>
 </head>
 <body>
-  <header>
-    <div class="hero">
-      <h1>♛ Šachový svět Jonáše ♛</h1>
-      <p class="subtitle">Objev krásu strategie, logiky a elegance šachu – očima nadšeného šachisty Jonáše.</p>
-    </div>
+  <header class="hero">
+    <h1>♟️ Vítej na šachovém webu Jonáš ♟️</h1>
+    <p class="subtitle">Pro všechny, kdo milují královskou hru a chtějí se zdokonalovat</p>
   </header>
 
   <nav>
     <ul>
-      <li><a href="#figurky">Figurky</a></li>
-      <li><a href="#tipy">Tipy</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
+      <li><a href="#introduction">Úvod do šachu</a></li>
+      <li><a href="#figures">Šachové figurky</a></li>
+      <li><a href="#strategy">Strategie a taktiky</a></li>
+      <li><a href="#history">Historie šachu</a></li>
+      <li><a href="#contact">Kontakt</a></li>
     </ul>
   </nav>
 
-  <main>
-    <section id="figurky" class="section">
-      <h2>♟️ Seznam figurek</h2>
-      <p>Každá šachová figura má svůj účel a sílu. Klikni na ni a poznej její schopnosti a strategické využití!</p>
+  <section id="introduction" class="section">
+    <h2>Úvod do šachu</h2>
+    <p>Šachy jsou královská hra, která kombinuje strategii, taktiku a schopnost plánovat několik tahů dopředu. Hraje se na šachovnici 8x8 políček, kde dvě strany (bílá a černá) soupeří o zisk a kontrolu nad šachovnicí.</p>
+    <p>Hra začíná s 16 figurkami na každé straně a cílem je dát soupeři „šach-mat“ – situaci, kdy jeho král nemá kam utéct a je ohrožen.</p>
+    <p>Na tomto webu se naučíš vše důležité o figurkách, strategiích i historii šachu.</p>
+  </section>
 
-      <div class="cards">
-        <div class="card" onclick="toggleInfo(this)">
-          <img src="obrazky/pesec.jpg" alt="Pěšec">
-          <h3>Pěšec</h3>
-          <div class="info">
-            <p>Pěšec je nejslabší, ale zároveň nejobětavější figurou. Postupuje kupředu po jednom poli a bere diagonálně. Pokud dojde na poslední řadu, může se proměnit v jakoukoli jinou figuru (kromě krále). Skrytá hrozba koncovek!</p>
-          </div>
-        </div>
+  <section id="figures" class="section">
+    <h2>Šachové figurky</h2>
+    <div class="cards">
 
-        <div class="card" onclick="toggleInfo(this)">
-          <img src="obrazky/vez.jpg" alt="Věž">
-          <h3>Věž</h3>
-          <div class="info">
-            <p>Věž se pohybuje po řadách a sloupcích, tedy horizontálně a vertikálně. Je velmi silná v otevřených pozicích a v koncovkách. Spolu s druhou věží dokáže vytvořit smrtící kombinaci na 7. řadě.</p>
-          </div>
-        </div>
-
-        <div class="card" onclick="toggleInfo(this)">
-          <img src="obrazky/strelec.jpg" alt="Střelec">
-          <h3>Střelec</h3>
-          <div class="info">
-            <p>Střelec ovládá diagonály a může pokrýt celou šachovnici, pokud je správně umístěn. Dva střelci tvoří výbornou útočnou dvojici, především v otevřených pozicích.</p>
-          </div>
-        </div>
-
-        <div class="card" onclick="toggleInfo(this)">
-          <img src="obrazky/kun.jpg" alt="Kůň">
-          <h3>Kůň</h3>
-          <div class="info">
-            <p>Kůň je jediná figura, která může přeskakovat ostatní. Je ideální v uzavřených pozicích, kde ostatní figury ztrácí mobilitu. Jeho "L" pohyb může být těžko předvídatelný a smrtící v kombinacích.</p>
-          </div>
-        </div>
-
-        <div class="card" onclick="toggleInfo(this)">
-          <img src="obrazky/dama.jpg" alt="Dáma">
-          <h3>Dáma</h3>
-          <div class="info">
-            <p>Dáma je nejmocnější figurou. Pohybuje se vertikálně, horizontálně i diagonálně. Je to královna všech figur a její ztráta bývá často rozhodující. Umístěná správně, ovládá polovinu šachovnice.</p>
-          </div>
-        </div>
-
-        <div class="card" onclick="toggleInfo(this)">
-          <img src="obrazky/kral.jpg" alt="Král">
-          <h3>Král</h3>
-          <div class="info">
-            <p>Král je středem celé hry. Je slabý v útoku, ale jeho bezpečnost rozhoduje. Rošáda je důležitá pro jeho ochranu. V koncovce se sám mění na silnou útočnou jednotku.</p>
-          </div>
+      <div class="card" onclick="toggleInfo('info-pawn')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg" alt="Pěšec" />
+        <h3>Pěšec (Pawn)</h3>
+        <div class="info" id="info-pawn">
+          <p>Pěšec je základní a nejpočetnější figura. Pohybuje se o jedno políčko vpřed, ale v prvním tahu může postoupit o dvě.</p>
+          <p>Bije diagonálně a při postupu až na konec šachovnice může být povýšen na silnější figuru (obvykle dámu).</p>
+          <p>Pěšci jsou klíčoví pro kontrolu centra šachovnice a budování silných pozic.</p>
         </div>
       </div>
-    </section>
 
-    <section id="tipy" class="section">
-      <h2>📘 Tipy pro zlepšení</h2>
-      <ul class="tips">
-        <li><strong>Ovládej centrum:</strong> Kontrola polí d4, d5, e4 a e5 je klíčová pro prostor a útok.</li>
-        <li><strong>Rychle vyviň figury:</strong> Nenechávej figury na základní řadě – čím dřív se zapojí, tím lépe.</li>
-        <li><strong>Rošuj včas:</strong> Král v centru je zranitelný. Rošádu proveď ideálně během prvních 10 tahů.</li>
-        <li><strong>Dáma až později:</strong> Brzký výpad dámou bývá potrestán. Nechej ji jako údernou sílu na později.</li>
-        <li><strong>Vytvářej taktické hrozby:</strong> Vidíš dvojitý úder, vazbu nebo vidličku? Jdi do toho!</li>
-        <li><strong>Analyzuj své partie:</strong> Každá prohra i výhra je šance na zlepšení. Pouč se.</li>
-        <li><strong>Studuj koncovky:</strong> Partie často rozhodují právě jednoduché koncovky. Nauč se věžové, pěšcové a základní maty.</li>
-        <li><strong>Hraj a trénuj online:</strong> Weby jako Lichess a Chess.com jsou výborné pro trénink proti reálným soupeřům.</li>
-      </ul>
-    </section>
+      <div class="card" onclick="toggleInfo('info-rook')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg" alt="Věž" />
+        <h3>Věž (Rook)</h3>
+        <div class="info" id="info-rook">
+          <p>Věž se pohybuje libovolně po řadách a sloupcích. Je silná při ovládání otevřených linií a spolupracuje s králem při rošádě.</p>
+          <p>Je důležitá v koncovkách, kde často rozhoduje o výsledku partie.</p>
+        </div>
+      </div>
 
-    <section id="kontakt" class="section">
-      <h2>📫 Kontakt</h2>
-      <p>Chceš se mě na něco zeptat? Napiš mi na e-mail: <strong>jonas.sachy@email.cz</strong> nebo mě sleduj na <a href="#">Instagramu</a>.</p>
-    </section>
-  </main>
+      <div class="card" onclick="toggleInfo('info-knight')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Chess_nlt45.svg" alt="Jezdec" />
+        <h3>Jezdec (Knight)</h3>
+        <div class="info" id="info-knight">
+          <p>Jezdec se pohybuje do tvaru písmene L: dvě políčka v jednom směru a pak jedno do strany.</p>
+          <p>Může přeskočit jiné figurky a je velmi užitečný v zavřených pozicích.</p>
+          <p>Jezdci často vytvářejí taktické hrozby jako vidličky.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleInfo('info-bishop')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Chess_blt45.svg" alt="Střelec" />
+        <h3>Střelec (Bishop)</h3>
+        <div class="info" id="info-bishop">
+          <p>Střelec se pohybuje diagonálně o libovolný počet políček a kontroluje dlouhé diagonály.</p>
+          <p>Spolu se střelcem soupeře často rozhoduje o barvě polí na šachovnici.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleInfo('info-queen')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg" alt="Dáma" />
+        <h3>Dáma (Queen)</h3>
+        <div class="info" id="info-queen">
+          <p>Dáma je nejsilnější figura. Kombinuje pohyb věže i střelce (řady, sloupce i diagonály).</p>
+          <p>Je velmi mobilní a klíčová v útoku i obraně.</p>
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleInfo('info-king')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg" alt="Král" />
+        <h3>Král (King)</h3>
+        <div class="info" id="info-king">
+          <p>Král se pohybuje o jedno políčko v libovolném směru. Je to nejdůležitější figura.</p>
+          <p>Cílem hry je dát soupeři šach-mat, kdy je král v ohrožení a nemůže utéct.</p>
+          <p>Rošáda je speciální tah, kdy král i věž provedou výměnu pozic pro lepší bezpečnost.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="strategy" class="section">
+    <h2>Strategie a taktiky</h2>
+    <article>
+      <h3>Ovládnutí centra</h3>
+      <p>Kontrola středních políček (e4, d4, e5, d5) je klíčová. Ovládnutí centra umožňuje větší mobilitu a lepší pozice.</p>
+    </article>
+    <article>
+      <h3>Rošáda</h3>
+      <p>Rošáda chrání krále a zároveň uvádí věž do hry. Existují krátká (královská) a dlouhá (dámská) rošáda.</p>
+    </article>
+    <article>
+      <h3>Vidlička</h3>
+      <p>Jde o taktiku, kdy jedna figura ohrožuje dvě soupeřovy figurky současně, často jezdec.</p>
+    </article>
+    <article>
+      <h3>Vazba</h3>
+      <p>Jedna figura brání soupeřovu figuru, která by jinak ohrozila důležitější figuru.</p>
+    </article>
+    <article>
+      <h3>Oběť</h3>
+      <p>Obětování figury za lepší pozici nebo šachovou kombinaci.</p>
+    </article>
+  </section>
+
+  <section id="history" class="section">
+    <h2>Historie šachu</h2>
+    <p>Šachy vznikly asi před více než 1500 lety v Indii, kde se hra nazývala „čaturanga“. Postupně se rozšířily do Persie a pak do Evropy.</p>
+    <p>První šachové pravidla, podobná dnešním, vznikla v 15. století v Itálii.</p>
+    <p>V dnešní době jsou šachy oblíbenou hrou po celém světě a mají profesionální turnaje i světové šampiony.</p>
+  </section>
+
+  <section id="contact" class="section contact">
+    <h2>Kontaktuj mě</h2>
+    <p>Pokud chceš sdílet své šachové příběhy nebo máš dotazy, napiš mi:</p>
+    <form>
+      <label for="name">Jméno:</label>
+      <input type="text" id="name" name="name" required placeholder="Tvoje jméno" />
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required placeholder="Tvoje e-mailová adresa" />
+
+      <label for="message">Zpráva:</label>
+      <textarea id="message" name="message" rows="5" required placeholder="Napiš zprávu"></textarea>
+
+      <button type="submit">Odeslat</button>
+    </form>
+  </section>
 
   <footer>
-    <p>© 2025 Jonáš – Všechna práva vyhrazena | Web vytvořen s ♥ a šachovou vášní</p>
+    &copy; 2025 Jonáš – Všechna práva vyhrazena. | <a href="#">Zásady ochrany soukromí</a>
   </footer>
-
-  <script>
-    function toggleInfo(card) {
-      const info = card.querySelector('.info');
-      info.classList.toggle('visible');
-    }
-  </script>
 </body>
 </html>
