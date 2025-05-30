@@ -246,3 +246,35 @@
   <script src="script.js"></script>
 </body>
 </html
+<!-- Tlačítko hamburger menu -->
+<button id="sidebarToggle" aria-label="Otevřít menu" aria-expanded="false" aria-controls="sidebarMenu" class="sidebar-toggle">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</button>
+
+<!-- Sidebar -->
+<aside id="sidebarMenu" class="sidebar" aria-hidden="true">
+  <button id="sidebarClose" aria-label="Zavřít menu" class="sidebar-close">&times;</button>
+  <div class="sidebar-content">
+    <h2>🌟 Extra menu</h2>
+    <p><strong>Jonáš</strong> - šachový nadšenec a tvůrce webu</p>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="#figures">Figurky</a></li>
+        <li><a href="#tips">Tipy pro začátečníky</a></li>
+        <li><a href="#about">O mně</a></li>
+        <li><a href="https://lichess.org/@/SirJonas" target="_blank" rel="noopener noreferrer">Můj Lichess profil</a></li>
+        <li><a href="https://github.com/lokota24/SirJonas" target="_blank" rel="noopener noreferrer">GitHub projekt</a></li>
+      </ul>
+    </nav>
+    <section class="sidebar-contact">
+      <h3>Kontakt</h3>
+      <p>E-mail: <a href="mailto:jonas@example.com">jonas@example.com</a></p>
+      <p>Telefon: +420 123 456 789</p>
+    </section>
+  </div>
+</aside>
+
+<!-- Overlay pro sidebar -->
+<div id="sidebarOverlay" class="sidebar-overlay" tabindex="-1" aria-hidden="true"></div>
