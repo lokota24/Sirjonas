@@ -331,3 +331,186 @@ footer {
   0% {
     opacity: 0;
     transform: translateX(50px
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Šachový web Jonáše</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+
+    <h1 class="glow-pulse">♟️ Vítej na šachovém webu Jonáše ♟️</h1>
+
+    <nav>
+      <a href="#uvod">Úvod</a>
+      <a href="#historie">Historie šachu</a>
+      <a href="#figury">Šachové figury</a>
+      <a href="#strategie">Strategie</a>
+      <a href="#taktiky">Taktiky</a>
+      <a href="#slovni-zasoba">Slovní zásoba</a>
+      <a href="#skoleni">Školení</a>
+      <a href="#fotogalerie">Fotogalerie</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <section id="uvod" class="slide-left info-box">
+      <h2>Úvod do šachu</h2>
+      <p>
+        Jmenuju se <strong>Jonáš</strong> a šachy jsou mou vášní. Tento web je tvořen pro všechny, kdo chtějí proniknout do světa šachů od úplných základů až po pokročilé techniky.
+      </p>
+      <p>
+        Najdeš tu spoustu informací o figurách, strategii, taktice a historii. Kromě toho tu budou návody, fotky a spousta inspirace.
+      </p>
+    </section>
+
+    <section id="historie" class="slide-right info-box">
+      <h2>Historie šachu</h2>
+      <p>
+        Šachy mají více než tisíciletou historii, sahající až do Indie a Persie. Postupně se šířily přes Arábii do Evropy, kde získaly svou dnešní podobu.
+      </p>
+      <p>
+        Během středověku a renesance se šachy staly symbolem inteligence a šlechty, a dnes jsou jednou z nejpopulárnějších deskových her na světě.
+      </p>
+    </section>
+
+    <section id="figury" class="slide-left info-box">
+      <h2>Šachové figury</h2>
+
+      <div class="cards">
+
+        <article class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_pawn_stand.svg" alt="Pěšec" />
+          <h3>Pěšec (Pawn)</h3>
+          <p>
+            Nejpočetnější a základní figura na šachovnici. Pohybuje se o jedno pole vpřed, ale na útok diagonálně. Pěšci mají i speciální možnost proměny.
+          </p>
+        </article>
+
+        <article class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rook_stand.svg" alt="Věž" />
+          <h3>Věž (Rook)</h3>
+          <p>
+            Pohybuje se po řadách a sloupcích libovolně daleko. Je velmi silná a spolu s králem tvoří důležitou obranu (rošáda).
+          </p>
+        </article>
+
+        <article class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Chess_knight_stand.svg" alt="Jezdec" />
+          <h3>Jezdec (Knight)</h3>
+          <p>
+            Skáče do tvaru písmene "L" (dva tahy v jednom směru, pak jeden do strany). Je jediná figura, která může přeskočit jiné figurky.
+          </p>
+        </article>
+
+        <article class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Chess_bishop_stand.svg" alt="Střelec" />
+          <h3>Střelec (Bishop)</h3>
+          <p>
+            Pohybuje se diagonálně o libovolný počet polí. Má vynikající dosah a kombinuje dobře s věží a králem.
+          </p>
+        </article>
+
+        <article class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Chess_queen_stand.svg" alt="Dáma" />
+          <h3>Dáma (Queen)</h3>
+          <p>
+            Nejsilnější figura. Pohybuje se jako věž i střelec – tedy po řadách, sloupcích a diagonálách.
+          </p>
+        </article>
+
+        <article class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Chess_king_stand.svg" alt="Král" />
+          <h3>Král (King)</h3>
+          <p>
+            Nejdůležitější figura. Pohybuje se o jedno pole v libovolném směru. Cílem hry je dát soupeři mat, tedy ohrozit jeho krále tak, aby nemohl uniknout.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="strategie" class="slide-right info-box">
+      <h2>Základní strategie</h2>
+      <ul>
+        <li>Ovládání centra šachovnice</li>
+        <li>Rychlý rozvoj figur</li>
+        <li>Bezpečnost krále (rošáda)</li>
+        <li>Koordinace figur</li>
+        <li>Plánování tahů dopředu</li>
+      </ul>
+      <p>
+        Strategie zahrnuje plánování a dlouhodobé cíle ve hře. Naučit se dobře strategii je klíč k úspěchu.
+      </p>
+    </section>
+
+    <section id="taktiky" class="slide-left info-box">
+      <h2>Taktické prvky</h2>
+      <p>
+        Taktika jsou krátkodobé manévry k získání výhody, například:
+      </p>
+      <ul>
+        <li>Vidlička</li>
+        <li>Špendlík</li>
+        <li>Odveta</li>
+        <li>Odkrytí útoku</li>
+        <li>Oběť figur</li>
+      </ul>
+      <p>
+        Taktiky často rozhodují partii a přinášejí rychlé převahy.
+      </p>
+    </section>
+
+    <section id="slovni-zasoba" class="slide-right info-box">
+      <h2>Slovní zásoba šachu</h2>
+      <p>Užitečné termíny:</p>
+      <dl>
+        <dt>Šach</dt><dd>Ohrožení krále soupeře.</dd>
+        <dt>Mat</dt><dd>Stav, kdy král je v šachu a nemůže uniknout.</dd>
+        <dt>Rošáda</dt><dd>Speciální tah krále a věže.</dd>
+        <dt>Pat</dt><dd>Stav remízy, kdy hráč nemůže táhnout, ale není v šachu.</dd>
+      </dl>
+    </section>
+
+    <section id="skoleni" class="slide-left info-box">
+      <h2>Šachové školení</h2>
+      <p>
+        Doporučuji trénovat pravidelně:
+      </p>
+      <ul>
+        <li>Řešení šachových úloh</li>
+        <li>Studium partií mistrů</li>
+        <li>Analýza vlastních partií</li>
+        <li>Online hry a turnaje</li>
+      </ul>
+      <p>
+        Kvalitní školení vede ke zlepšení a radosti ze hry.
+      </p>
+    </section>
+
+    <section id="fotogalerie" class="slide-right info-box">
+      <h2>Fotogalerie šachových momentů</h2>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Chess_board_opening_staunton.jpg/800px-Chess_board_opening_staunton.jpg" alt="Šachovnice" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Chessboard480.svg" alt="Šachovnice diagram" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Chess_Pieces_Sprite.svg" alt="Šachové figury" />
+    </section>
+
+    <section id="kontakt" class="slide-left info-box">
+      <h2>Kontakt</h2>
+      <p>
+        Máš otázky nebo chceš sdílet své partie? Napiš mi na <a href="mailto:sirjonas@example.com">sirjonas@example.com</a>.
+      </p>
+      <p>
+        Díky, že navštěvuješ můj web! ♟️
+      </p>
+    </section>
+
+    <footer>
+      <p>© 2025 Jonáš, šachový nadšenec. Všechny práva vyhrazena.</p>
+    </footer>
+
+  </div>
+</body>
+</html>
