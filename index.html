@@ -1,166 +1,243 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Šachový web Jonáše</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Šachový web Jonáše</title>
+<style>
+  /* --- Reset a základní styl --- */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffe3e3, #b22222);
+    color: #2b2b2b;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 60px 30px;
+  }
+
+  /* --- Kontejner širší --- */
+  .container {
+    background: rgba(255, 255, 255, 0.97);
+    max-width: 1300px;
+    width: 100%;
+    border-radius: 20px;
+    padding: 50px 70px;
+    box-shadow: 0 15px 50px rgba(178, 34, 34, 0.35);
+  }
+
+  /* --- Hlavní nadpis --- */
+  h1 {
+    font-size: 3.8rem;
+    text-align: center;
+    margin-bottom: 55px;
+    color: #b22222;
+    letter-spacing: 3px;
+    font-weight: 900;
+    text-shadow: 0 0 10px #fa6a6a;
+  }
+
+  /* --- Navigace --- */
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: #b22222;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 8px 16px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    transition: background-color 0.35s ease, color 0.35s ease;
+    cursor: pointer;
+  }
+
+  nav a:hover,
+  nav a:focus {
+    background-color: #b22222;
+    color: white;
+    border-color: #ff4d4d;
+    outline: none;
+  }
+
+  /* --- Sekce - každá je samostatné okno --- */
+  section {
+    display: none;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 40px 50px;
+    box-shadow: 0 10px 38px rgba(178, 34, 34, 0.25);
+  }
+
+  /* Viditelné okno */
+  section.active {
+    display: block;
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  /* Animace */
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(15px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  /* Nadpisy sekcí */
+  section h2 {
+    color: #b22222;
+    font-size: 2.7rem;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #fa6a6a;
+    padding-bottom: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+  }
+
+  /* Text a seznamy */
+  section p, section ul, section dl {
+    font-size: 1.25rem;
+    color: #2b2b2b;
+    margin-bottom: 22px;
+    line-height: 1.7;
+  }
+
+  section ul {
+    padding-left: 28px;
+  }
+
+  section dl dt {
+    font-weight: 700;
+    margin-top: 14px;
+    color: #b22222;
+    font-size: 1.3rem;
+  }
+
+  section dl dd {
+    margin-left: 22px;
+    margin-bottom: 14px;
+    color: #444444;
+  }
+
+  /* Tlačítko zpět */
+  .btn-back {
+    margin-top: 35px;
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    background-color: #b22222;
+    color: white;
+    border-radius: 14px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-back:hover,
+  .btn-back:focus {
+    background-color: #ff4d4d;
+    outline: none;
+  }
+
+  /* Šachové karty (figury) */
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    justify-content: center;
+    margin-top: 28px;
+  }
+
+  .card {
+    background: #ffe3e3;
+    border-radius: 16px;
+    padding: 28px 32px;
+    width: 280px;
+    box-shadow: 0 0 26px rgba(178, 34, 34, 0.3);
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: default;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 44px rgba(178, 34, 34, 0.75);
+  }
+
+  .card img {
+    width: 70px;
+    height: auto;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 2px 2px rgba(178,34,34,0.45));
+  }
+
+  .card h3 {
+    color: #b22222;
+    font-size: 1.55rem;
+    margin-bottom: 18px;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+  }
+
+  /* Odkazy v kontaktu */
+  a {
+    color: #b22222;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+
+  a:hover,
+  a:focus {
+    color: #fa6a6a;
+    outline: none;
+  }
+
+  /* Patička */
+  footer {
+    text-align: center;
+    color: #a14c4c;
+    font-size: 1rem;
+    margin-top: 60px;
+    border-top: 1px solid #dd8888;
+    padding-top: 20px;
+  }
+
+</style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>♟️ Vítej na šachovém webu Jonáše ♟️</h1>
+<div class="container">
+  <h1>♟️ Vítej na šachovém webu Jonáše ♟️</h1>
 
-    <nav>
-      <a href="#uvod">Úvod</a>
-      <a href="#historie">Historie šachu</a>
-      <a href="#figury">Šachové figury</a>
-      <a href="#strategie">Strategie</a>
-      <a href="#taktiky">Taktiky</a>
-      <a href="#slovni-zasoba">Slovní zásoba</a>
-      <a href="#skoleni">Školení</a>
-      <a href="#fotogalerie">Fotogalerie</a>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
+  <nav>
+    <a href="#" data-target="uvod">Úvod</a>
+    <a href="#" data-target="historie">Historie šachu</a>
+    <a href="#" data-target="figury">Šachové figury</a>
+    <a href="#" data-target="strategie">Strategie</a>
+    <a href="#" data-target="taktiky">Taktiky</a>
+    <a href="#" data-target="slovni-zasoba">Slovní zásoba</a>
+    <a href="#" data-target="skoleni">Školení</a>
+    <a href="#" data-target="fotogalerie">Fotogalerie</a>
+    <a href="#" data-target="kontakt">Kontakt</a>
+  </nav>
 
-    <section id="uvod">
-      <h2>Úvod do šachu</h2>
-      <p>
-        Jmenuju se <strong>Jonáš</strong> a šachy jsou mou vášní. Tento web jsem vytvořil, abych sdílel své znalosti a lásku k této krásné hře.
-      </p>
-      <p>
-        Najdeš zde informace o figurách, strategiích, taktikách i historii, které tě povedou od začátečníka k pokročilému hráči.
-      </p>
-    </section>
+  <!-- Sekce, všechny skryté kromě "uvod" -->
+  <section id="uvod" class="active">
+    <h2>Úvod do šachu</h2>
+    <p>Jmenuju se <strong>Jonáš</strong> a šachy jsou mou vášní. Tento web jsem vytvořil, abych sdílel své znalosti a lásku k této krásné hře.</p>
+    <p>Najdeš zde informace o figurách, strategiích, taktikách i historii, které tě povedou od začátečníka k pokročilému hráči.</p>
+  </section>
 
-    <section id="historie">
-      <h2>Historie šachu</h2>
-      <p>
-        Šachy mají původ v Indii před více než tisíci lety a postupně se rozšířily do celého světa. 
-      </p>
-      <p>
-        Během středověku se staly symbolem inteligence a strategie, které dodnes fascinují hráče všech věkových kategorií.
-      </p>
-    </section>
-
-    <section id="figury">
-      <h2>Šachové figury</h2>
-
-      <div class="cards">
-
-        <article class="card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_pawn_stand.svg" alt="Pěšec" />
-          <h3>Pěšec (Pawn)</h3>
-          <p>
-            Základní figura, která postupuje o jedno pole vpřed a útočí diagonálně. Může být proměněna v jinou figuru.
-          </p>
-        </article>
-
-        <article class="card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rook_stand.svg" alt="Věž" />
-          <h3>Věž (Rook)</h3>
-          <p>
-            Pohybuje se po řadách a sloupcích, důležitá pro kontrolu otevřených linií.
-          </p>
-        </article>
-
-        <article class="card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Chess_knight_stand.svg" alt="Jezdec" />
-          <h3>Jezdec (Knight)</h3>
-          <p>
-            Skáče ve tvaru písmene L, může přeskočit jiné figury.
-          </p>
-        </article>
-
-        <article class="card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_bishop_stand.svg" alt="Střelec" />
-          <h3>Střelec (Bishop)</h3>
-          <p>
-            Pohybuje se diagonálně libovolný počet polí.
-          </p>
-        </article>
-
-        <article class="card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Chess_queen_stand.svg" alt="Královna" />
-          <h3>Královna (Queen)</h3>
-          <p>
-            Nejvýkonnější figura, pohybuje se jak po řadách, sloupcích, tak diagonálně.
-          </p>
-        </article>
-
-        <article class="card">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_king_stand.svg" alt="Král" />
-          <h3>Král (King)</h3>
-          <p>
-            Nejdůležitější figura, pohybuje se o jedno pole ve všech směrech. Je třeba ho chránit.
-          </p>
-        </article>
-
-      </div>
-    </section>
-
-    <section id="strategie">
-      <h2>Strategie</h2>
-      <p>
-        K úspěchu v šachu je třeba plánovat dopředu. Kontrola centra šachovnice, rozvíjení figur a bezpečí krále jsou základní pilíře.
-      </p>
-      <p>
-        Dobrá strategie zahrnuje správné zahájení, střední hru a koncovku.
-      </p>
-    </section>
-
-    <section id="taktiky">
-      <h2>Taktiky</h2>
-      <ul>
-        <li>Vidlička - útok jednou figurou na dvě soupeřovy figury zároveň.</li>
-        <li>Pin - zablokování soupeřovy figury, aby nemohla chránit důležitější figurku.</li>
-        <li>Oběť - vědomé odevzdání figury za lepší pozici.</li>
-        <li>Skrytý útok - překvapivý tah, který soupeře zmátne.</li>
-      </ul>
-    </section>
-
-    <section id="slovni-zasoba">
-      <h2>Slovní zásoba</h2>
-      <dl>
-        <dt>Šach</dt>
-        <dd>Hra na šachovnici, jejímž cílem je dát mat králi soupeře.</dd>
-
-        <dt>Mat</dt>
-        <dd>Stav, kdy je král ohrožen a nemá žádný legální tah.</dd>
-
-        <dt>Pat</dt>
-        <dd>Remíza, kdy hráč není v šachu, ale nemůže táhnout.</dd>
-
-        <dt>Rokáda</dt>
-        <dd>Speciální tah, při kterém se král a věž pohybují současně.</dd>
-      </dl>
-    </section>
-
-    <section id="skoleni">
-      <h2>Šachové školení</h2>
-      <p>
-        Pokud chceš zlepšit své schopnosti, rád tě naučím základy i pokročilé techniky šachu. Kontaktuj mě!
-      </p>
-    </section>
-
-    <section id="fotogalerie">
-      <h2>Fotogalerie</h2>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3b/Chess_Board.svg" alt="Šachovnice" />
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Chess_starting_position.jpg" alt="Začátek partie" />
-    </section>
-
-    <section id="kontakt">
-      <h2>Kontakt</h2>
-      <p><strong>Jonáš</strong> – tvůj šachový parťák</p>
-      <p>Email: <a href="mailto:jonas@example.com">jonas@example.com</a></p>
-      <p>Telefon: +420 123 456 789</p>
-    </section>
-
-    <footer>
-      &copy; 2025 Jonáš. Všechna práva vyhrazena.
-    </footer>
-
-  </div>
-
-</body>
-</html>
+  <section id="historie">
+    <h2>Historie šachu</h2>
+    <p>Šachy mají původ v Indii před více než tisíci lety a postupně se rozšířily do celého světa.</p>
+    <p>B
