@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Šachový svět Jonáše</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <h1>♛ Šachový svět Jonáše ♛</h1>
+      <p class="subtitle">Objev krásu strategie, logiky a elegance šachu – očima nadšeného šachisty Jonáše.</p>
+    </div>
+  </header>
 
+  <nav>
+    <ul>
+      <li><a href="#figurky">Figurky</a></li>
+      <li><a href="#tipy">Tipy</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="figurky" class="section">
+      <h2>♟️ Seznam figurek</h2>
+      <p>Každá šachová figura má svůj účel a sílu. Klikni na ni a poznej její schopnosti a strategické využití!</p>
+
+      <div class="cards">
+        <div class="card" onclick="toggleInfo(this)">
+          <img src="obrazky/pesec.jpg" alt="Pěšec">
+          <h3>Pěšec</h3>
+          <div class="info">
+            <p>Pěšec je nejslabší, ale zároveň nejobětavější figurou. Postupuje kupředu po jednom poli a bere diagonálně. Pokud dojde na poslední řadu, může se proměnit v jakoukoli jinou figuru (kromě krále). Skrytá hrozba koncovek!</p>
+          </div>
+        </div>
+
+        <div class="card" onclick="toggleInfo(this)">
+          <img src="obrazky/vez.jpg" alt="Věž">
+          <h3>Věž</h3>
+          <div class="info">
+            <p>Věž se pohybuje po řadách a sloupcích, tedy horizontálně a vertikálně. Je velmi silná v otevřených pozicích a v koncovkách. Spolu s druhou věží dokáže vytvořit smrtící kombinaci na 7. řadě.</p>
+          </div>
+        </div>
+
+        <div class="card" onclick="toggleInfo(this)">
+          <img src="obrazky/strelec.jpg" alt="Střelec">
+          <h3>Střelec</h3>
+          <div class="info">
+            <p>Střelec ovládá diagonály a může pokrýt celou šachovnici, pokud je správně umístěn. Dva střelci tvoří výbornou útočnou dvojici, především v otevřených pozicích.</p>
+          </div>
+        </div>
+
+        <div class="card" onclick="toggleInfo(this)">
+          <img src="obrazky/kun.jpg" alt="Kůň">
+          <h3>Kůň</h3>
+          <div class="info">
+            <p>Kůň je jediná figura, která může přeskakovat ostatní. Je ideální v uzavřených pozicích, kde ostatní figury ztrácí mobilitu. Jeho "L" pohyb může být těžko předvídatelný a smrtící v kombinacích.</p>
+          </div>
+        </div>
+
+        <div class="card" onclick="toggleInfo(this)">
+          <img src="obrazky/dama.jpg" alt="Dáma">
+          <h3>Dáma</h3>
+          <div class="info">
+            <p>Dáma je nejmocnější figurou. Pohybuje se vertikálně, horizontálně i diagonálně. Je to královna všech figur a její ztráta bývá často rozhodující. Umístěná správně, ovládá polovinu šachovnice.</p>
+          </div>
+        </div>
+
+        <div class="card" onclick="toggleInfo(this)">
+          <img src="obrazky/kral.jpg" alt="Král">
+          <h3>Král</h3>
+          <div class="info">
+            <p>Král je středem celé hry. Je slabý v útoku, ale jeho bezpečnost rozhoduje. Rošáda je důležitá pro jeho ochranu. V koncovce se sám mění na silnou útočnou jednotku.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tipy" class="section">
+      <h2>📘 Tipy pro zlepšení</h2>
+      <ul class="tips">
+        <li><strong>Ovládej centrum:</strong> Kontrola polí d4, d5, e4 a e5 je klíčová pro prostor a útok.</li>
+        <li><strong>Rychle vyviň figury:</strong> Nenechávej figury na základní řadě – čím dřív se zapojí, tím lépe.</li>
+        <li><strong>Rošuj včas:</strong> Král v centru je zranitelný. Rošádu proveď ideálně během prvních 10 tahů.</li>
+        <li><strong>Dáma až později:</strong> Brzký výpad dámou bývá potrestán. Nechej ji jako údernou sílu na později.</li>
+        <li><strong>Vytvářej taktické hrozby:</strong> Vidíš dvojitý úder, vazbu nebo vidličku? Jdi do toho!</li>
+        <li><strong>Analyzuj své partie:</strong> Každá prohra i výhra je šance na zlepšení. Pouč se.</li>
+        <li><strong>Studuj koncovky:</strong> Partie často rozhodují právě jednoduché koncovky. Nauč se věžové, pěšcové a základní maty.</li>
+        <li><strong>Hraj a trénuj online:</strong> Weby jako Lichess a Chess.com jsou výborné pro trénink proti reálným soupeřům.</li>
+      </ul>
+    </section>
+
+    <section id="kontakt" class="section">
+      <h2>📫 Kontakt</h2>
+      <p>Chceš se mě na něco zeptat? Napiš mi na e-mail: <strong>jonas.sachy@email.cz</strong> nebo mě sleduj na <a href="#">Instagramu</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Jonáš – Všechna práva vyhrazena | Web vytvořen s ♥ a šachovou vášní</p>
+  </footer>
+
+  <script>
+    function toggleInfo(card) {
+      const info = card.querySelector('.info');
+      info.classList.toggle('visible');
+    }
+  </script>
+</body>
+</html>
