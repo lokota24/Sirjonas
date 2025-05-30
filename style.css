@@ -951,3 +951,195 @@ main {
 }
 
 /* Zavírací křížek modalu
+/* --- Sidebar toggle tlačítko hamburger --- */
+.sidebar-toggle {
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  width: 38px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 2001;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.sidebar-toggle .bar {
+  height: 4px;
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 2px;
+  box-shadow: 0 0 6px #2a5298cc;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-toggle:hover .bar {
+  background-color: #a1c4fd;
+}
+
+/* --- Sidebar overlay (závoj) --- */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(18, 35, 70, 0.85);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2000;
+}
+
+/* Aktivní overlay */
+.sidebar-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- Sidebar samotný --- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -320px; /* schovaný mimo obrazovku */
+  width: 320px;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e3c72, #255aab);
+  box-shadow: 5px 0 25px rgba(0,0,0,0.8);
+  padding: 30px 25px;
+  overflow-y: auto;
+  transition: left 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 2002;
+  color: #d0d8f7;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Aktivní sidebar */
+.sidebar.active {
+  left: 0;
+}
+
+/* Zavírací tlačítko sidebar */
+.sidebar-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 2.8rem;
+  color: #e0e0e0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.sidebar-close:hover,
+.sidebar-close:focus {
+  color: #a1c4fd;
+  outline: none;
+}
+
+/* Sidebar obsah */
+.sidebar-content h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  text-shadow: 0 0 10px #84a9ff;
+}
+
+.sidebar-content p {
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: #c0c8e9;
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar-nav ul li {
+  margin-bottom: 16px;
+}
+
+.sidebar-nav ul li a {
+  color: #b8c6f4;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 6px 10px;
+  display: inline-block;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar-nav ul li a:hover,
+.sidebar-nav ul li a:focus {
+  background-color: #3a69cc;
+  color: #e0e0e0;
+  outline: none;
+}
+
+/* Kontakty v sidebar */
+.sidebar-contact {
+  margin-top: 40px;
+  border-top: 1px solid #3a69cc;
+  padding-top: 25px;
+}
+
+.sidebar-contact h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #a9b8ff;
+}
+
+.sidebar-contact p {
+  font-size: 1rem;
+  color: #ccd6f7;
+}
+
+.sidebar-contact a {
+  color: #89a0f9;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.sidebar-contact a:hover,
+.sidebar-contact a:focus {
+  color: #d1d9ff;
+  outline: none;
+}
+
+/* Scrollbar sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: #2a5298;
+  border-radius: 4px;
+  box-shadow: inset 0 0 3px #255aab;
+}
+
+/* --- Media queries pro mobil --- */
+@media (max-width: 480px) {
+  .sidebar {
+    width: 260px;
+    padding: 25px 15px;
+  }
+
+  .sidebar-toggle {
+    top: 15px;
+    left: 15px;
+  }
+}
