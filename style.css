@@ -1,1 +1,191 @@
+/* style.css */
 
+/* Import fontu */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Reset a základ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #b22222, #4b0000);
+  font-family: 'Roboto', sans-serif;
+  color: #f0e6e6;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* Kontejner pro celý obsah */
+.container {
+  background-color: rgba(20, 20, 20, 0.92);
+  width: 900px;
+  border-radius: 15px;
+  padding: 40px 50px;
+  box-shadow:
+    0 0 30px rgba(178, 34, 34, 0.8),
+    inset 0 0 10px #330000;
+}
+
+/* Nadpis hlavní */
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  color: #ff4d4d;
+  margin-bottom: 40px;
+  text-shadow:
+    0 0 10px #ff4d4d,
+    0 0 20px #ff6666;
+  letter-spacing: 3px;
+}
+
+/* Navigace */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  text-decoration: none;
+  color: #ffb3b3;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+nav a:hover,
+nav a:focus {
+  color: #ff4d4d;
+  border-bottom: 2px solid #ff4d4d;
+  outline: none;
+}
+
+/* Sekce obsahu */
+section {
+  margin-bottom: 55px;
+  background-color: #2d0b0b;
+  border-radius: 12px;
+  padding: 25px 30px;
+  box-shadow:
+    0 0 15px rgba(255, 77, 77, 0.5);
+}
+
+/* Nadpis sekce */
+section h2 {
+  color: #ff6666;
+  font-size: 2.4rem;
+  margin-bottom: 18px;
+  border-bottom: 2px solid #ff4d4d;
+  padding-bottom: 6px;
+  letter-spacing: 1.3px;
+}
+
+/* Odstavce a text */
+section p, section ul, section dl {
+  font-size: 1.12rem;
+  color: #f0e6e6;
+  margin-bottom: 15px;
+}
+
+section ul {
+  padding-left: 20px;
+}
+
+section dl dt {
+  font-weight: 700;
+  margin-top: 10px;
+  color: #ff7f7f;
+}
+
+section dl dd {
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+/* Karty figurek */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card {
+  background: #3b1111;
+  border-radius: 12px;
+  padding: 18px 22px;
+  width: 270px;
+  box-shadow:
+    0 0 18px rgba(255, 77, 77, 0.7);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: default;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 0 40px rgba(255, 77, 77, 1);
+}
+
+/* Obrázky figurek */
+.card img {
+  width: 60px;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+/* Podnadpis karty */
+.card h3 {
+  color: #ff5555;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+/* Patička */
+footer {
+  text-align: center;
+  color: #bb7777;
+  font-size: 0.9rem;
+  margin-top: 40px;
+  border-top: 1px solid #660000;
+  padding-top: 14px;
+}
+
+/* Odkazy v textu */
+a {
+  color: #ff8888;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: #ff4d4d;
+  outline: none;
+}
+
+/* Obrázky v galerii */
+section#fotogalerie img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  box-shadow: 0 0 15px rgba(255, 77, 77, 0.6);
+}
+
+/* Scrollování na kotvy */
+html {
+  scroll-behavior: smooth;
+}
