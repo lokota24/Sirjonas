@@ -1,1 +1,322 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jonášův šachový web</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0e1621;
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 40px;
+      transition: background-color 0.3s ease;
+    }
+    a {
+      color: #8ab4f8;
+      text-decoration: none;
+    }
+    a:hover, a:focus {
+      color: #d1d9ff;
+      outline: none;
+    }
 
+    /* --- Hamburger sidebar toggle button --- */
+    .sidebar-toggle {
+      position: fixed;
+      top: 25px;
+      left: 25px;
+      width: 38px;
+      height: 30px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 2001;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0;
+      transition: transform 0.3s ease;
+    }
+    .sidebar-toggle:focus {
+      outline: 2px solid #89a0f9;
+      outline-offset: 2px;
+    }
+    .sidebar-toggle .bar {
+      height: 4px;
+      width: 100%;
+      background-color: #e0e0e0;
+      border-radius: 2px;
+      box-shadow: 0 0 6px #2a5298cc;
+      transition: background-color 0.3s ease;
+    }
+    .sidebar-toggle:hover .bar {
+      background-color: #a1c4fd;
+    }
+
+    /* --- Sidebar overlay (dark background when sidebar open) --- */
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(18, 35, 70, 0.85);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 2000;
+    }
+    .sidebar-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* --- Sidebar styles --- */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 320px;
+      height: 100vh;
+      background: linear-gradient(135deg, #1e3c72, #255aab);
+      box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8);
+      padding: 30px 25px;
+      overflow-y: auto;
+      transition: left 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+      z-index: 2002;
+      color: #d0d8f7;
+      font-size: 1rem;
+      user-select: none;
+    }
+    .sidebar.active {
+      left: 0;
+    }
+    .sidebar::-webkit-scrollbar {
+      width: 8px;
+    }
+    .sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: #2a5298;
+      border-radius: 4px;
+      box-shadow: inset 0 0 3px #255aab;
+    }
+
+    /* Sidebar close button */
+    .sidebar-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      font-size: 2.8rem;
+      color: #e0e0e0;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      font-weight: 700;
+      line-height: 1;
+      user-select: none;
+    }
+    .sidebar-close:hover,
+    .sidebar-close:focus {
+      color: #a1c4fd;
+      outline: none;
+    }
+
+    /* Sidebar content */
+    .sidebar-content h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      text-shadow: 0 0 10px #84a9ff;
+      user-select: text;
+    }
+    .sidebar-content p {
+      margin-bottom: 15px;
+      font-size: 1.05rem;
+      line-height: 1.4;
+      color: #c0c8e9;
+      user-select: text;
+    }
+    .sidebar-nav ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 30px;
+    }
+    .sidebar-nav ul li {
+      margin-bottom: 16px;
+    }
+    .sidebar-nav ul li a {
+      color: #b8c6f4;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 6px 10px;
+      display: inline-block;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      user-select: text;
+    }
+    .sidebar-nav ul li a:hover,
+    .sidebar-nav ul li a:focus {
+      background-color: #3a69cc;
+      color: #e0e0e0;
+      outline: none;
+    }
+
+    /* Sidebar contact */
+    .sidebar-contact {
+      border-top: 1px solid #3a69cc;
+      padding-top: 25px;
+    }
+    .sidebar-contact h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #a9b8ff;
+      user-select: text;
+    }
+    .sidebar-contact p {
+      font-size: 1rem;
+      color: #ccd6f7;
+      user-select: text;
+      margin-bottom: 8px;
+    }
+    .sidebar-contact a {
+      color: #89a0f9;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+      user-select: text;
+    }
+    .sidebar-contact a:hover,
+    .sidebar-contact a:focus {
+      color: #d1d9ff;
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .sidebar {
+        width: 260px;
+        padding: 25px 15px;
+      }
+      .sidebar-toggle {
+        top: 15px;
+        left: 15px;
+      }
+    }
+
+    /* Example main content */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding-top: 80px;
+      user-select: text;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hamburger sidebar toggle button -->
+  <button id="sidebarToggle" aria-label="Otevřít menu" aria-expanded="false" aria-controls="sidebarMenu" class="sidebar-toggle">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <!-- Sidebar -->
+  <aside id="sidebarMenu" class="sidebar" aria-hidden="true">
+    <button id="sidebarClose" aria-label="Zavřít menu" class="sidebar-close">&times;</button>
+    <div class="sidebar-content">
+      <h2>🌟 Extra menu</h2>
+      <p><strong>Jonáš</strong> - šachový nadšenec a tvůrce webu</p>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="#figures">Figurky</a></li>
+          <li><a href="#tips">Tipy pro začátečníky</a></li>
+          <li><a href="#about">O mně</a></li>
+          <li><a href="https://lichess.org/@/SirJonas" target="_blank" rel="noopener noreferrer">Můj Lichess profil</a></li>
+          <li><a href="https://github.com/lokota24/SirJonas" target="_blank" rel="noopener noreferrer">GitHub projekt</a></li>
+        </ul>
+      </nav>
+      <section class="sidebar-contact">
+        <h3>Kontakt</h3>
+        <p>E-mail: <a href="mailto:jonas@example.com">jonas@example.com</a></p>
+        <p>Telefon: +420 123 456 789</p>
+      </section>
+    </div>
+  </aside>
+
+  <!-- Overlay -->
+  <div id="sidebarOverlay" class="sidebar-overlay" tabindex="-1" aria-hidden="true"></div>
+
+  <main>
+    <h1>Vítej na mém šachovém webu</h1>
+    <p>Zde můžeš najít vše o figurkách, strategiích a dalších užitečných informacích.</p>
+    <section id="figures">
+      <h2>Figurky</h2>
+      <p>Popis pěšce, věže, střelce, jezdce, dámy a krále.</p>
+    </section>
+    <section id="tips">
+      <h2>Tipy pro začátečníky</h2>
+      <p>Několik užitečných rad, jak začít s šachem.</p>
+    </section>
+    <section id="about">
+      <h2>O mně</h2>
+      <p>Jonáš, vášnivý hráč a programátor, který miluje šachy.</p>
+    </section>
+  </main>
+
+  <script>
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebarMenu');
+    const sidebarClose = document.getElementById('sidebarClose');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    // Otevře sidebar a overlay
+    function openSidebar() {
+      sidebar.classList.add('active');
+      sidebarOverlay.classList.add('active');
+      sidebarToggle.setAttribute('aria-expanded', 'true');
+      sidebar.setAttribute('aria-hidden', 'false');
+      sidebarClose.focus();
+    }
+
+    // Zavře sidebar a overlay
+    function closeSidebar() {
+      sidebar.classList.remove('active');
+      sidebarOverlay.classList.remove('active');
+      sidebarToggle.setAttribute('aria-expanded', 'false');
+      sidebar.setAttribute('aria-hidden', 'true');
+      sidebarToggle.focus();
+    }
+
+    sidebarToggle.addEventListener('click', () => {
+      if (sidebar.classList.contains('active')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    });
+
+    sidebarClose.addEventListener('click', closeSidebar);
+
+    sidebarOverlay.addEventListener('click', closeSidebar);
+
+    // Zavření ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+        closeSidebar();
+      }
+    });
+  </script>
+
+</body>
+</html>
