@@ -288,3 +288,68 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Šachový web Jonáš</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header>
+  <h1>Šachový web Jonáš</h1>
+</header>
+
+<nav>
+  <a href="#uvod" class="menu-link">Úvod</a>
+  <a href="#jak-hrat" class="menu-link">Jak hrát</a>
+  <a href="#figury" class="menu-link">Figury</a>
+  <a href="#historie" class="menu-link">Historie</a>
+  <a href="#o-me" class="menu-link">O mně</a>
+</nav>
+
+<main>
+  <button id="backBtn">Zpět</button>
+
+  <section id="uvod">
+    <h2>Úvod do šachu</h2>
+    <p>Vítejte na mém šachovém webu! Šachy jsou královskou hrou, která rozvíjí logiku, trpělivost a strategické myšlení...</p>
+    <img src="images/chessboard.jpg" alt="Šachovnice" />
+  </section>
+
+  <section id="jak-hrat">
+    <h2>Jak hrát šachy</h2>
+    <p>Šachy se hrají na šachovnici o 64 polích. Cílem je dát mat soupeřovu králi...</p>
+    <img src="images/pawn.png" alt="Pěšec" />
+  </section>
+
+  <section id="figury">
+    <h2>Figury a jejich pohyb</h2>
+    <ul>
+      <li><strong>Pěšec:</strong> pohybuje se vpřed o jedno pole, při prvním tahu může o dvě.</li>
+      <li><strong>Věž:</strong> pohybuje se vodorovně a svisle libovolný počet polí.</li>
+      <li><strong>Jezdec:</strong> pohybuje se ve tvaru písmene "L".</li>
+      <li><strong>Střelec:</strong> pohybuje se diagonálně libovolný počet polí.</li>
+      <li><strong>Dáma:</strong> kombinuje pohyb věže a střelce.</li>
+      <li><strong>Král:</strong> pohybuje se o jedno pole v libovolném směru.</li>
+    </ul>
+    <img src="images/rook.png" alt="Věž" />
+    <img src="images/knight.png" alt="Jezdec" />
+  </section>
+
+  <section id="historie">
+    <h2>Historie šachu</h2>
+    <p>Šachy vznikly před více než tisíci lety a prošly mnoha změnami. Původní hra se jmenovala chaturanga...</p>
+  </section>
+
+  <section id="o-me">
+    <h2>O mně</h2>
+    <p>Jmenuji se Jonáš a miluji šachy. Tento web je můj projekt, kde sdílím vše, co o šachu vím a učím se dál...</p>
+  </section>
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
