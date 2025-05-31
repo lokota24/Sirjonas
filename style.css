@@ -1,501 +1,505 @@
 
-/* -----------------------------------
-   Reset a základní stylování
------------------------------------ */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Šachy pro začátečníky</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fafafa;
-  color: #222;
-  line-height: 1.7;
-  font-size: 16px;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-/* -----------------------------------
-   Kontejner pro zarovnání a padding
------------------------------------ */
-.container {
-  max-width: 1280px;
-  width: 90%;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
 
-/* -----------------------------------
-   Hlavička (header) + navigace
------------------------------------ */
-header {
-  background: linear-gradient(90deg, #ffffff 0%, #cce6ff 100%);
-  padding: 1.2rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-}
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
 
-header h1 {
-  text-align: center;
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: #1b3a66;
-  letter-spacing: 2px;
-  user-select: none;
-}
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
 
-.navbar {
-  margin-top: 0.7rem;
-}
+        .game-area {
+            display: flex;
+            gap: 30px;
+            padding: 30px;
+            flex-wrap: wrap;
+        }
 
-.navbar ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
+        .board-container {
+            flex: 1;
+            min-width: 400px;
+        }
 
-.navbar a {
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #1b3a66;
-  padding: 0.6rem 1.2rem;
-  border-radius: 12px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  box-shadow: 0 0 0 transparent;
-}
+        .chessboard {
+            width: 400px;
+            height: 400px;
+            border: 4px solid #2c3e50;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 auto;
+            position: relative;
+        }
 
-.navbar a:hover,
-.navbar a:focus {
-  background-color: #4d88ff;
-  color: #fff;
-  box-shadow: 0 4px 12px rgba(77, 136, 255, 0.5);
-  outline: none;
-}
+        .row {
+            display: flex;
+            height: 12.5%;
+        }
 
-/* -----------------------------------
-   Hlavní obsah (main) + sekce
------------------------------------ */
-main {
-  margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-}
+        .square {
+            width: 12.5%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-/* Sekce s pozadím a stíny */
-section {
-  background: #fff;
-  padding: 2rem 2.5rem;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(27, 58, 102, 0.12);
-  transition: box-shadow 0.4s ease;
-  border: 1.5px solid #d6e6ff;
-}
+        .square.white {
+            background-color: #f0d9b5;
+        }
 
-section:hover {
-  box-shadow: 0 12px 32px rgba(27, 58, 102, 0.2);
-}
+        .square.black {
+            background-color: #b58863;
+        }
 
-/* Nadpisy */
-h2 {
-  font-size: 2.4rem;
-  color: #1b3a66;
-  border-bottom: 3px solid #4d88ff;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
-  user-select: none;
-}
+        .square.selected {
+            background-color: #7fff00 !important;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+        }
 
-h3 {
-  font-size: 1.6rem;
-  color: #2a4d85;
-  margin-top: 1.2rem;
-  margin-bottom: 0.6rem;
-}
+        .square.possible-move {
+            background-color: #90EE90 !important;
+        }
 
-/* Text, odstavce a seznamy */
-p {
-  margin-bottom: 1.4rem;
-  max-width: 900px;
-  line-height: 1.85;
-  color: #333;
-  font-weight: 400;
-}
+        .square.possible-move::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgba(0,0,0,0.3);
+        }
 
-ul,
-ol {
-  margin-left: 2rem;
-  margin-bottom: 1.4rem;
-  color: #444;
-  font-weight: 400;
-  max-width: 850px;
-}
+        .info-panel {
+            flex: 1;
+            min-width: 300px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+        }
 
-li {
-  margin-bottom: 0.7rem;
-}
+        .turn-indicator {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
 
-/* -----------------------------------
-   Gridy pro obrázky a obsah
------------------------------------ */
-.intro-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.5rem;
-  align-items: center;
-  margin-top: 2rem;
-}
+        .game-status {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
 
-.intro-grid img {
-  width: 100%;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(27, 58, 102, 0.15);
-  transition: transform 0.4s ease;
-  cursor: pointer;
-}
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
 
-.intro-grid img:hover {
-  transform: scale(1.05) rotate(1deg);
-}
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
 
-/* Kartičky */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 1rem;
-}
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
 
-.card {
-  background-color: #e8f0ff;
-  padding: 1.8rem 2rem;
-  border-radius: 18px;
-  box-shadow: 0 6px 18px rgba(77, 136, 255, 0.25);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: default;
-  user-select: none;
-}
+        .rules {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid #e0e0e0;
+        }
 
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(77, 136, 255, 0.45);
-}
+        .rules h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
 
-/* Galerie obrázků */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.2rem;
-  margin-top: 1.8rem;
-}
+        .rules ul {
+            list-style: none;
+            padding-left: 0;
+        }
 
-.gallery img {
-  width: 100%;
-  border-radius: 15px;
-  box-shadow: 0 8px 22px rgba(27, 58, 102, 0.15);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  cursor: zoom-in;
-}
+        .rules li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
 
-.gallery img:hover {
-  transform: scale(1.08);
-  box-shadow: 0 14px 30px rgba(27, 58, 102, 0.3);
-}
+        .rules li::before {
+            content: '♞';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
 
-/* -----------------------------------
-   Formuláře
------------------------------------ */
-form {
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 1.3rem;
-  margin-top: 2rem;
-}
+        .coordinates {
+            position: absolute;
+            font-size: 12px;
+            font-weight: bold;
+            color: #666;
+        }
 
-form label {
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #1b3a66;
-}
+        .coord-letter {
+            bottom: 2px;
+            right: 4px;
+        }
 
-form input,
-form textarea {
-  padding: 0.9rem 1.3rem;
-  font-size: 1rem;
-  border: 1.8px solid #a6c8ff;
-  border-radius: 10px;
-  transition: border-color 0.3s ease;
-  font-family: inherit;
-}
+        .coord-number {
+            top: 2px;
+            left: 4px;
+        }
 
-form input:focus,
-form textarea:focus {
-  outline: none;
-  border-color: #4d88ff;
-  box-shadow: 0 0 10px #4d88ff66;
-}
+        @media (max-width: 768px) {
+            .game-area {
+                flex-direction: column;
+            }
+            
+            .chessboard {
+                width: 320px;
+                height: 320px;
+            }
+            
+            .square {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏰 Šachy pro začátečníky 🏰</h1>
+            <p>Naučte se hrát šachy krok za krokem!</p>
+        </div>
 
-form button {
-  background-color: #4d88ff;
-  color: white;
-  border: none;
-  padding: 1.1rem 1.8rem;
-  border-radius: 12px;
-  font-size: 1.2rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.4s ease;
-  user-select: none;
-}
+        <div class="game-area">
+            <div class="board-container">
+                <div class="chessboard" id="chessboard"></div>
+            </div>
 
-form button:hover,
-form button:focus {
-  background-color: #265ea6;
-  box-shadow: 0 0 12px #265ea666;
-}
+            <div class="info-panel">
+                <div class="turn-indicator" id="turnIndicator">
+                    Na tahu: Bílý hráč
+                </div>
 
-/* -----------------------------------
-   Patička (footer)
------------------------------------ */
-footer {
-  background: #cce6ff;
-  text-align: center;
-  padding: 2.5rem 1rem;
-  font-size: 0.9rem;
-  color: #1b3a66;
-  margin-top: 5rem;
-  border-top: 2px solid #a3c4ff;
-  user-select: none;
-}
+                <div class="game-status" id="gameStatus">
+                    Vítejte ve hře! Klikněte na figurku a pak na cílové pole.
+                </div>
 
-/* -----------------------------------
-   Responsivita
------------------------------------ */
-@media (max-width: 1024px) {
-  header h1 {
-    font-size: 2.4rem;
-  }
-  .intro-grid,
-  .card-grid,
-  .gallery {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
-}
+                <div class="controls">
+                    <button onclick="resetGame()">Nová hra</button>
+                    <button onclick="toggleHelp()">Nápověda</button>
+                </div>
 
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 2rem;
-  }
-  .navbar ul {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .intro-grid,
-  .card-grid,
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-  section {
-    padding: 1.5rem 1.8rem;
-  }
-}
+                <div class="rules">
+                    <h3>🎯 Základní pravidla</h3>
+                    <ul>
+                        <li><strong>Král (♔)</strong> - pohybuje se o 1 pole všemi směry</li>
+                        <li><strong>Dáma (♕)</strong> - pohybuje se všemi směry neomezeně</li>
+                        <li><strong>Věž (♖)</strong> - pohybuje se vodorovně a svisle</li>
+                        <li><strong>Střelec (♗)</strong> - pohybuje se diagonálně</li>
+                        <li><strong>Jezdec (♘)</strong> - pohybuje se ve tvaru "L"</li>
+                        <li><strong>Pěšec (♙)</strong> - vpřed o 1 pole, ze základní pozice o 2</li>
+                    </ul>
 
-/* -----------------------------------
-   TIPY, zajímavosti, bonusové efekty
------------------------------------ */
+                    <h3>🎮 Jak hrát</h3>
+                    <ul>
+                        <li>Klikněte na figurku, kterou chcete přesunout</li>
+                        <li>Uvidíte možné tahy zelenou barvou</li>
+                        <li>Klikněte na cílové pole</li>
+                        <li>Cílem je dát soupeřovu králi šach mat</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-/* Tooltip na obrázky */
-.gallery img[title] {
-  position: relative;
-}
+    <script>
+        // Počáteční rozložení šachovnice
+        let board = [
+            ['♜','♞','♝','♛','♚','♝','♞','♜'],
+            ['♟','♟','♟','♟','♟','♟','♟','♟'],
+            ['','','','','','','',''],
+            ['','','','','','','',''],
+            ['','','','','','','',''],
+            ['','','','','','','',''],
+            ['♙','♙','♙','♙','♙','♙','♙','♙'],
+            ['♖','♘','♗','♕','♔','♗','♘','♖']
+        ];
 
-.gallery img[title]:hover::after {
-  content: attr(title);
-  position: absolute;
-  bottom: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #4d88ffcc;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.3s ease;
-  box-shadow: 0 0 10px #4d88ffbb;
-  z-index: 100;
-}
+        let currentPlayer = 'white';
+        let selectedSquare = null;
+        let possibleMoves = [];
 
-/* Animace fade-in pro sekce při scrollu */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+        // Mapování figurek na barvy
+        const whitePieces = ['♔','♕','♖','♗','♘','♙'];
+        const blackPieces = ['♚','♛','♜','♝','♞','♟'];
 
-section {
-  animation-name: fadeInUp;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  animation-fill-mode: forwards;
-  opacity: 0;
-  will-change: transform, opacity;
-  animation-delay: 0.2s;
-}
+        function createBoard() {
+            const chessboard = document.getElementById('chessboard');
+            chessboard.innerHTML = '';
 
-/* -----------------------------------
-   Více textu a zajímavostí pro web
------------------------------------ */
+            for (let row = 0; row < 8; row++) {
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'row';
 
-/* Textové prvky mohou být stylovány přímo v HTML, ale tady jsou příklady */
+                for (let col = 0; col < 8; col++) {
+                    const square = document.createElement('div');
+                    square.className = `square ${(row + col) % 2 === 0 ? 'white' : 'black'}`;
+                    square.dataset.row = row;
+                    square.dataset.col = col;
+                    square.textContent = board[row][col];
+                    square.addEventListener('click', () => handleSquareClick(row, col));
 
-.info-box {
-  background-color: #d9eaff;
-  border-left: 6px solid #4d88ff;
-  padding: 1rem 1.5rem;
-  margin: 1rem 0 2rem 0;
-  border-radius: 12px;
-  color: #1b3a66;
-  font-weight: 600;
-  font-size: 1.1rem;
-  user-select: none;
-}
+                    // Přidání souřadnic
+                    if (col === 7) {
+                        const coordNumber = document.createElement('div');
+                        coordNumber.className = 'coordinates coord-number';
+                        coordNumber.textContent = 8 - row;
+                        square.appendChild(coordNumber);
+                    }
+                    if (row === 7) {
+                        const coordLetter = document.createElement('div');
+                        coordLetter.className = 'coordinates coord-letter';
+                        coordLetter.textContent = String.fromCharCode(97 + col);
+                        square.appendChild(coordLetter);
+                    }
 
-.quote {
-  font-style: italic;
-  font-size: 1.25rem;
-  color: #3a5f90;
-  margin: 2rem auto;
-  max-width: 800px;
-  text-align: center;
-  user-select: none;
-}
+                    rowDiv.appendChild(square);
+                }
+                chessboard.appendChild(rowDiv);
+            }
+        }
 
-/* Příklad různých barevných variant pro odlišení témat */
-.variant-strategy {
-  background-color: #e0f0ff;
-  border-left-color: #1b3a66;
-}
+        function handleSquareClick(row, col) {
+            const piece = board[row][col];
+            
+            // Pokud je vybrané pole možný tah
+            if (possibleMoves.some(move => move.row === row && move.col === col)) {
+                makeMove(selectedSquare.row, selectedSquare.col, row, col);
+                return;
+            }
 
-.variant-history {
-  background-color: #f0f6ff;
-  border-left-color: #4d88ff;
-}
+            // Pokud klikneme na vlastní figurku
+            if (piece && isPieceOwnedByPlayer(piece, currentPlayer)) {
+                selectSquare(row, col);
+            } else {
+                clearSelection();
+            }
+        }
 
-.variant-tactics {
-  background-color: #d0e7ff;
-  border-left-color: #265ea6;
-}
+        function selectSquare(row, col) {
+            clearSelection();
+            selectedSquare = {row, col};
+            possibleMoves = getPossibleMoves(row, col);
+            
+            // Zvýraznění vybraného pole
+            const squares = document.querySelectorAll('.square');
+            squares[row * 8 + col].classList.add('selected');
+            
+            // Zvýraznění možných tahů
+            possibleMoves.forEach(move => {
+                squares[move.row * 8 + move.col].classList.add('possible-move');
+            });
+        }
 
-/* -----------------------------------
-   Scroll-to-top tlačítko (bonus)
------------------------------------ */
-#scrollTopBtn {
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  background-color: #4d88ff;
-  color: white;
-  border: none;
-  padding: 1rem 1.3rem;
-  border-radius: 50%;
-  font-size: 1.6rem;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(77, 136, 255, 0.7);
-  transition: background-color 0.3s ease;
-  display: none; /* skrýt na začátku */
-  z-index: 1500;
-}
+        function clearSelection() {
+            selectedSquare = null;
+            possibleMoves = [];
+            document.querySelectorAll('.square').forEach(square => {
+                square.classList.remove('selected', 'possible-move');
+            });
+        }
 
-#scrollTopBtn:hover {
-  background-color: #265ea6;
-}
+        function makeMove(fromRow, fromCol, toRow, toCol) {
+            const piece = board[fromRow][fromCol];
+            const capturedPiece = board[toRow][toCol];
+            
+            board[toRow][toCol] = piece;
+            board[fromRow][fromCol] = '';
+            
+            // Změna hráče
+            currentPlayer = currentPlayer === 'white' ? 'black' : 'white';
+            
+            updateDisplay();
+            clearSelection();
+            
+            // Hlášení o tahu
+            let message = `${piece} se přesunul na ${String.fromCharCode(97 + toCol)}${8 - toRow}`;
+            if (capturedPiece) {
+                message += ` a sebral ${capturedPiece}`;
+            }
+            
+            document.getElementById('gameStatus').textContent = message;
+        }
 
-/* Po zobrazení při scrollování (přidej JS) */
-.show-scroll {
-  display: block !important;
-}
+        function getPossibleMoves(row, col) {
+            const piece = board[row][col];
+            const moves = [];
+            
+            // Jednoduché pohyby pro ukázku (ne všechna pravidla implementována)
+            switch(piece) {
+                case '♔': case '♚': // Král
+                    for (let dr = -1; dr <= 1; dr++) {
+                        for (let dc = -1; dc <= 1; dc++) {
+                            if (dr === 0 && dc === 0) continue;
+                            const newRow = row + dr;
+                            const newCol = col + dc;
+                            if (isValidMove(newRow, newCol, currentPlayer)) {
+                                moves.push({row: newRow, col: newCol});
+                            }
+                        }
+                    }
+                    break;
+                    
+                case '♖': case '♜': // Věž
+                    // Horizontální a vertikální pohyby
+                    const directions = [[0,1], [0,-1], [1,0], [-1,0]];
+                    for (let [dr, dc] of directions) {
+                        for (let i = 1; i < 8; i++) {
+                            const newRow = row + dr * i;
+                            const newCol = col + dc * i;
+                            if (!isValidMove(newRow, newCol, currentPlayer)) break;
+                            moves.push({row: newRow, col: newCol});
+                            if (board[newRow][newCol] !== '') break; // Zastavit při figurce
+                        }
+                    }
+                    break;
+                    
+                case '♙': // Bílý pěšec
+                    if (row > 0 && board[row-1][col] === '') {
+                        moves.push({row: row-1, col});
+                        if (row === 6 && board[row-2][col] === '') {
+                            moves.push({row: row-2, col});
+                        }
+                    }
+                    // Braní
+                    if (row > 0 && col > 0 && board[row-1][col-1] !== '' && !isPieceOwnedByPlayer(board[row-1][col-1], currentPlayer)) {
+                        moves.push({row: row-1, col: col-1});
+                    }
+                    if (row > 0 && col < 7 && board[row-1][col+1] !== '' && !isPieceOwnedByPlayer(board[row-1][col+1], currentPlayer)) {
+                        moves.push({row: row-1, col: col+1});
+                    }
+                    break;
+                    
+                case '♟': // Černý pěšec
+                    if (row < 7 && board[row+1][col] === '') {
+                        moves.push({row: row+1, col});
+                        if (row === 1 && board[row+2][col] === '') {
+                            moves.push({row: row+2, col});
+                        }
+                    }
+                    // Braní
+                    if (row < 7 && col > 0 && board[row+1][col-1] !== '' && !isPieceOwnedByPlayer(board[row+1][col-1], currentPlayer)) {
+                        moves.push({row: row+1, col: col-1});
+                    }
+                    if (row < 7 && col < 7 && board[row+1][col+1] !== '' && !isPieceOwnedByPlayer(board[row+1][col+1], currentPlayer)) {
+                        moves.push({row: row+1, col: col+1});
+                    }
+                    break;
+            }
+            
+            return moves;
+        }
 
-/* -----------------------------------
-   End of stylesheet
------------------------------------ */
-header {
-  background-color: #f5f7fa;
-  padding: 10px 20px; /* zmenšený padding místo 20px 40px */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+        function isValidMove(row, col, player) {
+            if (row < 0 || row >= 8 || col < 0 || col >= 8) return false;
+            const targetPiece = board[row][col];
+            if (targetPiece === '') return true;
+            return !isPieceOwnedByPlayer(targetPiece, player);
+        }
 
-header h1 {
-  font-size: 1.4rem; /* menší font než předtím (původně třeba 2rem) */
-  margin: 0;
-  color: #222;
-  line-height: 1.2;
-  display: inline-block;
-  vertical-align: middle;
-}
+        function isPieceOwnedByPlayer(piece, player) {
+            if (player === 'white') return whitePieces.includes(piece);
+            return blackPieces.includes(piece);
+        }
 
-.navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 12px; /* menší mezera mezi odkazy */
-  align-items: center;
-  font-size: 0.9rem; /* menší písmo menu */
-}
+        function updateDisplay() {
+            createBoard();
+            const playerName = currentPlayer === 'white' ? 'Bílý hráč' : 'Černý hráč';
+            document.getElementById('turnIndicator').textContent = `Na tahu: ${playerName}`;
+        }
 
-.navbar li a {
-  color: #0073e6;
-  text-decoration: none;
-  padding: 6px 10px; /* menší padding než dřív */
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
+        function resetGame() {
+            board = [
+                ['♜','♞','♝','♛','♚','♝','♞','♜'],
+                ['♟','♟','♟','♟','♟','♟','♟','♟'],
+                ['','','','','','','',''],
+                ['','','','','','','',''],
+                ['','','','','','','',''],
+                ['','','','','','','',''],
+                ['♙','♙','♙','♙','♙','♙','♙','♙'],
+                ['♖','♘','♗','♕','♔','♗','♘','♖']
+            ];
+            currentPlayer = 'white';
+            clearSelection();
+            updateDisplay();
+            document.getElementById('gameStatus').textContent = 'Nová hra začala! Klikněte na figurku a pak na cílové pole.';
+        }
 
-.navbar li a:hover,
-.navbar li a:focus {
-  background-color: #d6e4ff;
-  outline: none;
-}
+        function toggleHelp() {
+            const rules = document.querySelector('.rules');
+            rules.style.display = rules.style.display === 'none' ? 'block' : 'none';
+        }
 
-@media (max-width: 768px) {
-  header {
-    padding: 8px 16px;
-  }
-  header h1 {
-    font-size: 1.1rem;
-  }
-  .navbar ul {
-    gap: 8px;
-    font-size: 0.85rem;
-  }
-  .navbar li a {
-    padding: 4px 8px;
-  }
-}
+        // Inicializace hry
+        createBoard();
+    </script>
+</body>
+</html>
