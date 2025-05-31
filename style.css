@@ -177,3 +177,94 @@ footer {
   color: #cc0000;
   font-weight: bold;
 }
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Šachový web Jonáše</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a href="#domu">Domů</a>
+      <a href="#figurky">Figurky</a>
+      <a href="#strategie">Strategie</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+
+    <h1 id="domu">♟️ Vítej na šachovém webu Jonáše ♟️</h1>
+    <p>Jsem Jonáš a miluju šachy! Tady najdeš vše o figurkách, tipech, strategiích a novinkách ze světa šachu.</p>
+
+    <h2 id="figurky">Šachové figurky</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Chess_plt60.png/200px-Chess_plt60.png" alt="Pěšec">
+        <p><strong>Pěšec</strong></p>
+        <a href="pesec.html">Zobrazit více</a>
+      </div>
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Chess_rlt60.png/200px-Chess_rlt60.png" alt="Věž">
+        <p><strong>Věž</strong></p>
+        <a href="vez.html">Zobrazit více</a>
+      </div>
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Chess_blt60.png/200px-Chess_blt60.png" alt="Střelec">
+        <p><strong>Střelec</strong></p>
+        <a href="strelec.html">Zobrazit více</a>
+      </div>
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Chess_nlt60.png/200px-Chess_nlt60.png" alt="Jezdec">
+        <p><strong>Jezdec</strong></p>
+        <a href="jezdec.html">Zobrazit více</a>
+      </div>
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Chess_qlt60.png/200px-Chess_qlt60.png" alt="Dáma">
+        <p><strong>Dáma</strong></p>
+        <a href="dama.html">Zobrazit více</a>
+      </div>
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Chess_klt60.png/200px-Chess_klt60.png" alt="Král">
+        <p><strong>Král</strong></p>
+        <a href="kral.html">Zobrazit více</a>
+      </div>
+    </div>
+
+    <h2 id="strategie">Šachové strategie</h2>
+    <ul class="strategie">
+      <li><strong>Ovládnutí středu:</strong> Umisťuj své figury tak, aby ovládaly střed šachovnice.</li>
+      <li><strong>Bezpečnost krále:</strong> Rošáda je klíčová k ochraně krále.</li>
+      <li><strong>Vývin figur:</strong> Rychle vyvíjej lehké figury (jezdce a střelce).</li>
+      <li><strong>Dlouhodobé plánování:</strong> Přemýšlej několik tahů dopředu.</li>
+    </ul>
+
+    <h2 id="galerie">Galerie</h2>
+    <div class="galerie">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Chess_in_Lviv_04.jpg/640px-Chess_in_Lviv_04.jpg" alt="Turnaj v parku">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Chess_game.jpg/640px-Chess_game.jpg" alt="Napínavá partie">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Chess_in_Courtyard.jpg/640px-Chess_in_Courtyard.jpg" alt="Šachy na dvoře">
+    </div>
+
+    <h2 id="kontakt">Kontakt</h2>
+    <form class="kontakt-formular">
+      <label for="jmeno">Jméno:</label>
+      <input type="text" id="jmeno" name="jmeno" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="zprava">Zpráva:</label>
+      <textarea id="zprava" name="zprava" rows="4" required></textarea>
+
+      <button type="submit">Odeslat</button>
+    </form>
+
+    <footer>
+      <p>&copy; 2025 Jonášův šachový web. Všechna práva vyhrazena.</p>
+    </footer>
+  </div>
+</body>
+</html>
+
