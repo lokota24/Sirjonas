@@ -124,4 +124,30 @@
 </main>
 
 <footer>
-  &copy; 2025 Jonášův Šachový
+  &copy; 2025 Jonášův Šachový– Všechna práva vyhrazena.
+</footer>
+
+<button id="scrollTopBtn" aria-label="Posunout nahoru">⬆️</button>
+
+<script>
+  // Scroll to top button
+  const scrollBtn = document.getElementById('scrollTopBtn');
+  window.onscroll = function() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      scrollBtn.style.display = "block";
+    } else {
+      scrollBtn.style.display = "none";
+    }
+  };
+  scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Simple form handler
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Díky za zprávu! Brzy se ozvu.');
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
