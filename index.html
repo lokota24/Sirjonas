@@ -3,296 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jonášův Šachový Web</title>
-  <style>
-    /* --- Základní styly --- */
-    :root {
-      --color-primary: #222;
-      --color-secondary: #0077cc;
-      --color-bg: #f0f0f0;
-      --color-white: #fff;
-      --color-nav-bg: #444;
-      --color-nav-hover: #666;
-      --shadow-default: 0 2px 8px rgba(0,0,0,0.15);
-      --font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    /* Reset a základ */
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: var(--font-family);
-      background-color: var(--color-bg);
-      color: var(--color-primary);
-      line-height: 1.6;
-    }
-
-    header, footer {
-      background-color: var(--color-primary);
-      color: var(--color-white);
-      text-align: center;
-      padding: 1.5rem 1rem;
-      box-shadow: var(--shadow-default);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-    }
-
-    nav {
-      background-color: var(--color-nav-bg);
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      padding: 1rem 0;
-      box-shadow: var(--shadow-default);
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: var(--color-white);
-      text-decoration: none;
-      font-weight: 600;
-      padding: 0.4rem 1rem;
-      border-radius: 8px;
-      transition: background-color 0.3s ease;
-    }
-
-    nav a:hover,
-    nav a:focus {
-      background-color: var(--color-nav-hover);
-      outline: none;
-    }
-
-    main {
-      max-width: 960px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    section {
-      background-color: var(--color-white);
-      padding: 2rem 2.5rem;
-      margin-bottom: 2.5rem;
-      border-radius: 12px;
-      box-shadow: var(--shadow-default);
-      transition: opacity 0.5s ease;
-    }
-
-    section h2 {
-      margin-top: 0;
-      font-size: 2rem;
-      border-bottom: 3px solid var(--color-secondary);
-      padding-bottom: 0.3rem;
-      margin-bottom: 1.2rem;
-    }
-
-    img {
-      max-width: 100%;
-      border-radius: 12px;
-      box-shadow: var(--shadow-default);
-      margin: 1rem 0;
-      display: block;
-    }
-
-    /* Tlačítko zpět */
-    #backBtn {
-      display: none;
-      margin: 1rem auto 3rem auto;
-      padding: 0.9rem 2.5rem;
-      font-size: 1.3rem;
-      font-weight: 700;
-      border: none;
-      background-color: var(--color-secondary);
-      color: var(--color-white);
-      border-radius: 15px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,119,204,0.5);
-      transition: background-color 0.3s ease;
-      display: block;
-      width: fit-content;
-      user-select: none;
-    }
-
-    #backBtn:hover {
-      background-color: #005fa3;
-    }
-
-    /* Responsivita */
-    @media (max-width: 600px) {
-      nav {
-        gap: 0.7rem;
-        padding: 0.8rem 0;
-      }
-
-      nav a {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.9rem;
-      }
-
-      main {
-        margin: 1rem;
-        padding: 0 0.5rem;
-      }
-
-      section {
-        padding: 1.5rem 1.2rem;
-      }
-
-      header h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>Jonášův Šachový Web</h1>
-  </header>
-
-  <nav>
-    <a href="#o-mne" class="menu-link">O mně</a>
-    <a href="#jak-hrat" class="menu-link">Jak hrát šachy</a>
-    <a href="#strategie" class="menu-link">Strategie</a>
-    <a href="#taktika" class="menu-link">Taktika &amp; Trénink</a>
-    <a href="#historie" class="menu-link">Historie</a>
-    <a href="#slavni" class="menu-link">Slavní hráči &amp; Partie</a>
-    <a href="#kultura" class="menu-link">Šachová kultura</a>
-    <a href="#galerie" class="menu-link">Galerie</a>
-    <a href="#kontakt" class="menu-link">Kontakt</a>
-  </nav>
-
-  <main>
-
-    <section id="o-mne">
-      <h2>O mně</h2>
-      <p>Ahoj! Jmenuji se Jonáš a jsem nadšený hráč šachů, milovník strategie a historie této úžasné hry. Tento web jsem vytvořil, abych sdílel své znalosti, zkušenosti a vášeň pro šachy s ostatními.</p>
-      <img src="images/portrait.jpg" alt="Jonášův portrét" />
-      <p>Mám rád výzvy, analýzy a učím se stále nové taktiky, které rád sdílím dál.</p>
-    </section>
-
-    <section id="jak-hrat">
-      <h2>Jak hrát šachy</h2>
-      <p>Šachy jsou strategická hra hraná na šachovnici o 64 polích, rozdělených do 8 řad a 8 sloupců. Hrají proti sobě dva hráči, každý začíná s 16 figurkami: 1 král, 1 dáma, 2 věže, 2 střelci, 2 jezdci a 8 pěšců.</p>
-      <p>Cílem hry je dát soupeřovu králi šachmat – situaci, kdy je král ohrožen a nemá žádný legální tah, kterým by unikl.</p>
-      <img src="images/chess_board.jpg" alt="Šachovnice a figurky" />
-      <p>Základní pravidla pohybu figurek jsou:</p>
-      <ul>
-        <li><strong>Pěšec</strong> se pohybuje o jedno pole vpřed, při svém prvním tahu může jít i o dvě pole.</li>
-        <li><strong>Věž</strong> se pohybuje vodorovně nebo svisle o libovolný počet polí.</li>
-        <li><strong>Střelec</strong> se pohybuje diagonálně o libovolný počet polí.</li>
-        <li><strong>Jezdec</strong> se pohybuje do tvaru písmene „L“ - dva kroky jedním směrem a pak jeden kolmo.</li>
-        <li><strong>Dáma</strong> kombinuje pohyb věže a střelce.</li>
-        <li><strong>Král</strong> se pohybuje o jedno pole libovolným směrem.</li>
-      </ul>
-      <p>Hra má také speciální pravidla jako rošáda, braní mimochodem, proměna pěšce a další.</p>
-    </section>
-
-    <section id="strategie">
-      <h2>Strategie</h2>
-      <p>Strategie ve šachu zahrnuje plánování dlouhodobých cílů, kontrolu centra šachovnice, rozvoj figur a zajištění bezpečnosti krále. Důležité je také správné plánování středu hry i koncovky.</p>
-    </section>
-
-    <section id="taktika">
-      <h2>Taktika &amp; Trénink</h2>
-      <p>Taktické motivy jako vidlička, špendlík, odhalená hrozba nebo dvojitý útok pomáhají získávat materiální výhodu. Pravidelný trénink a řešení úloh zvyšuje úroveň hráče.</p>
-    </section>
-
-    <section id="historie">
-      <h2>Historie</h2>
-      <p>Šachy mají kořeny v Indii asi před 1500 lety a postupně se vyvíjely až do dnešní podoby. Během staletí se rozšířily po celém světě a staly se symbolem inteligence a strategie.</p>
-    </section>
-
-    <section id="slavni">
-      <h2>Slavní hráči &amp; Partie</h2>
-      <p>Mezi nejslavnější šachisty patří Garry Kasparov, Bobby Fischer, Magnus Carlsen a mnoho dalších. Jejich partie jsou studovány a inspirují nové generace hráčů.</p>
-    </section>
-
-    <section id="kultura">
-      <h2>Šachová kultura</h2>
-      <p>Šachy nejsou jen hra, ale i umění a způsob života. Existují šachové kluby, turnaje, festivaly a online platformy, kde se hráči z celého světa setkávají a soutěží.</p>
-    </section>
-
-    <section id="galerie">
-      <h2>Galerie</h2>
-      <img src="images/chess_tournament.jpg" alt="Šachový turnaj" />
-      <img src="images/chess_pieces.jpg" alt="Šachové figurky" />
-    </section>
-
-    <section id="kontakt">
-      <h2>Kontakt</h2>
-      <p>Pokud máš otázky, chceš si zahrát nebo se podělit o tipy, napiš mi:</p>
-      <ul>
-        <li>Email: jonas@example.com</li>
-        <li>Telefon: +420 123 456 789</li>
-        <li>Instagram: @jonas_sachy</li>
-      </ul>
-    </section>
-
-  </main>
-
-  <button id="backBtn">Zpět na hlavní stránku</button>
-
-  <footer>
-    <p>© 2025 Jonáš - Šachový web</p>
-  </footer>
-
-  <script>
-    // Skript pro zobrazení jednotlivých sekcí jako samostatná stránka po kliknutí na menu
-    const links = document.querySelectorAll('.menu-link');
-    const sections = document.querySelectorAll('main section');
-    const backBtn = document.getElementById('backBtn');
-    const main = document.querySelector('main');
-    const nav = document.querySelector('nav');
-
-    function showSection(id) {
-      sections.forEach(sec => {
-        if (sec.id === id) {
-          sec.style.display = 'block';
-        } else {
-          sec.style.display = 'none';
-        }
-      });
-      backBtn.style.display = 'block';
-      nav.style.display = 'none';
-    }
-
-    function showAllSections() {
-      sections.forEach(sec => (sec.style.display = 'block'));
-      backBtn.style.display = 'none';
-      nav.style.display = 'flex';
-    }
-
-    links.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        showSection(targetId);
-      });
-    });
-
-    backBtn.addEventListener('click', () => {
-      showAllSections();
-    });
-
-    // Při načtení stránky zobraz všechny sekce
-    showAllSections();
-  </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Šachový web Jonáš</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -311,43 +21,46 @@
 </nav>
 
 <main>
-  <button id="backBtn">Zpět</button>
+  <button id="backBtn" aria-label="Zpět na hlavní obsah">Zpět</button>
 
   <section id="uvod">
     <h2>Úvod do šachu</h2>
-    <p>Vítejte na mém šachovém webu! Šachy jsou královskou hrou, která rozvíjí logiku, trpělivost a strategické myšlení...</p>
+    <p>Vítejte na mém šachovém webu! Šachy jsou královskou hrou, která rozvíjí logiku, trpělivost a strategické myšlení. Díky této hře se naučíte přemýšlet několik tahů dopředu a zároveň si užijete spoustu zábavy a soutěživosti.</p>
     <img src="images/chessboard.jpg" alt="Šachovnice" />
   </section>
 
   <section id="jak-hrat">
     <h2>Jak hrát šachy</h2>
-    <p>Šachy se hrají na šachovnici o 64 polích. Cílem je dát mat soupeřovu králi...</p>
-    <img src="images/pawn.png" alt="Pěšec" />
+    <p>Šachy se hrají na šachovnici o 64 polích uspořádaných do osmi řad a osmi sloupců. Cílem je dát mat soupeřovu králi, což znamená, že král je v ohrožení a není možné ho ochránit.</p>
+    <p>Každá figura se pohybuje jinak, což vytváří bohatou strategii a taktiku hry.</p>
+    <img src="images/pawn.png" alt="Pěšec – základní šachová figura" />
   </section>
 
   <section id="figury">
     <h2>Figury a jejich pohyb</h2>
     <ul>
-      <li><strong>Pěšec:</strong> pohybuje se vpřed o jedno pole, při prvním tahu může o dvě.</li>
-      <li><strong>Věž:</strong> pohybuje se vodorovně a svisle libovolný počet polí.</li>
-      <li><strong>Jezdec:</strong> pohybuje se ve tvaru písmene "L".</li>
-      <li><strong>Střelec:</strong> pohybuje se diagonálně libovolný počet polí.</li>
-      <li><strong>Dáma:</strong> kombinuje pohyb věže a střelce.</li>
-      <li><strong>Král:</strong> pohybuje se o jedno pole v libovolném směru.</li>
+      <li><strong>Pěšec:</strong> Pohybuje se vpřed o jedno pole, při prvním tahu může jít o dvě pole. Útočí diagonálně.</li>
+      <li><strong>Věž:</strong> Pohybuje se vodorovně nebo svisle o libovolný počet polí.</li>
+      <li><strong>Jezdec:</strong> Pohybuje se ve tvaru písmene „L“ (dvě pole v jednom směru a jedno do boku).</li>
+      <li><strong>Střelec:</strong> Pohybuje se diagonálně o libovolný počet polí.</li>
+      <li><strong>Dáma:</strong> Kombinuje pohyb věže a střelce – může se pohybovat jak vodorovně, svisle, tak diagonálně o libovolný počet polí.</li>
+      <li><strong>Král:</strong> Pohybuje se o jedno pole v libovolném směru. Je nejdůležitější figurou.</li>
     </ul>
-    <img src="images/rook.png" alt="Věž" />
-    <img src="images/knight.png" alt="Jezdec" />
+    <img src="images/rook.png" alt="Věž – šachová figura" />
+    <img src="images/knight.png" alt="Jezdec – šachová figura" />
   </section>
 
   <section id="historie">
     <h2>Historie šachu</h2>
-    <p>Šachy vznikly před více než tisíci lety a prošly mnoha změnami. Původní hra se jmenovala chaturanga...</p>
+    <p>Šachy vznikly před více než tisíci lety v Indii pod názvem chaturanga a od té doby se postupně rozšířily do celého světa. Hra prošla mnoha změnami pravidel a designu figurek, až do dnešní podoby, kterou známe dnes. Šachy jsou považovány za jednu z nejstarších a nejvíce respektovaných strategických her.</p>
   </section>
 
   <section id="o-me">
     <h2>O mně</h2>
-    <p>Jmenuji se Jonáš a miluji šachy. Tento web je můj projekt, kde sdílím vše, co o šachu vím a učím se dál...</p>
+    <p>Jmenuji se Jonáš a šachy jsou mou vášní. Tento web jsem vytvořil, abych sdílel své znalosti o této krásné hře a pomohl ostatním se naučit, jak hrát lépe a užít si šachy naplno. Rád hraju jak klasické partie, tak i online turnaje a věřím, že šachy jsou skvělý způsob, jak si procvičit mozek.</p>
+    <p>Kromě šachu mám rád historii a rád se vracím do středověké atmosféry, která se do šachů také odráží. Doufám, že se ti můj web bude líbit a najdeš zde vše, co hledáš.</p>
   </section>
+
 </main>
 
 <script src="js/main.js"></script>
