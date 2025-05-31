@@ -1,280 +1,193 @@
-/* --- Barevná paleta --- */
-:root {
-  --color-primary: #1a1a2e;
-  --color-secondary: #0f3460;
-  --color-accent: #e94560;
-  --color-bg: #f5f5f7;
-  --color-text-dark: #222;
-  --color-text-light: #555;
-  --color-white: #fff;
+/* css/style.css */
 
-  --font-main: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-  --shadow-light: 0 2px 6px rgba(0, 0, 0, 0.1);
-  --shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.15);
-  --shadow-strong: 0 12px 24px rgba(0, 0, 0, 0.25);
-
-  --transition-speed: 0.3s;
-}
-
-/* --- Reset a základní nastavení --- */
-*,
-*::before,
-*::after {
+/* Reset a základní nastavení */
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-main);
-  background-color: var(--color-bg);
-  color: var(--color-text-dark);
-  line-height: 1.75;
-  font-size: 18px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
-/* --- Hlavička --- */
+/* Hlavička */
 header {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-  color: var(--color-white);
+  width: 100%;
+  max-width: 960px;
+  background-color: #30475e;
+  color: #f0f4f8;
+  padding: 25px 30px;
   text-align: center;
-  padding: 2.5rem 1rem;
-  box-shadow: var(--shadow-strong);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(48, 71, 94, 0.4);
   user-select: none;
 }
 
 header h1 {
-  margin: 0;
-  font-weight: 800;
-  font-size: 3rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
-  transition: color var(--transition-speed);
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 3px;
 }
 
-header h1:hover {
-  color: var(--color-accent);
-  cursor: default;
-}
-
-/* --- Navigační menu --- */
+/* Navigace */
 nav {
-  background-color: var(--color-secondary);
+  margin-top: 20px;
+  width: 100%;
+  max-width: 960px;
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  padding: 1.3rem 0;
-  box-shadow: var(--shadow-medium);
-  flex-wrap: wrap;
+  gap: 20px;
+  background-color: #496a81;
+  padding: 15px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(73, 106, 129, 0.5);
   user-select: none;
 }
 
 nav a {
-  color: var(--color-white);
+  color: #f0f4f8;
+  font-weight: 600;
+  font-size: 1.15rem;
   text-decoration: none;
-  font-weight: 700;
-  padding: 0.7rem 1.8rem;
-  border-radius: 35px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: 
-    background-color var(--transition-speed),
-    color var(--transition-speed),
-    transform var(--transition-speed);
-  letter-spacing: 0.05em;
-  font-size: 1.1rem;
-  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
 }
 
 nav a:hover,
 nav a:focus {
-  background-color: var(--color-accent);
-  color: var(--color-white);
-  transform: scale(1.1);
+  background-color: #f0f4f8;
+  color: #30475e;
+  border-color: #f0f4f8;
   outline: none;
-  box-shadow: 0 6px 16px rgba(233, 69, 96, 0.7);
 }
 
-/* --- Hlavní obsah --- */
+/* Hlavní obsah */
 main {
-  flex-grow: 1;
+  margin-top: 30px;
+  width: 100%;
   max-width: 960px;
-  margin: 3rem auto 5rem auto;
-  padding: 0 1.25rem;
+  background-color: #ffffffdd;
+  border-radius: 12px;
+  padding: 30px 40px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  min-height: 600px;
+  position: relative;
   user-select: text;
 }
 
-/* --- Sekce --- */
-section {
-  background-color: var(--color-white);
-  padding: 2.8rem 3.5rem;
-  margin-bottom: 3rem;
-  border-radius: 18px;
-  box-shadow: var(--shadow-medium);
-  opacity: 1;
-  transition: opacity 0.5s ease, transform 0.4s ease;
-  will-change: opacity, transform;
+/* Sekce obsahu */
+main section {
+  margin-bottom: 40px;
+  line-height: 1.65;
+  font-size: 1.15rem;
+  color: #222;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-section.hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(15px);
-}
-
-section h2 {
-  margin-top: 0;
-  font-size: 2.4rem;
-  font-weight: 800;
-  color: var(--color-primary);
-  border-left: 6px solid var(--color-accent);
-  padding-left: 1rem;
-  margin-bottom: 1.4rem;
-  user-select: text;
-}
-
-/* --- Obrázky --- */
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 14px;
-  box-shadow: var(--shadow-light);
-  margin: 1.2rem 0 2rem 0;
-  transition: transform 0.35s ease;
-  cursor: default;
-  user-select: none;
-}
-
-img:hover {
-  transform: scale(1.05);
-  box-shadow: var(--shadow-strong);
-}
-
-/* --- Tlačítko "Zpět" --- */
-#backBtn {
+main section.hidden {
   display: none;
-  margin: 0 auto 4rem auto;
-  padding: 1rem 3rem;
-  font-size: 1.4rem;
-  font-weight: 800;
+}
+
+/* Nadpisy sekcí */
+main section h2 {
+  font-size: 2rem;
+  margin-bottom: 18px;
+  border-bottom: 3px solid #30475e;
+  padding-bottom: 8px;
+  font-weight: 700;
+}
+
+/* Odstavce */
+main p {
+  margin-bottom: 18px;
+  font-weight: 400;
+  color: #333;
+}
+
+/* Seznamy figur */
+main ul {
+  list-style-type: disc;
+  padding-left: 22px;
+  margin-bottom: 30px;
+  color: #2a3a4d;
+}
+
+/* Obrázky */
+main img {
+  display: block;
+  max-width: 280px;
+  margin: 15px auto 30px auto;
+  border-radius: 8px;
+  box-shadow: 0 6px 15px rgba(48, 71, 94, 0.25);
+  transition: transform 0.3s ease;
+  cursor: default;
+}
+
+main img:hover {
+  transform: scale(1.05);
+}
+
+/* Tlačítko zpět */
+#backBtn {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  background-color: #30475e;
   border: none;
-  background: var(--color-accent);
-  color: var(--color-white);
-  border-radius: 40px;
+  color: #f0f4f8;
+  border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 10px 22px rgba(233, 69, 96, 0.6);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(48, 71, 94, 0.45);
+  display: none; /* schováno dokud se nezobrazí jednotlivá sekce */
+  transition: background-color 0.3s ease;
   user-select: none;
-  width: fit-content;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
 }
 
 #backBtn:hover,
 #backBtn:focus {
-  background-color: #bf2f48;
-  outline: none;
-  box-shadow: 0 14px 30px rgba(191, 47, 72, 0.9);
-}
-
-/* --- Textové bloky a odstavce --- */
-p {
-  font-size: 1.125rem;
-  color: var(--color-text-light);
-  line-height: 1.85;
-  margin-bottom: 1.5rem;
-  user-select: text;
-  text-align: justify;
-}
-
-p strong {
-  color: var(--color-primary);
-}
-
-ul {
-  margin: 1rem 0 1.8rem 1.6rem;
-  color: var(--color-text-light);
-  font-size: 1.1rem;
-}
-
-li {
-  margin-bottom: 0.6rem;
-}
-
-/* --- Linky v textu --- */
-a.inline-link {
-  color: var(--color-accent);
-  font-weight: 600;
-  text-decoration: underline;
-  cursor: pointer;
-  user-select: text;
-  transition: color 0.25s ease;
-}
-
-a.inline-link:hover,
-a.inline-link:focus {
-  color: #c52f4e;
+  background-color: #496a81;
   outline: none;
 }
 
-/* --- Responsivita --- */
-@media (max-width: 900px) {
-  main {
-    margin: 2rem 1rem 4rem 1rem;
-    padding: 0 1rem;
+/* Responsivní design */
+@media (max-width: 720px) {
+  body {
+    padding: 15px;
   }
 
-  section {
-    padding: 2rem 2rem;
-    margin-bottom: 2.4rem;
-  }
-
-  nav {
-    gap: 1rem;
-    padding: 1rem 0;
-  }
-
-  nav a {
-    padding: 0.6rem 1.3rem;
-    font-size: 1rem;
-  }
-
-  header h1 {
-    font-size: 2.5rem;
-  }
-}
-
-@media (max-width: 480px) {
   header h1 {
     font-size: 2rem;
   }
 
   nav {
-    flex-direction: column;
-    gap: 0.8rem;
+    flex-wrap: wrap;
+    gap: 12px;
   }
 
   nav a {
-    padding: 0.5rem 1rem;
-    font-size: 0.95rem;
-    border-radius: 25px;
+    font-size: 1rem;
+    padding: 6px 12px;
   }
 
   main {
-    margin: 1.5rem 0.8rem 3rem 0.8rem;
-    padding: 0 0.6rem;
+    padding: 20px 25px;
+    min-height: auto;
   }
 
-  section {
-    padding: 1.5rem 1.2rem;
+  main img {
+    max-width: 90%;
   }
 }
