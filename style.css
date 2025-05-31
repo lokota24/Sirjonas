@@ -1,459 +1,236 @@
-/* ----------------------------------------
-   RESET & ZÁKLADNÍ NASTAVENÍ
------------------------------------------ */
-*,
-*::before,
-*::after {
+
+/* ===== ABSOLUTNĚ VYLEPŠENÝ PROFESIONÁLNÍ SVĚTLÝ DESIGN PRO ŠACHOVÝ WEB ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;700&display=swap');
+
+:root {
+  --primary-bg: #ffffff;
+  --secondary-bg: #f4f6fa;
+  --accent-color: #1e1e1e;
+  --highlight-color: #ff8c00;
+  --highlight-soft: #ffe9cc;
+  --text-color: #2d2d2d;
+  --muted-text: #7a7a7a;
+  --radius: 18px;
+  --shadow-light: 0 6px 20px rgba(0, 0, 0, 0.05);
+  --shadow-heavy: 0 14px 48px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --max-width: 1440px;
+  --gradient: linear-gradient(135deg, #ffffff, #fdfbfa);
+}
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #1c1c1c 0%, #2c3e50 100%);
-  color: #f0f0f0;
-  min-height: 100vh;
-  overflow-x: hidden;
 }
 
 body {
-  line-height: 1.6;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  background: var(--gradient);
+  font-family: var(--font-body);
+  color: var(--text-color);
+  line-height: 1.8;
+  font-size: 17px;
+  scroll-behavior: smooth;
 }
 
-/* ----------------------------------------
-   TYPOGRAFIE
------------------------------------------ */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #e1e1e1;
-  margin-bottom: 0.5em;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
-}
-
-h1 {
-  font-size: 3.2rem;
-}
-
-h2 {
-  font-size: 2.4rem;
-}
-
-h3 {
-  font-size: 1.8rem;
-}
-
-p {
-  font-size: 1.1rem;
-  color: #dcdcdc;
-  max-width: 800px;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 0 3px rgba(0,0,0,0.3);
-}
-
-a {
-  color: #f39c12;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-a:hover,
-a:focus {
-  color: #d35400;
-  outline: none;
-}
-
-/* ----------------------------------------
-   KONTEJNERY A LAYOUT
------------------------------------------ */
 .container {
-  width: 90%;
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
-  padding: 2rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 2rem;
 }
 
-/* ----------------------------------------
-   HLAVNÍ NAVIGACE
------------------------------------------ */
-nav {
-  background: #34495e;
-  padding: 1rem 2rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+header {
+  background-color: var(--primary-bg);
+  box-shadow: var(--shadow-light);
   position: sticky;
   top: 0;
   z-index: 999;
+  padding: 1.8rem 0;
+  transition: var(--transition);
+}
+
+header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-nav .logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #f39c12;
-  letter-spacing: 0.1em;
-  user-select: none;
-  text-shadow: 0 0 8px #f39c12;
+header h1 {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  color: var(--accent-color);
 }
 
-nav ul {
+.navbar ul {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
-nav ul li a {
+.navbar a {
+  text-decoration: none;
+  color: var(--accent-color);
   font-weight: 600;
-  padding: 0.5rem 0.8rem;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-nav ul li a:hover,
-nav ul li a:focus {
-  background-color: #f39c12;
-  color: #2c3e50;
-  outline: none;
-}
-
-/* ----------------------------------------
-   ŠACHOVNICE - GRID LAYOUT + STYLING
------------------------------------------ */
-#chessboard {
-  display: grid;
-  grid-template-columns: repeat(8, 80px);
-  grid-template-rows: repeat(8, 80px);
-  gap: 0;
-  border: 6px solid #f39c12;
-  box-shadow: 0 0 30px rgba(243, 156, 18, 0.7);
-  border-radius: 12px;
-  user-select: none;
-  margin: 3rem 0;
-  background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
-}
-
-.square {
-  width: 80px;
-  height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 56px;
-  cursor: pointer;
-  transition: background-color 0.4s ease, transform 0.2s ease;
-  position: relative;
-  color: #222;
-  font-weight: 900;
-  text-shadow: 1px 1px 3px rgba(255,255,255,0.7);
-}
-
-.square.light {
-  background-color: #f0d9b5;
-  color: #3c2f2f;
-}
-.square.dark {
-  background-color: #b58863;
-  color: #faf3e0;
-}
-
-.square:hover {
-  filter: brightness(1.1);
-  transform: scale(1.05);
-  z-index: 10;
-  box-shadow: 0 0 12px #f39c12;
-}
-
-.square.highlight {
-  box-shadow: inset 0 0 15px 6px rgba(243, 156, 18, 0.75);
-  animation: highlightPulse 1.5s infinite ease-in-out;
-}
-
-@keyframes highlightPulse {
-  0%, 100% { box-shadow: inset 0 0 15px 6px rgba(243, 156, 18, 0.75); }
-  50% { box-shadow: inset 0 0 25px 10px rgba(243, 156, 18, 0.9); }
-}
-
-/* ----------------------------------------
-   FIGURKY - PŘECHODY A EFEKTY
------------------------------------------ */
-.piece {
-  pointer-events: none;
-  user-select: none;
-  transition: transform 0.3s ease;
-  filter: drop-shadow(0 0 3px rgba(0,0,0,0.3));
-}
-
-.square.moving .piece {
-  transform: scale(1.2) rotate(10deg);
-  filter: drop-shadow(0 0 10px #f39c12);
-}
-
-/* ----------------------------------------
-   PANEL INFORMACÍ
------------------------------------------ */
-.info-panel {
-  background: rgba(44, 62, 80, 0.85);
-  border-radius: 12px;
-  padding: 1.5rem 2rem;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
-  max-width: 1200px;
-  width: 100%;
-  margin-bottom: 3rem;
-  color: #ecf0f1;
-}
-
-.info-panel h2 {
-  margin-bottom: 1rem;
-  text-align: center;
-  color: #f39c12;
-}
-
-.info-panel p {
-  font-size: 1.2rem;
-  line-height: 1.75;
-  color: #ddd;
-  text-align: justify;
-}
-
-/* ----------------------------------------
-   TLAČÍTKA - MODERNÍ STYL
------------------------------------------ */
-button {
-  background: #f39c12;
-  border: none;
-  padding: 0.85rem 2rem;
-  border-radius: 10px;
-  color: #2c3e50;
-  font-weight: 700;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: background-color 0.4s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 15px rgba(243,156,18,0.5);
-  user-select: none;
-}
-
-button:hover,
-button:focus {
-  background: #d35400;
-  box-shadow: 0 0 20px #d35400;
-  outline: none;
-}
-
-/* ----------------------------------------
-   MODAL OKNO (např. "O mně" sekce)
------------------------------------------ */
-.modal-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(12,12,12,0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
-  z-index: 10000;
-}
-
-.modal-bg.active {
-  visibility: visible;
-  opacity: 1;
-}
-
-.modal {
-  background: #34495e;
-  border-radius: 20px;
-  padding: 3rem 3.5rem;
-  max-width: 700px;
-  max-height: 80vh;
-  overflow-y: auto;
-  box-shadow: 0 0 40px rgba(243, 156, 18, 0.7);
-  color: #ecf0f1;
-  position: relative;
-}
-
-.modal h2 {
-  margin-bottom: 1rem;
-  text-align: center;
-  color: #f39c12;
-}
-
-.modal p {
   font-size: 1.15rem;
-  line-height: 1.8;
-  color: #ddd;
-  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 4px;
+  transition: var(--transition);
 }
 
-.modal-close {
+.navbar a::after {
+  content: '';
   position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: #f39c12;
-  user-select: none;
-  transition: color 0.3s ease;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--highlight-color);
+  transition: var(--transition);
 }
 
-.modal-close:hover {
-  color: #d35400;
+.navbar a:hover::after {
+  width: 100%;
 }
 
-/* ----------------------------------------
-   RESPONSIVITA
------------------------------------------ */
-@media (max-width: 1024px) {
-  #chessboard {
-    grid-template-columns: repeat(8, 60px);
-    grid-template-rows: repeat(8, 60px);
-    border-width: 4px;
-    border-radius: 10px;
-  }
-  .square {
-    width: 60px;
-    height: 60px;
-    font-size: 44px;
-  }
+section {
+  padding: 5rem 2rem;
 }
 
-@media (max-width: 600px) {
-  #chessboard {
-    grid-template-columns: repeat(8, 40px);
-    grid-template-rows: repeat(8, 40px);
-    border-width: 3px;
-    border-radius: 8px;
-  }
-  .square {
-    width: 40px;
-    height: 40px;
-    font-size: 28px;
-  }
-  nav ul {
-    gap: 1rem;
-  }
-  nav .logo {
-    font-size: 1.4rem;
-  }
+section:nth-child(even) {
+  background-color: var(--secondary-bg);
 }
 
-/* ----------------------------------------
-   VLASTNÍ SCROLLBARY (pro info-panel a modal)
------------------------------------------ */
-.info-panel::-webkit-scrollbar,
-.modal::-webkit-scrollbar {
-  width: 8px;
+h2 {
+  font-family: var(--font-heading);
+  font-size: 2.3rem;
+  margin-bottom: 2rem;
+  color: var(--accent-color);
+  position: relative;
+  display: inline-block;
 }
 
-.info-panel::-webkit-scrollbar-track,
-.modal::-webkit-scrollbar-track {
-  background: #2c3e50;
-  border-radius: 10px;
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background-color: var(--highlight-color);
+  border-radius: 4px;
 }
 
-.info-panel::-webkit-scrollbar-thumb,
-.modal::-webkit-scrollbar-thumb {
-  background: #f39c12;
-  border-radius: 10px;
-  box-shadow: inset 0 0 5px #d35400;
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
 }
 
-/* ----------------------------------------
-   DARK MODE PODPORA
------------------------------------------ */
-@media (prefers-color-scheme: dark) {
-  html, body {
-    background: #121212;
-    color: #e0e0e0;
-  }
-  nav {
-    background: #222;
-    box-shadow: 0 4px 20px rgba(255, 152, 0, 0.6);
-  }
-  #chessboard {
-    border-color: #ffa500;
-    background: linear-gradient(135deg, #333 0%, #222 100%);
-  }
-  .square.light {
-    background-color: #fefefe;
-    color: #1a1a1a;
-  }
-  .square.dark {
-    background-color: #555;
-    color: #e6e6e6;
-  }
-  .info-panel {
-    background: rgba(40, 40, 40, 0.9);
-  }
-  .modal {
-    background: #333;
-    box-shadow: 0 0 40px rgba(255, 165, 0, 0.9);
-  }
-  button {
-    background: #ffa500;
-    color: #222;
-  }
-  button:hover,
-  button:focus {
-    background: #cc8400;
-    box-shadow: 0 0 20px #cc8400;
-  }
+.card {
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  padding: 2rem;
+  transition: var(--transition);
 }
 
-/* ----------------------------------------
-   ANIMACE NA SPUŠTĚNÍ STRÁNKY
------------------------------------------ */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.container,
-nav,
-.info-panel,
-#chessboard {
-  animation: fadeInUp 1s ease forwards;
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-heavy);
 }
 
-/* ----------------------------------------
-   DALŠÍ DETAILED EFEKTY (DROP SHADOW, GLOW ...)
------------------------------------------ */
-h1, h2, nav .logo {
-  text-shadow: 0 0 8px #f39c12, 0 0 12px #d35400;
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+}
+
+.card p {
+  color: var(--muted-text);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.gallery img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-heavy);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+input, textarea {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--highlight-color);
+  outline: none;
 }
 
 button {
-  box-shadow: 0 6px 20px rgba(243, 156, 18, 0.8);
-  text-shadow: 0 0 5px #d35400;
-  letter-spacing: 0.05em;
+  background: var(--highlight-color);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
-/* ----------------------------------------
-   TIPPY NA VYLEPŠENÍ
------------------------------------------ */
-/*  
-  - Přidat CSS proměnné (custom properties) pro snadnou změnu barev  
-  - Využít CSS Grid a Flexbox pro detailnější layout  
-  - Přidat dark mode přepínač s JavaScriptem  
-  - Optimalizovat načítání fontů (např. Google Fonts)  
-  - Použít SVG ikonky figur a animace  
-*/
+button:hover {
+  background-color: #e67300;
+}
+
+footer {
+  background-color: var(--secondary-bg);
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--muted-text);
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 4rem;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  header .container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  h2 {
+    text-align: center;
+  }
+}
