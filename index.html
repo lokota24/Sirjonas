@@ -3,66 +3,242 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Šachový web Jonáš</title>
+  <title>Jonášův Šachový Web – Strategická Krása Šachu</title>
+
+  <!-- Google Fonts: Moderní kombinace pro text a nadpisy -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Hlavní styl -->
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/favicon-chess.ico" type="image/x-icon" />
+
+  <!-- Meta informace pro SEO a sociální sítě -->
+  <meta name="description" content="Profesionální šachový web Jonáše – naučte se šachy, strategie, pravidla a figurky s interaktivními prvky." />
+  <meta name="author" content="Jonáš" />
+  <meta property="og:title" content="Jonášův Šachový Web" />
+  <meta property="og:description" content="Strategická a krásná hra šachy přehledně a profesionálně." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="images/og-image-chess.jpg" />
 </head>
+
 <body>
+  <!-- Hlavní záhlaví -->
+  <header role="banner" class="site-header">
+    <h1 tabindex="0" class="site-title">Jonášův Šachový Svět</h1>
+    <p class="site-tagline" aria-label="Popis webu">Strategie, taktika a krása šachů pod jednou střechou</p>
+  </header>
 
-<header>
-  <h1>Šachový web Jonáš</h1>
-</header>
-
-<nav>
-  <a href="#uvod" class="menu-link">Úvod</a>
-  <a href="#jak-hrat" class="menu-link">Jak hrát</a>
-  <a href="#figury" class="menu-link">Figury</a>
-  <a href="#historie" class="menu-link">Historie</a>
-  <a href="#o-me" class="menu-link">O mně</a>
-</nav>
-
-<main>
-  <button id="backBtn" aria-label="Zpět na hlavní obsah">Zpět</button>
-
-  <section id="uvod">
-    <h2>Úvod do šachu</h2>
-    <p>Vítejte na mém šachovém webu! Šachy jsou královskou hrou, která rozvíjí logiku, trpělivost a strategické myšlení. Díky této hře se naučíte přemýšlet několik tahů dopředu a zároveň si užijete spoustu zábavy a soutěživosti.</p>
-    <img src="images/chessboard.jpg" alt="Šachovnice" />
-  </section>
-
-  <section id="jak-hrat">
-    <h2>Jak hrát šachy</h2>
-    <p>Šachy se hrají na šachovnici o 64 polích uspořádaných do osmi řad a osmi sloupců. Cílem je dát mat soupeřovu králi, což znamená, že král je v ohrožení a není možné ho ochránit.</p>
-    <p>Každá figura se pohybuje jinak, což vytváří bohatou strategii a taktiku hry.</p>
-    <img src="images/pawn.png" alt="Pěšec – základní šachová figura" />
-  </section>
-
-  <section id="figury">
-    <h2>Figury a jejich pohyb</h2>
+  <!-- Navigace s ARIA popisy a responzivní strukturou -->
+  <nav role="navigation" aria-label="Hlavní navigace" class="main-nav">
     <ul>
-      <li><strong>Pěšec:</strong> Pohybuje se vpřed o jedno pole, při prvním tahu může jít o dvě pole. Útočí diagonálně.</li>
-      <li><strong>Věž:</strong> Pohybuje se vodorovně nebo svisle o libovolný počet polí.</li>
-      <li><strong>Jezdec:</strong> Pohybuje se ve tvaru písmene „L“ (dvě pole v jednom směru a jedno do boku).</li>
-      <li><strong>Střelec:</strong> Pohybuje se diagonálně o libovolný počet polí.</li>
-      <li><strong>Dáma:</strong> Kombinuje pohyb věže a střelce – může se pohybovat jak vodorovně, svisle, tak diagonálně o libovolný počet polí.</li>
-      <li><strong>Král:</strong> Pohybuje se o jedno pole v libovolném směru. Je nejdůležitější figurou.</li>
+      <li><a href="#" class="nav-link active" data-section="home" aria-current="page">Domů</a></li>
+      <li><a href="#" class="nav-link" data-section="rules">Jak hrát</a></li>
+      <li><a href="#" class="nav-link" data-section="pieces">Figurky</a></li>
+      <li><a href="#" class="nav-link" data-section="about">O mně</a></li>
     </ul>
-    <img src="images/rook.png" alt="Věž – šachová figura" />
-    <img src="images/knight.png" alt="Jezdec – šachová figura" />
-  </section>
+  </nav>
 
-  <section id="historie">
-    <h2>Historie šachu</h2>
-    <p>Šachy vznikly před více než tisíci lety v Indii pod názvem chaturanga a od té doby se postupně rozšířily do celého světa. Hra prošla mnoha změnami pravidel a designu figurek, až do dnešní podoby, kterou známe dnes. Šachy jsou považovány za jednu z nejstarších a nejvíce respektovaných strategických her.</p>
-  </section>
+  <!-- Hlavní obsah webu s role="main" a přístupnou strukturou -->
+  <main role="main" class="content">
 
-  <section id="o-me">
-    <h2>O mně</h2>
-    <p>Jmenuji se Jonáš a šachy jsou mou vášní. Tento web jsem vytvořil, abych sdílel své znalosti o této krásné hře a pomohl ostatním se naučit, jak hrát lépe a užít si šachy naplno. Rád hraju jak klasické partie, tak i online turnaje a věřím, že šachy jsou skvělý způsob, jak si procvičit mozek.</p>
-    <p>Kromě šachu mám rád historii a rád se vracím do středověké atmosféry, která se do šachů také odráží. Doufám, že se ti můj web bude líbit a najdeš zde vše, co hledáš.</p>
-  </section>
+    <!-- Tlačítko pro návrat (viditelné jen v sekci "O mně") -->
+    <button id="backBtn" aria-label="Vrátit se na domovskou stránku" class="btn-back" hidden>Zpět</button>
 
-</main>
+    <!-- Sekce Domů -->
+    <section id="home" class="page-section active" tabindex="0" aria-labelledby="home-title">
+      <h2 id="home-title">Vítejte ve světě šachu</h2>
+      <article>
+        <p>Šachy jsou královskou hrou, která kombinuje strategii, taktiku a duševní sílu. Tento web je vytvořen, aby tě provedl všemi tajemstvími této nádherné hry.</p>
+        <figure>
+          <img src="images/chessboard.jpg" alt="Detailní pohled na šachovnici s figurkami" loading="lazy" />
+          <figcaption>Šachovnice – základ každé partie</figcaption>
+        </figure>
+        <p>Prozkoumej pravidla, nauč se pohyb figurek a poznej mou cestu jako šachového nadšence.</p>
+      </article>
+    </section>
 
-<script src="js/main.js"></script>
+    <!-- Sekce Jak hrát -->
+    <section id="rules" class="page-section hidden" tabindex="0" aria-labelledby="rules-title">
+      <h2 id="rules-title">Základní pravidla šachu</h2>
+      <article>
+        <p>Šachy jsou hra dvou hráčů na šachovnici 8x8 políček. Cílem je dát mat soupeřovu králi.</p>
+        <ul>
+          <li><strong>Figurky:</strong> Každá figurka má unikátní pohyb.</li>
+          <li><strong>Tahy:</strong> Hráči se střídají v tazích.</li>
+          <li><strong>Šach:</strong> Král je ohrožen – hráč musí reagovat.</li>
+          <li><strong>Mat:</strong> Král nemá únik – konec hry.</li>
+          <li><strong>Remíza:</strong> Hra může skončit nerozhodně.</li>
+        </ul>
+        <figure>
+          <img src="images/chess-rules.png" alt="Diagram základních pravidel šachu" loading="lazy" />
+          <figcaption>Schéma pravidel a tahů</figcaption>
+        </figure>
+        <p>Podrobnější pravidla najdeš na <a href="https://cs.wikipedia.org/wiki/%C5%A0achy" target="_blank" rel="noopener noreferrer">Wikipedii o šachu</a> nebo v šachové literatuře.</p>
+      </article>
+    </section>
+
+    <!-- Sekce Figurky -->
+    <section id="pieces" class="page-section hidden" tabindex="0" aria-labelledby="pieces-title">
+      <h2 id="pieces-title">Šachové figurky a jejich pohyby</h2>
+      <article>
+        <p>Šest základních figurek s jedinečnými pohyby:</p>
+        <dl>
+          <dt>Pěšec</dt>
+          <dd>Pohybuje se kupředu o jedno pole, při prvním tahu může o dvě.</dd>
+
+          <dt>Věž</dt>
+          <dd>Libovolně po řadách a sloupcích.</dd>
+
+          <dt>Jezdec</dt>
+          <dd>Do tvaru písmene „L“ – dvě pole jedním směrem a jedno kolmo.</dd>
+
+          <dt>Střelec</dt>
+          <dd>Diagonálně po šachovnici.</dd>
+
+          <dt>Královna</dt>
+          <dd>Kombinace věže a střelce – libovolně ve všech směrech.</dd>
+
+          <dt>Král</dt>
+          <dd>Pohybuje se o jedno pole kterýmkoliv směrem.</dd>
+        </dl>
+        <div class="pieces-gallery" aria-label="Galerie šachových figurek">
+          <figure>
+            <img src="images/pawn.png" alt="Pěšec" loading="lazy" />
+            <figcaption>Pěšec</figcaption>
+          </figure>
+          <figure>
+            <img src="images/rook.png" alt="Věž" loading="lazy" />
+            <figcaption>Věž</figcaption>
+          </figure>
+          <figure>
+            <img src="images/knight.png" alt="Jezdec" loading="lazy" />
+            <figcaption>Jezdec</figcaption>
+          </figure>
+          <figure>
+            <img src="images/bishop.png" alt="Střelec" loading="lazy" />
+            <figcaption>Střelec</figcaption>
+          </figure>
+          <figure>
+            <img src="images/queen.png" alt="Královna" loading="lazy" />
+            <figcaption>Královna</figcaption>
+          </figure>
+          <figure>
+            <img src="images/king.png" alt="Král" loading="lazy" />
+            <figcaption>Král</figcaption>
+          </figure>
+        </div>
+      </article>
+    </section>
+
+    <!-- Sekce O mně - samostatné okno -->
+    <section id="about" class="page-section hidden about-window" tabindex="0" aria-labelledby="about-title" aria-describedby="about-desc">
+      <h2 id="about-title">O mně</h2>
+      <article>
+        <img
+          src="images/profile.jpg"
+          alt="Fotografie Jonáše, tvůrce webu"
+          class="profile-pic"
+          loading="lazy"
+        />
+        <p id="about-desc">
+          Jmenuji se Jonáš a jsem vášnivý šachista i milovník historie. Tento web vznikl jako moje cesta sdílet krásu a hloubku šachu s ostatními. Věřím, že šachy nejsou jen hra, ale způsob myšlení, trpělivosti a strategie.
+        </p>
+        <p>
+          Najdeš zde vše od základů přes pokročilé taktiky až po fascinující historii této královské hry.
+        </p>
+        <p>Děkuji, že jsi tu, a přeji ti hodně úspěchů u šachovnice!</p>
+      </article>
+    </section>
+  </main>
+
+  <!-- Patička s drobnými informacemi -->
+  <footer role="contentinfo" class="site-footer">
+    <p>&copy; 2025 Jonášův Šachový Svět – Všechna práva vyhrazena.</p>
+  </footer>
+
+  <!-- Pokročilý JavaScript pro přepínání sekcí, animace a přístupnost -->
+  <script>
+    (() => {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('.page-section');
+      const backBtn = document.getElementById('backBtn');
+
+      // Funkce pro zobrazení požadované sekce a skrytí ostatních
+      function showSection(id) {
+        sections.forEach((sec) => {
+          if (sec.id === id) {
+            sec.classList.add('active');
+            sec.classList.remove('hidden');
+            sec.setAttribute('tabindex', '0');
+            sec.focus();
+          } else {
+            sec.classList.remove('active');
+            sec.classList.add('hidden');
+            sec.setAttribute('tabindex', '-1');
+          }
+        });
+
+        // Zvýraznění aktivní položky menu
+        navLinks.forEach((link) => {
+          if (link.dataset.section === id) {
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+          } else {
+            link.classList.remove('active');
+            link.removeAttribute('aria-current');
+          }
+        });
+
+        // Zobrazit tlačítko zpět pouze v "O mně"
+        if (id === 'about') {
+          backBtn.hidden = false;
+        } else {
+          backBtn.hidden = true;
+        }
+      }
+
+      // Eventy pro navigaci
+      navLinks.forEach(link =>
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          showSection(e.target.dataset.section);
+          history.pushState({ section: e.target.dataset.section }, '', `#${e.target.dataset.section}`);
+        })
+      );
+
+      // Tlačítko zpět na domovskou stránku
+      backBtn.addEventListener('click', () => {
+        showSection('home');
+        history.pushState({ section: 'home' }, '', '#home');
+      });
+
+      // Při načtení stránky zobrazíme sekci podle hash v URL nebo výchozí (home)
+      function initPage() {
+        const hash = location.hash.substring(1);
+        if (hash && document.getElementById(hash)) {
+          showSection(hash);
+        } else {
+          showSection('home');
+        }
+      }
+
+      // Podpora tlačítek zpět/vpřed v prohlížeči
+      window.addEventListener('popstate', (e) => {
+        if (e.state && e.state.section) {
+          showSection(e.state.section);
+        } else {
+          showSection('home');
+        }
+      });
+
+      // Inicializace
+      initPage();
+    })();
+  </script>
 </body>
 </html>
