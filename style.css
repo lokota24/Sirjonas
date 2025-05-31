@@ -1,193 +1,391 @@
 /* css/style.css */
 
-/* Reset a základní nastavení */
-* {
+/* --- Reset a základní stylování --- */
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #222;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(145deg, #f4f7fa 0%, #e1e8f0 100%);
+  color: #2e3440;
+  line-height: 1.65;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 1.5rem 1rem 3rem;
+  user-select: text;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Hlavička */
+/* --- Vlastní proměnné barev --- */
+:root {
+  --color-primary: #374151;      /* tmavě šedá/modrá */
+  --color-primary-light: #4b5563; /* světlejší šedá */
+  --color-accent: #a855f7;       /* fialová / akcent */
+  --color-bg-header: #111827;    /* velmi tmavá */
+  --color-bg-nav: #1f2937;       /* tmavá modrošedá */
+  --color-bg-main: #ffffff;      /* bílá */
+  --color-text-dark: #1f2937;    /* tmavší text */
+  --color-text-light: #6b7280;   /* šedý text */
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --font-heading: 'Playfair Display', serif;
+}
+
+/* --- Typografie --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 3.25rem;
+  margin-bottom: 1rem;
+  user-select: none;
+}
+
+h2 {
+  font-size: 2.25rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 3px solid var(--color-accent);
+  padding-bottom: 0.4rem;
+  max-width: max-content;
+  transition: border-color 0.3s ease;
+}
+
+h2:hover {
+  border-color: #7c3aed;
+}
+
+p {
+  font-size: 1.125rem;
+  color: var(--color-text-dark);
+  margin-bottom: 1.25rem;
+}
+
+ul {
+  margin-left: 1.5rem;
+  margin-bottom: 2rem;
+  color: var(--color-primary-light);
+}
+
+ul li {
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+
+/* --- Odstavce a zvýraznění --- */
+strong {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* --- Základní tlačítka --- */
+button,
+nav a {
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.25s ease, color 0.25s ease, box-shadow 0.3s ease;
+  user-select: none;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.5rem 1.2rem;
+  border: 2px solid transparent;
+}
+
+/* --- Hlavička --- */
 header {
   width: 100%;
   max-width: 960px;
-  background-color: #30475e;
-  color: #f0f4f8;
-  padding: 25px 30px;
+  padding: 2rem 3rem;
+  background-color: var(--color-bg-header);
+  box-shadow: 0 5px 20px var(--color-shadow);
+  border-radius: 16px;
   text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(48, 71, 94, 0.4);
+  color: white;
   user-select: none;
 }
 
 header h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  letter-spacing: 3px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-/* Navigace */
+/* --- Navigace --- */
 nav {
-  margin-top: 20px;
+  margin: 1.8rem auto 2rem;
   width: 100%;
   max-width: 960px;
+  background-color: var(--color-bg-nav);
+  padding: 0.75rem 2rem;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
   display: flex;
   justify-content: center;
-  gap: 20px;
-  background-color: #496a81;
-  padding: 15px 0;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(73, 106, 129, 0.5);
+  gap: 1.5rem;
   user-select: none;
 }
 
 nav a {
-  color: #f0f4f8;
-  font-weight: 600;
-  font-size: 1.15rem;
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #e0e7ff;
   border: 2px solid transparent;
-  cursor: pointer;
+  padding: 0.5rem 1.3rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(168, 162, 255, 0.3);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease;
 }
 
 nav a:hover,
 nav a:focus {
-  background-color: #f0f4f8;
-  color: #30475e;
-  border-color: #f0f4f8;
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow:
+    0 4px 20px rgba(168, 162, 255, 0.7),
+    inset 0 0 8px #b794f4;
+  color: white;
   outline: none;
 }
 
-/* Hlavní obsah */
+/* --- Hlavní obsah --- */
 main {
-  margin-top: 30px;
   width: 100%;
   max-width: 960px;
-  background-color: #ffffffdd;
-  border-radius: 12px;
-  padding: 30px 40px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-  min-height: 600px;
+  background-color: var(--color-bg-main);
+  padding: 3rem 4rem;
+  border-radius: 20px;
+  box-shadow:
+    0 15px 40px rgba(55, 65, 81, 0.15);
+  min-height: 650px;
   position: relative;
-  user-select: text;
+  overflow-y: auto;
 }
 
-/* Sekce obsahu */
+/* --- Sekce --- */
 main section {
-  margin-bottom: 40px;
-  line-height: 1.65;
-  font-size: 1.15rem;
-  color: #222;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  margin-bottom: 3.5rem;
+  line-height: 1.75;
+  font-size: 1.125rem;
+  color: var(--color-text-dark);
 }
 
 main section.hidden {
-  display: none;
+  opacity: 0;
+  transform: translateY(15px);
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
 }
 
-/* Nadpisy sekcí */
+/* --- Nadpisy sekcí --- */
 main section h2 {
-  font-size: 2rem;
-  margin-bottom: 18px;
-  border-bottom: 3px solid #30475e;
-  padding-bottom: 8px;
-  font-weight: 700;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  cursor: default;
+  user-select: text;
+  letter-spacing: 0.07em;
 }
 
-/* Odstavce */
-main p {
-  margin-bottom: 18px;
-  font-weight: 400;
-  color: #333;
-}
-
-/* Seznamy figur */
+/* --- Seznamy --- */
 main ul {
-  list-style-type: disc;
-  padding-left: 22px;
-  margin-bottom: 30px;
-  color: #2a3a4d;
+  list-style: inside disc;
+  color: var(--color-primary-light);
+  font-weight: 600;
+  margin-top: 1rem;
 }
 
-/* Obrázky */
+main ul li {
+  margin-bottom: 0.7rem;
+  line-height: 1.5;
+}
+
+/* --- Obrázky --- */
 main img {
   display: block;
-  max-width: 280px;
-  margin: 15px auto 30px auto;
-  border-radius: 8px;
-  box-shadow: 0 6px 15px rgba(48, 71, 94, 0.25);
-  transition: transform 0.3s ease;
+  max-width: 320px;
+  margin: 1.5rem auto 3rem auto;
+  border-radius: 14px;
+  box-shadow:
+    0 8px 25px rgba(55, 65, 81, 0.2);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
   cursor: default;
+  user-select: none;
 }
 
-main img:hover {
-  transform: scale(1.05);
+main img:hover,
+main img:focus {
+  transform: scale(1.06);
+  box-shadow:
+    0 12px 40px rgba(105, 85, 255, 0.5);
+  outline: none;
 }
 
-/* Tlačítko zpět */
+/* --- Tlačítko zpět --- */
 #backBtn {
   position: absolute;
-  top: 15px;
+  top: 18px;
   right: 30px;
-  padding: 10px 18px;
-  font-size: 1rem;
-  background-color: #30475e;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: white;
+  background-color: var(--color-primary);
   border: none;
-  color: #f0f4f8;
-  border-radius: 8px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(55, 65, 81, 0.4);
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(48, 71, 94, 0.45);
-  display: none; /* schováno dokud se nezobrazí jednotlivá sekce */
-  transition: background-color 0.3s ease;
   user-select: none;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.4s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+  z-index: 100;
+}
+
+#backBtn.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 #backBtn:hover,
 #backBtn:focus {
-  background-color: #496a81;
+  background-color: var(--color-accent);
+  box-shadow:
+    0 8px 28px rgba(168, 162, 255, 0.7);
   outline: none;
 }
 
-/* Responsivní design */
-@media (max-width: 720px) {
+/* --- Responsivita --- */
+@media (max-width: 1024px) {
   body {
-    padding: 15px;
+    padding: 1.2rem;
   }
-
-  header h1 {
-    font-size: 2rem;
+  main {
+    padding: 2.5rem 2.5rem;
   }
-
   nav {
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
   }
-
   nav a {
     font-size: 1rem;
-    padding: 6px 12px;
+    padding: 0.45rem 1rem;
   }
+  header h1 {
+    font-size: 2.5rem;
+  }
+}
 
+@media (max-width: 600px) {
   main {
-    padding: 20px 25px;
+    padding: 2rem 1.2rem;
     min-height: auto;
   }
-
-  main img {
-    max-width: 90%;
+  header {
+    padding: 1.5rem 1.2rem;
   }
+  h1 {
+    font-size: 2.1rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+  nav {
+    padding: 0.7rem 1rem;
+  }
+  nav a {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.9rem;
+  }
+}
+
+/* --- Scrollbar styl pro webkit --- */
+main::-webkit-scrollbar {
+  width: 12px;
+}
+
+main::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+main::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 10px;
+  border: 3px solid #f1f5f9;
+}
+
+main::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed;
+}
+
+/* --- Linky v textu --- */
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: #7c3aed;
+  outline: none;
+  text-decoration: underline;
+}
+
+/* --- Výrazné info boxy (pro budoucí použití) --- */
+.info-box {
+  background-color: #ede9fe;
+  border-left: 6px solid var(--color-accent);
+  color: var(--color-primary);
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(167, 139, 250, 0.3);
+  font-style: italic;
+}
+
+/* --- Mikrointerakce --- */
+nav a:active {
+  transform: scale(0.96);
+  transition: transform 0.1s ease;
+}
+
+button:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease;
 }
