@@ -1,344 +1,280 @@
-<!DOCTYPE html>
-<html lang="cs">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Šachový svět Jonáše</title>
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
-  
-  <style>
-    /* ===== Root colors and fonts ===== */
-    :root {
-      --color-primary: #1a1a1a;
-      --color-secondary: #d4af7f;
-      --color-accent: #6b4f4f;
-      --color-background: #f5f5f5;
-      --color-text: #333333;
-      --font-title: 'Playfair Display', serif;
-      --font-body: 'Roboto', sans-serif;
-      --shadow-default: 0 8px 24px rgba(0,0,0,0.15);
-      --transition-speed: 0.3s;
-    }
+/* --- Barevná paleta --- */
+:root {
+  --color-primary: #1a1a2e;
+  --color-secondary: #0f3460;
+  --color-accent: #e94560;
+  --color-bg: #f5f5f7;
+  --color-text-dark: #222;
+  --color-text-light: #555;
+  --color-white: #fff;
 
-    /* ===== Reset ===== */
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
-    body, h1, h2, h3, h4, p, ul, li, nav, section, header, footer {
-      margin: 0; padding: 0;
-    }
-    body {
-      font-family: var(--font-body);
-      font-size: 1rem;
-      line-height: 1.75;
-      background-color: var(--color-background);
-      color: var(--color-text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    a {
-      color: var(--color-secondary);
-      text-decoration: none;
-      transition: color var(--transition-speed);
-    }
-    a:hover {
-      color: var(--color-accent);
-    }
-    
-    /* ===== Header ===== */
-    header {
-      background: linear-gradient(135deg, var(--color-primary), #111);
-      color: white;
-      padding: 3rem 1rem;
-      text-align: center;
-      box-shadow: var(--shadow-default);
-    }
-    header h1 {
-      font-family: var(--font-title);
-      font-size: 3.5rem;
-      letter-spacing: 2px;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.3rem;
-      font-weight: 300;
-      color: var(--color-secondary);
-    }
+  --font-main: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-    /* ===== Navigation ===== */
-    nav {
-      background-color: var(--color-accent);
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 1rem 0;
-      box-shadow: var(--shadow-default);
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-    nav a {
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 0.5rem 1.2rem;
-      border-radius: 8px;
-      color: white;
-      transition: background-color var(--transition-speed), color var(--transition-speed);
-    }
-    nav a:hover,
-    nav a:focus {
-      background-color: var(--color-secondary);
-      color: var(--color-primary);
-      outline: none;
-    }
+  --shadow-light: 0 2px 6px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.15);
+  --shadow-strong: 0 12px 24px rgba(0, 0, 0, 0.25);
 
-    /* ===== Main container ===== */
-    main {
-      flex-grow: 1;
-      max-width: 1200px;
-      margin: 3rem auto;
-      padding: 0 1rem 4rem;
-    }
-    section {
-      margin-bottom: 5rem;
-      background: white;
-      padding: 2rem 3rem;
-      border-radius: 15px;
-      box-shadow: var(--shadow-default);
-      transition: box-shadow var(--transition-speed);
-    }
-    section:hover {
-      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-    }
-    section h2 {
-      font-family: var(--font-title);
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      color: var(--color-accent);
-      border-bottom: 3px solid var(--color-secondary);
-      padding-bottom: 0.3rem;
-    }
-    section p {
-      font-size: 1.1rem;
-      margin-bottom: 1.25rem;
-      text-align: justify;
-      line-height: 1.8;
-    }
-    /* Subheadings */
-    section h3 {
-      font-family: var(--font-title);
-      font-size: 1.8rem;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      color: var(--color-primary);
-      border-bottom: 2px solid var(--color-secondary);
-      padding-bottom: 0.2rem;
-    }
+  --transition-speed: 0.3s;
+}
 
-    /* ===== Chess gallery ===== */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1.8rem;
-      margin-top: 2rem;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 12px;
-      border: 4px solid var(--color-secondary);
-      box-shadow: var(--shadow-default);
-      transition: transform var(--transition-speed);
-      background-color: white;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
+/* --- Reset a základní nastavení --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-    /* ===== Footer ===== */
-    footer {
-      background-color: var(--color-primary);
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.95rem;
-      letter-spacing: 0.05rem;
-      user-select: none;
-    }
-
-    /* ===== Responsive ===== */
-    @media (max-width: 900px) {
-      header h1 {
-        font-size: 2.8rem;
-      }
-      section {
-        padding: 1.5rem 2rem;
-      }
-      section h2 {
-        font-size: 2.2rem;
-      }
-      nav {
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-      nav a {
-        padding: 0.4rem 1rem;
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      nav {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <h1>Šachový svět Jonáše</h1>
-    <p>Objev kouzlo královské hry krok za krokem</p>
-  </header>
-
-  <nav>
-    <a href="#o-mne">O mně</a>
-    <a href="#strategie">Strategie</a>
-    <a href="#taktika">Taktika & Trénink</a>
-    <a href="#historie">Historie</a>
-    <a href="#slavni">Slavní hráči & Partie</a>
-    <a href="#kultura">Šachová kultura</a>
-    <a href="#galerie">Galerie</a>
-    <a href="#kontakt">Kontakt</a>
-  </nav>
-
-  <main>
-    <section id="o-mne">
-      <h2>O mně</h2>
-      <p>Jmenuji se Jonáš a šachy jsou mou vášní od dětství. Na tomto webu sdílím vše, co jsem se naučil, a rád tě provedu světem šachových strategií, historie i kultury.</p>
-    </section>
-
-    <section id="strategie">
-      <h2>Šachové strategie</h2>
-      <p>Základy strategie, plánování tahů, poziční hra a jak získat výhodu v každé fázi partie.</p>
-      <!-- Podsekce budou později doplněny -->
-    </section>
-
-    <section id="taktika">
-      <h2>Taktika a trénink</h2>
-      <p>Rozbor taktických motivů, cvičení na procvičování a tipy pro efektivní trénink.</p>
-    </section>
-
-    <section id="historie">
-      <h2>Historie šachu</h2>
-      <p>Od původu hry v Indii až po moderní mistrovství světa – detailní historie šachu.</p>
-    </section>
-
-    <section id="slavni">
-      <h2>Slavní hráči & Partie</h2>
-      <p>Profil legendárních šachistů a analýza jejich nejslavnějších partií.</p>
-    </section>
-
-    <section id="kultura">
-      <h2>Šachová kultura</h2>
-      <p>Jak šachy ovlivnily umění, literaturu, filmy a společnost po celém světě.</p>
-    </section>
-
-    <section id="galerie">
-      <h2>Galerie šachových figurek</h2>
-      <div class="gallery">
-        <img src="pawn.png" alt="Pěšec" />
-        <img src="rook.png" alt="Věž" />
-        <img src="knight.png" alt="Jezdec" />
-        <img src="bishop.png" alt="Střelec" />
-        <img src="queen.png" alt="Královna" />
-        <img src="king.png" alt="Král" />
-      </div>
-    </section>
-
-    <section id="kontakt">
-      <h2>Kontakt</h2>
-      <p>Pro spolupráci, dotazy nebo tipy mě můžeš kontaktovat na <strong>jonas.sachy@email.cz</strong>.</p>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Jonáš – Všechna práva vyhrazena. Královská hra navždy!</p>
-  </footer>
-
-</body>
-</html>
-/* základní barvy a písmo */
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f0f0;
-  color: #222;
   margin: 0;
   padding: 0;
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text-dark);
+  line-height: 1.75;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-header, footer {
-  background-color: #222;
-  color: #fff;
+/* --- Hlavička --- */
+header {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-white);
   text-align: center;
-  padding: 1rem 0;
+  padding: 2.5rem 1rem;
+  box-shadow: var(--shadow-strong);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  user-select: none;
 }
 
+header h1 {
+  margin: 0;
+  font-weight: 800;
+  font-size: 3rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+  transition: color var(--transition-speed);
+}
+
+header h1:hover {
+  color: var(--color-accent);
+  cursor: default;
+}
+
+/* --- Navigační menu --- */
 nav {
-  background-color: #444;
+  background-color: var(--color-secondary);
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
-  padding: 1rem 0;
+  gap: 2rem;
+  padding: 1.3rem 0;
+  box-shadow: var(--shadow-medium);
+  flex-wrap: wrap;
+  user-select: none;
 }
 
 nav a {
-  color: #eee;
+  color: var(--color-white);
   text-decoration: none;
-  font-weight: bold;
-  padding: 0.3rem 0.6rem;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  font-weight: 700;
+  padding: 0.7rem 1.8rem;
+  border-radius: 35px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: 
+    background-color var(--transition-speed),
+    color var(--transition-speed),
+    transform var(--transition-speed);
+  letter-spacing: 0.05em;
+  font-size: 1.1rem;
+  display: inline-block;
 }
 
-nav a:hover {
-  background-color: #666;
+nav a:hover,
+nav a:focus {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  transform: scale(1.1);
+  outline: none;
+  box-shadow: 0 6px 16px rgba(233, 69, 96, 0.7);
 }
 
+/* --- Hlavní obsah --- */
 main {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  flex-grow: 1;
+  max-width: 960px;
+  margin: 3rem auto 5rem auto;
+  padding: 0 1.25rem;
+  user-select: text;
 }
 
+/* --- Sekce --- */
 section {
-  background-color: white;
-  margin-bottom: 2rem;
-  padding: 1rem 2rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  background-color: var(--color-white);
+  padding: 2.8rem 3.5rem;
+  margin-bottom: 3rem;
+  border-radius: 18px;
+  box-shadow: var(--shadow-medium);
+  opacity: 1;
+  transition: opacity 0.5s ease, transform 0.4s ease;
+  will-change: opacity, transform;
 }
 
+section.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(15px);
+}
+
+section h2 {
+  margin-top: 0;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  border-left: 6px solid var(--color-accent);
+  padding-left: 1rem;
+  margin-bottom: 1.4rem;
+  user-select: text;
+}
+
+/* --- Obrázky --- */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: var(--shadow-light);
+  margin: 1.2rem 0 2rem 0;
+  transition: transform 0.35s ease;
+  cursor: default;
+  user-select: none;
+}
+
+img:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-strong);
+}
+
+/* --- Tlačítko "Zpět" --- */
 #backBtn {
-  display: block;
-  margin: 1rem auto;
-  padding: 0.8rem 2rem;
-  font-size: 1.2rem;
+  display: none;
+  margin: 0 auto 4rem auto;
+  padding: 1rem 3rem;
+  font-size: 1.4rem;
+  font-weight: 800;
   border: none;
-  background-color: #0077cc;
-  color: white;
-  border-radius: 10px;
+  background: var(--color-accent);
+  color: var(--color-white);
+  border-radius: 40px;
   cursor: pointer;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-  transition: background-color 0.3s;
+  box-shadow: 0 10px 22px rgba(233, 69, 96, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  width: fit-content;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-#backBtn:hover {
-  background-color: #005fa3;
+#backBtn:hover,
+#backBtn:focus {
+  background-color: #bf2f48;
+  outline: none;
+  box-shadow: 0 14px 30px rgba(191, 47, 72, 0.9);
+}
+
+/* --- Textové bloky a odstavce --- */
+p {
+  font-size: 1.125rem;
+  color: var(--color-text-light);
+  line-height: 1.85;
+  margin-bottom: 1.5rem;
+  user-select: text;
+  text-align: justify;
+}
+
+p strong {
+  color: var(--color-primary);
+}
+
+ul {
+  margin: 1rem 0 1.8rem 1.6rem;
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+}
+
+li {
+  margin-bottom: 0.6rem;
+}
+
+/* --- Linky v textu --- */
+a.inline-link {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  user-select: text;
+  transition: color 0.25s ease;
+}
+
+a.inline-link:hover,
+a.inline-link:focus {
+  color: #c52f4e;
+  outline: none;
+}
+
+/* --- Responsivita --- */
+@media (max-width: 900px) {
+  main {
+    margin: 2rem 1rem 4rem 1rem;
+    padding: 0 1rem;
+  }
+
+  section {
+    padding: 2rem 2rem;
+    margin-bottom: 2.4rem;
+  }
+
+  nav {
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  nav a {
+    padding: 0.6rem 1.3rem;
+    font-size: 1rem;
+  }
+
+  header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  nav a {
+    padding: 0.5rem 1rem;
+    font-size: 0.95rem;
+    border-radius: 25px;
+  }
+
+  main {
+    margin: 1.5rem 0.8rem 3rem 0.8rem;
+    padding: 0 0.6rem;
+  }
+
+  section {
+    padding: 1.5rem 1.2rem;
+  }
 }
