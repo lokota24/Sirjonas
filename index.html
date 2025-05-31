@@ -1,151 +1,127 @@
 <!DOCTYPE html>
 <html lang="cs">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Profesionální šachový web – naučte se pravidla, sledujte strategie, zlepšujte se ve hře.">
-  <title>Šachový svět – Jonáš</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="images/chess-icon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jonášův Šachový Web</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet" />
 </head>
-
 <body>
-  <header>
-    <div class="container">
-      <h1>Šachový svět</h1>
-      <nav class="navbar">
-        <ul>
-          <li><a href="#uvod">Úvod</a></li>
-          <li><a href="#pravidla">Pravidla</a></li>
-          <li><a href="#strategie">Strategie</a></li>
-          <li><a href="#galerie">Galerie</a></li>
-          <li><a href="#historie">Historie</a></li>
-          <li><a href="#testy">Testy</a></li>
-          <li><a href="#kontakt">Kontakt</a></li>
-        </ul>
-      </nav>
+
+<header>
+  <h1>Jonášův Šachový Svět</h1>
+  <nav class="navbar" aria-label="Hlavní navigace">
+    <ul>
+      <li><a href="#uvod" tabindex="0">Úvod</a></li>
+      <li><a href="#jak-hrat" tabindex="0">Jak hrát šachy</a></li>
+      <li><a href="#strategie" tabindex="0">Strategie</a></li>
+      <li><a href="#historie" tabindex="0">Historie šachu</a></li>
+      <li><a href="#galerie" tabindex="0">Galerie</a></li>
+      <li><a href="#kontakt" tabindex="0">Kontakt</a></li>
+      <li><a href="#o-me" tabindex="0" id="aboutLink">O mně</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+
+  <section id="uvod" aria-label="Úvodní sekce">
+    <h2>Vítejte v Jonášově šachovém světě</h2>
+    <p>Šachy nejsou jen hrou, ale uměním, vědou i filozofií. Na tomto webu najdete vše, co potřebujete k tomu, abyste se stali lepším hráčem a pochopili hloubku této starobylé hry.</p>
+    <div class="intro-grid">
+      <img src="images/chessboard1.jpg" alt="Šachovnice s figurkami připravenými ke hře" title="Šachovnice – základ každé partie" />
+      <img src="images/chesspieces1.jpg" alt="Detail figurky pěšce" title="Pěšec – nejdůležitější pěšák na šachovnici" />
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section id="uvod">
-      <div class="container">
-        <h2>Vítejte na šachovém webu</h2>
-        <p>Šachy jsou víc než hra – jsou umění, věda a sport v jednom. Tento web je pro každého, kdo se chce šachy naučit, zdokonalit nebo si jen přečíst o slavných šachových partiích.</p>
-        <div class="intro-grid">
-          <div>
-            <h3>Co nabízíme</h3>
-            <ul>
-              <li>Interaktivní výuku pravidel</li>
-              <li>Pokročilé strategie</li>
-              <li>Historie a slavné partie</li>
-              <li>Obrázky a diagramy</li>
-              <li>Online testy pro trénink</li>
-            </ul>
-          </div>
-          <div>
-            <img src="images/chess-board.jpg" alt="Úvodní šachovnice">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pravidla">
-      <div class="container">
-        <h2>Základní pravidla šachu</h2>
-        <p>Každý hráč má 16 figur – cíl je dát mat soupeřovu králi. Pojďme si projít základní pravidla:</p>
-        <ol>
-          <li><strong>Rozestavení:</strong> každý hráč má 8 pěšců, 2 věže, 2 jezdce, 2 střelce, 1 dámu a 1 krále</li>
-          <li><strong>Směr pohybu:</strong> každá figura se pohybuje jinak</li>
-          <li><strong>Speciální tahy:</strong> rošáda, braní mimochodem, proměna pěšce</li>
-          <li><strong>Výhra:</strong> šach mat, vzdání nebo čas</li>
-        </ol>
-        <p>Chceš se to naučit interaktivně? Připravujeme online simulátor!</p>
-      </div>
-    </section>
-
-    <section id="strategie">
-      <div class="container">
-        <h2>Strategie pro vítězství</h2>
-        <p>Bez strategie není šance na výhru. Podívejme se na několik základních i pokročilých principů:</p>
-        <div class="card-grid">
-          <div class="card">
-            <h3>Vývin figur</h3>
-            <p>Nevyjíždějte dámou hned na začátku. Začněte jezdci a střelci.</p>
-          </div>
-          <div class="card">
-            <h3>Ovládnutí centra</h3>
-            <p>Držte pole e4, d4 (nebo e5, d5). Kdo má střed, má kontrolu.</p>
-          </div>
-          <div class="card">
-            <h3>Král v bezpečí</h3>
-            <p>Rošujte co nejdříve. Většina útoků míří na nechráněného krále.</p>
-          </div>
-          <div class="card">
-            <h3>Poziční hra</h3>
-            <p>Myslete několik tahů dopředu a vytvářejte dlouhodobý tlak.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="galerie">
-      <div class="container">
-        <h2>Obrázky a inspirace</h2>
-        <div class="gallery">
-          <img src="images/chess-pieces.jpg" alt="Figurky">
-          <img src="images/chess-tournament.jpg" alt="Turnaj">
-          <img src="images/chess-analysis.jpg" alt="Analýza">
-          <img src="images/chess-history.jpg" alt="Historie">
-        </div>
-      </div>
-    </section>
-
-    <section id="historie">
-      <div class="container">
-        <h2>Historie šachu</h2>
-        <p>Šachy vznikly před více než tisíci lety v Indii jako hra zvaná čaturanga. Přes Persii a arabský svět se dostaly do Evropy. Moderní pravidla byla ustanovena v 15. století.</p>
-        <p>Slavní šachisté:</p>
-        <ul>
-          <li>Magnus Carlsen – norský velmistr a mistr světa</li>
-          <li>Garry Kasparov – legendární ruský hráč</li>
-          <li>Bobby Fischer – americký génius a mistr světa</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="testy">
-      <div class="container">
-        <h2>Testy a výzvy</h2>
-        <p>Otestuj si své znalosti šachu:</p>
-        <ul>
-          <li><a href="#">Test: Pravidla pro začátečníky</a></li>
-          <li><a href="#">Test: Taktické situace</a></li>
-          <li><a href="#">Test: Historie šachu</a></li>
-        </ul>
-        <p>Brzy přibudou i interaktivní diagramy a tréninky!</p>
-      </div>
-    </section>
-
-    <section id="kontakt">
-      <div class="container">
-        <h2>Kontaktujte mě</h2>
-        <form action="#" method="post">
-          <input type="text" name="name" placeholder="Vaše jméno" required>
-          <input type="email" name="email" placeholder="Váš e-mail" required>
-          <textarea name="message" placeholder="Vaše zpráva" rows="6" required></textarea>
-          <button type="submit">Odeslat</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Jonáš – Šachový svět. Všechna práva vyhrazena.</p>
+  <section id="jak-hrat" aria-label="Jak hrát šachy">
+    <h2>Jak hrát šachy</h2>
+    <p>Šachy se hrají na šachovnici 8x8 polí, kde proti sobě stojí dva hráči s 16 figurkami. Cílem je dát soupeřovu králi šachmat, což znamená, že král je v ohrožení a nemůže uniknout.</p>
+    <p>Základní pohyby figur:</p>
+    <ul>
+      <li><strong>Pěšec:</strong> pohybuje se vpřed o jedno pole, ale bere diagonálně.</li>
+      <li><strong>Věž:</strong> pohybuje se libovolně po řadách a sloupcích.</li>
+      <li><strong>Střelec:</strong> pohybuje se diagonálně.</li>
+      <li><strong>Jezdec:</strong> pohybuje se ve tvaru písmene L (2+1 pole).</li>
+      <li><strong>Královna:</strong> pohybuje se libovolně po řadách, sloupcích i diagonálách.</li>
+      <li><strong>Kráľ:</strong> pohybuje se o jedno pole kamkoliv.</li>
+    </ul>
+    <div class="info-box variant-strategy">
+      <strong>Tip:</strong> Naučte se základy pohybu figurek, než se pustíte do složitějších taktik!
     </div>
-  </footer>
-</body>
+  </section>
 
-</html>
+  <section id="strategie" aria-label="Strategie ve šachu">
+    <h2>Strategie</h2>
+    <p>Strategie ve šachu je plán, který vám pomůže kontrolovat centrum šachovnice, rozvíjet figurky a chránit krále. Tady jsou některé z klíčových principů:</p>
+    <ol>
+      <li>Ovládnutí centra šachovnice</li>
+      <li>Rychlý vývoj figur</li>
+      <li>Bezpečnost krále – rošáda</li>
+      <li>Kontrola prostoru a iniciativy</li>
+      <li>Výměny, které vedou k lepší pozici</li>
+    </ol>
+    <div class="card-grid">
+      <article class="card">
+        <h3>Ovládnutí centra</h3>
+        <p>Střed šachovnice je klíčovým prostorem. Figurky umístěné zde mají největší dosah a kontrolu nad hrou.</p>
+      </article>
+      <article class="card">
+        <h3>Rozvoj figur</h3>
+        <p>Rozvíjejte jezdce a střelce co nejdříve, aby byli připraveni k útoku nebo obraně.</p>
+      </article>
+      <article class="card">
+        <h3>Rošáda</h3>
+        <p>Rošáda pomáhá chránit krále a zároveň zapojuje věž do hry.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="historie" aria-label="Historie šachu">
+    <h2>Historie šachu</h2>
+    <p>Šachy mají kořeny sahající více než 1500 let zpět do Indie, odkud se hra rozšířila do Persie a poté do Evropy. Evoluce pravidel a figur vedla ke vzniku moderní podoby šachu, jakou známe dnes.</p>
+    <p>Mezi slavné šachisty patří Garri Kasparov, Bobby Fischer nebo Magnus Carlsen.</p>
+    <div class="info-box variant-history">
+      <p><em>"Šachy jsou gymnázium mysli." – Boris Spasskij</em></p>
+    </div>
+    <div class="gallery" aria-label="Galerie historických šachových momentů">
+      <img src="images/kasparov.jpg" alt="Garri Kasparov při šachovém zápase" title="Garri Kasparov, legendární mistr světa" />
+      <img src="images/fischer.jpg" alt="Bobby Fischer během partie" title="Bobby Fischer, americký šachový génius" />
+      <img src="images/carlsen.jpg" alt="Magnus Carlsen" title="Magnus Carlsen, současný mistr světa" />
+    </div>
+  </section>
+
+  <section id="galerie" aria-label="Galerie šachových fotek">
+    <h2>Galerie</h2>
+    <div class="gallery" aria-label="Šachové fotografie a ilustrace">
+      <img src="images/game1.jpg" alt="Dramatická partie" title="Dramatická partie plná napětí" />
+      <img src="images/game2.jpg" alt="Šachovnice zblízka" title="Detail šachovnice a figurek" />
+      <img src="images/game3.jpg" alt="Šachové figurky na stole" title="Krásné figurky připravené k boji" />
+      <img src="images/game4.jpg" alt="Turnaj šachistů" title="Šachový turnaj v plném proudu" />
+    </div>
+  </section>
+
+  <section id="kontakt" aria-label="Kontakt">
+    <h2>Kontakt</h2>
+    <p>Máte dotazy nebo chcete se mnou spolupracovat? Napište mi!</p>
+    <form id="contactForm" aria-label="Kontaktní formulář">
+      <label for="name">Jméno</label>
+      <input type="text" id="name" name="name" placeholder="Tvé jméno" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="tvoje@email.cz" required />
+
+      <label for="message">Zpráva</label>
+      <textarea id="message" name="message" rows="5" placeholder="Napiš zprávu..." required></textarea>
+
+      <button type="submit">Odeslat</button>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  &copy; 2025 Jonášův Šachový
