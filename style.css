@@ -1,5 +1,10 @@
-/* Reset */
-* {
+
+/* -----------------------------------
+   Reset a základní stylování
+----------------------------------- */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,186 +13,431 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #fafafa;
   color: #222;
-  line-height: 1.8;
+  line-height: 1.7;
+  font-size: 16px;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* -----------------------------------
+   Kontejner pro zarovnání a padding
+----------------------------------- */
 .container {
+  max-width: 1280px;
   width: 90%;
-  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 0;
 }
 
+/* -----------------------------------
+   Hlavička (header) + navigace
+----------------------------------- */
 header {
-  background: linear-gradient(90deg, #ffffff 0%, #d4e6f1 100%);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 1rem 0;
+  background: linear-gradient(90deg, #ffffff 0%, #cce6ff 100%);
+  padding: 1.2rem 0;
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 header h1 {
   text-align: center;
-  color: #2c3e50;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #1b3a66;
+  letter-spacing: 2px;
+  user-select: none;
+}
+
+.navbar {
+  margin-top: 0.7rem;
 }
 
 .navbar ul {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   list-style: none;
-  gap: 1.5rem;
-  margin-top: 1rem;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
 .navbar a {
   text-decoration: none;
-  color: #2c3e50;
   font-weight: 600;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.navbar a:hover {
-  background-color: #aed6f1;
-  color: #154360;
-}
-
-main section {
-  margin-bottom: 3rem;
-  background: #ffffff;
+  font-size: 1.1rem;
+  color: #1b3a66;
+  padding: 0.6rem 1.2rem;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-  padding: 2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 0 0 transparent;
 }
 
+.navbar a:hover,
+.navbar a:focus {
+  background-color: #4d88ff;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(77, 136, 255, 0.5);
+  outline: none;
+}
+
+/* -----------------------------------
+   Hlavní obsah (main) + sekce
+----------------------------------- */
+main {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* Sekce s pozadím a stíny */
+section {
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(27, 58, 102, 0.12);
+  transition: box-shadow 0.4s ease;
+  border: 1.5px solid #d6e6ff;
+}
+
+section:hover {
+  box-shadow: 0 12px 32px rgba(27, 58, 102, 0.2);
+}
+
+/* Nadpisy */
 h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #1a5276;
-  border-bottom: 2px solid #aed6f1;
+  font-size: 2.4rem;
+  color: #1b3a66;
+  border-bottom: 3px solid #4d88ff;
   padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  user-select: none;
 }
 
 h3 {
-  font-size: 1.3rem;
-  margin-top: 1rem;
-  color: #2874a6;
+  font-size: 1.6rem;
+  color: #2a4d85;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
 }
 
-ul, ol {
+/* Text, odstavce a seznamy */
+p {
+  margin-bottom: 1.4rem;
+  max-width: 900px;
+  line-height: 1.85;
+  color: #333;
+  font-weight: 400;
+}
+
+ul,
+ol {
   margin-left: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.4rem;
+  color: #444;
+  font-weight: 400;
+  max-width: 850px;
 }
 
 li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
 }
 
-p {
-  margin-bottom: 1rem;
-  max-width: 800px;
-}
-
+/* -----------------------------------
+   Gridy pro obrázky a obsah
+----------------------------------- */
 .intro-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
   align-items: center;
   margin-top: 2rem;
 }
 
 .intro-grid img {
   width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(27, 58, 102, 0.15);
+  transition: transform 0.4s ease;
+  cursor: pointer;
 }
 
+.intro-grid img:hover {
+  transform: scale(1.05) rotate(1deg);
+}
+
+/* Kartičky */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 1rem;
 }
 
 .card {
-  background-color: #ecf0f1;
-  padding: 1.5rem;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
+  background-color: #e8f0ff;
+  padding: 1.8rem 2rem;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(77, 136, 255, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  user-select: none;
 }
 
 .card:hover {
-  transform: scale(1.03);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(77, 136, 255, 0.45);
 }
 
+/* Galerie obrázků */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.8rem;
 }
 
 .gallery img {
   width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 8px 22px rgba(27, 58, 102, 0.15);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: zoom-in;
 }
 
+.gallery img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 14px 30px rgba(27, 58, 102, 0.3);
+}
+
+/* -----------------------------------
+   Formuláře
+----------------------------------- */
 form {
+  max-width: 600px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: 1.3rem;
+  margin-top: 2rem;
 }
 
-form input, form textarea {
-  padding: 0.75rem 1rem;
+form label {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #1b3a66;
+}
+
+form input,
+form textarea {
+  padding: 0.9rem 1.3rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  border: 1.8px solid #a6c8ff;
+  border-radius: 10px;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #4d88ff;
+  box-shadow: 0 0 10px #4d88ff66;
 }
 
 form button {
-  padding: 0.75rem;
-  font-size: 1rem;
-  background-color: #2980b9;
+  background-color: #4d88ff;
   color: white;
   border: none;
-  border-radius: 6px;
+  padding: 1.1rem 1.8rem;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.4s ease;
+  user-select: none;
 }
 
-form button:hover {
-  background-color: #1f618d;
+form button:hover,
+form button:focus {
+  background-color: #265ea6;
+  box-shadow: 0 0 12px #265ea666;
 }
 
+/* -----------------------------------
+   Patička (footer)
+----------------------------------- */
 footer {
-  background: #d6eaf8;
+  background: #cce6ff;
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem;
   font-size: 0.9rem;
-  color: #2e4053;
-  margin-top: 4rem;
-  border-top: 1px solid #ccc;
+  color: #1b3a66;
+  margin-top: 5rem;
+  border-top: 2px solid #a3c4ff;
+  user-select: none;
 }
 
-/* Responsivita */
+/* -----------------------------------
+   Responsivita
+----------------------------------- */
+@media (max-width: 1024px) {
+  header h1 {
+    font-size: 2.4rem;
+  }
+  .intro-grid,
+  .card-grid,
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
   header h1 {
     font-size: 2rem;
   }
   .navbar ul {
     flex-direction: column;
-    align-items: center;
+    gap: 1rem;
   }
-  .intro-grid, .card-grid, .gallery {
+  .intro-grid,
+  .card-grid,
+  .gallery {
     grid-template-columns: 1fr;
   }
+  section {
+    padding: 1.5rem 1.8rem;
+  }
 }
+
+/* -----------------------------------
+   TIPY, zajímavosti, bonusové efekty
+----------------------------------- */
+
+/* Tooltip na obrázky */
+.gallery img[title] {
+  position: relative;
+}
+
+.gallery img[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4d88ffcc;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 10px #4d88ffbb;
+  z-index: 100;
+}
+
+/* Animace fade-in pro sekce při scrollu */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  animation-name: fadeInUp;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation-delay: 0.2s;
+}
+
+/* -----------------------------------
+   Více textu a zajímavostí pro web
+----------------------------------- */
+
+/* Textové prvky mohou být stylovány přímo v HTML, ale tady jsou příklady */
+
+.info-box {
+  background-color: #d9eaff;
+  border-left: 6px solid #4d88ff;
+  padding: 1rem 1.5rem;
+  margin: 1rem 0 2rem 0;
+  border-radius: 12px;
+  color: #1b3a66;
+  font-weight: 600;
+  font-size: 1.1rem;
+  user-select: none;
+}
+
+.quote {
+  font-style: italic;
+  font-size: 1.25rem;
+  color: #3a5f90;
+  margin: 2rem auto;
+  max-width: 800px;
+  text-align: center;
+  user-select: none;
+}
+
+/* Příklad různých barevných variant pro odlišení témat */
+.variant-strategy {
+  background-color: #e0f0ff;
+  border-left-color: #1b3a66;
+}
+
+.variant-history {
+  background-color: #f0f6ff;
+  border-left-color: #4d88ff;
+}
+
+.variant-tactics {
+  background-color: #d0e7ff;
+  border-left-color: #265ea6;
+}
+
+/* -----------------------------------
+   Scroll-to-top tlačítko (bonus)
+----------------------------------- */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: #4d88ff;
+  color: white;
+  border: none;
+  padding: 1rem 1.3rem;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(77, 136, 255, 0.7);
+  transition: background-color 0.3s ease;
+  display: none; /* skrýt na začátku */
+  z-index: 1500;
+}
+
+#scrollTopBtn:hover {
+  background-color: #265ea6;
+}
+
+/* Po zobrazení při scrollování (přidej JS) */
+.show-scroll {
+  display: block !important;
+}
+
+/* -----------------------------------
+   End of stylesheet
+----------------------------------- */
