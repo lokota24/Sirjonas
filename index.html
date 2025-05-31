@@ -1,67 +1,250 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Šachový web Jonáše</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Šachový svět Jonáše</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* (zachováme styly z předchozího kódu, s přidáním pár úprav pro obrázky) */
+    :root {
+      --color-primary: #1a1a1a;
+      --color-secondary: #d4af7f;
+      --color-accent: #6b4f4f;
+      --color-background: #f5f5f5;
+      --color-text: #333333;
+      --font-title: 'Playfair Display', serif;
+      --font-body: 'Roboto', sans-serif;
+      --shadow-default: 0 8px 24px rgba(0,0,0,0.15);
+      --transition-speed: 0.3s;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body, h1, h2, h3, h4, p, ul, li, nav, section, header, footer { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.75;
+      background-color: var(--color-background);
+      color: var(--color-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { color: var(--color-secondary); text-decoration: none; transition: color var(--transition-speed); }
+    a:hover { color: var(--color-accent); }
+
+    header {
+      background: linear-gradient(135deg, var(--color-primary), #111);
+      color: white;
+      padding: 3rem 1rem;
+      text-align: center;
+      box-shadow: var(--shadow-default);
+    }
+    header h1 {
+      font-family: var(--font-title);
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--color-secondary);
+    }
+
+    nav {
+      background-color: var(--color-accent);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+      box-shadow: var(--shadow-default);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    nav a {
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      color: white;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+    nav a:hover,
+    nav a:focus {
+      background-color: var(--color-secondary);
+      color: var(--color-primary);
+      outline: none;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 1200px;
+      margin: 3rem auto 4rem;
+      padding: 0 1rem;
+    }
+    section {
+      margin-bottom: 5rem;
+      background: white;
+      padding: 2rem 3rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow-default);
+      transition: box-shadow var(--transition-speed);
+    }
+    section:hover {
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+    section h2 {
+      font-family: var(--font-title);
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--color-accent);
+      border-bottom: 3px solid var(--color-secondary);
+      padding-bottom: 0.3rem;
+    }
+    section p {
+      font-size: 1.1rem;
+      margin-bottom: 1.25rem;
+      text-align: justify;
+      line-height: 1.8;
+    }
+    section h3 {
+      font-family: var(--font-title);
+      font-size: 1.8rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: var(--color-primary);
+      border-bottom: 2px solid var(--color-secondary);
+      padding-bottom: 0.2rem;
+    }
+
+    /* Obrázky v sekcích */
+    .section-image {
+      max-width: 100%;
+      height: auto;
+      margin: 1rem 0 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-default);
+      display: block;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.8rem;
+      margin-top: 2rem;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      border: 4px solid var(--color-secondary);
+      box-shadow: var(--shadow-default);
+      transition: transform var(--transition-speed);
+      background-color: white;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: var(--color-primary);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.95rem;
+      letter-spacing: 0.05rem;
+      user-select: none;
+    }
+
+    @media (max-width: 900px) {
+      header h1 { font-size: 2.8rem; }
+      section { padding: 1.5rem 2rem; }
+      section h2 { font-size: 2.2rem; }
+      nav { gap: 1rem; flex-wrap: wrap; }
+      nav a { padding: 0.4rem 1rem; font-size: 1rem; }
+    }
+    @media (max-width: 480px) {
+      header h1 { font-size: 2rem; }
+      nav { flex-direction: column; align-items: center; }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <nav>
-      <a href="#domu">Domů</a>
-      <a href="#figurky">Figurky</a>
-      <a href="#kontakt">Kontakt</a>
-    </nav>
+  <header>
+    <h1>Šachový svět Jonáše</h1>
+    <p>Objev kouzlo královské hry krok za krokem</p>
+  </header>
 
-    <h1 id="domu">♟️ Vítej na šachovém webu Jonáše ♟️</h1>
-    <p>Jsem Jonáš a miluju šachy! Tady najdeš vše o figurkách, tipech, strategiích a novinkách ze světa šachu.</p>
+  <nav>
+    <a href="#o-mne">O mně</a>
+    <a href="#strategie">Strategie</a>
+    <a href="#taktika">Taktika & Trénink</a>
+    <a href="#historie">Historie</a>
+    <a href="#slavni">Slavní hráči & Partie</a>
+    <a href="#kultura">Šachová kultura</a>
+    <a href="#galerie">Galerie</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
 
-    <h2 id="figurky">Šachové figurky</h2>
-    <div class="grid">
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Chess_plt60.png/200px-Chess_plt60.png" alt="Pěšec">
-        <p><strong>Pěšec</strong></p>
-        <a href="pesec.html">Zobrazit více</a>
+  <main>
+    <section id="o-mne">
+      <h2>O mně</h2>
+      <img class="section-image" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80" alt="Jonáš s šachovnicí" />
+      <p>Jmenuji se Jonáš a šachy jsou mou vášní od dětství. Na tomto webu sdílím vše, co jsem se naučil, a rád tě provedu světem šachových strategií, historie i kultury.</p>
+    </section>
+
+    <section id="strategie">
+      <h2>Šachové strategie</h2>
+      <img class="section-image" src="https://upload.wikimedia.org/wikipedia/commons/7/76/Chess_Position_Middlegame.JPG" alt="Šachová strategie" />
+      <p>Základy strategie, plánování tahů, poziční hra a jak získat výhodu v každé fázi partie.</p>
+    </section>
+
+    <section id="taktika">
+      <h2>Taktika a trénink</h2>
+      <img class="section-image" src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Chess_board_opening_staunton.jpg" alt="Šachová taktika" />
+      <p>Rozbor taktických motivů, cvičení na procvičování a tipy pro efektivní trénink.</p>
+    </section>
+
+    <section id="historie">
+      <h2>Historie šachu</h2>
+      <img class="section-image" src="https://upload.wikimedia.org/wikipedia/commons/4/47/Shah_mat_in_2_moves.png" alt="Historie šachu" />
+      <p>Od původu hry v Indii až po moderní mistrovství světa – detailní historie šachu.</p>
+    </section>
+
+    <section id="slavni">
+      <h2>Slavní hráči & Partie</h2>
+      <img class="section-image" src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Bobby_Fischer_1960.jpg" alt="Bobby Fischer" />
+      <p>Profil legendárních šachistů a analýza jejich nejslavnějších partií.</p>
+    </section>
+
+    <section id="kultura">
+      <h2>Šachová kultura</h2>
+      <img class="section-image" src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Chess-players-in-Pakistan.jpg" alt="Šachová kultura" />
+      <p>Jak šachy ovlivnily umění, literaturu, filmy a společnost po celém světě.</p>
+    </section>
+
+    <section id="galerie">
+      <h2>Galerie šachových figurek</h2>
+      <div class="gallery">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg" alt="Pěšec" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Chess_rlt45.svg" alt="Věž" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Chess_nlt45.svg" alt="Jezdec" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Chess_blt45.svg" alt="Střelec" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Chess_qlt45.svg" alt="Královna" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f0/Chess_klt45.svg" alt="Král" />
       </div>
+    </section>
 
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Chess_rlt60.png/200px-Chess_rlt60.png" alt="Věž">
-        <p><strong>Věž</strong></p>
-        <a href="vez.html">Zobrazit více</a>
-      </div>
+    <section id="kontakt">
+      <h2>Kontakt</h2>
+      <p>Pro spolupráci, dotazy nebo tipy mě můžeš kontaktovat na <strong>jonas.sachy@email.cz</strong>.</p>
+    </section>
+  </main>
 
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Chess_blt60.png/200px-Chess_blt60.png" alt="Střelec">
-        <p><strong>Střelec</strong></p>
-        <a href="strelec.html">Zobrazit více</a>
-      </div>
-
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Chess_nlt60.png/200px-Chess_nlt60.png" alt="Jezdec">
-        <p><strong>Jezdec</strong></p>
-        <a href="jezdec.html">Zobrazit více</a>
-      </div>
-
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Chess_qlt60.png/200px-Chess_qlt60.png" alt="Dáma">
-        <p><strong>Dáma</strong></p>
-        <a href="dama.html">Zobrazit více</a>
-      </div>
-
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Chess_klt60.png/200px-Chess_klt60.png" alt="Král">
-        <p><strong>Král</strong></p>
-        <a href="kral.html">Zobrazit více</a>
-      </div>
-    </div>
-
-    <h2 id="kontakt">Kontakt</h2>
-    <p>Chceš se mnou hrát šachy, nebo máš dotaz? Napiš mi na e-mail: <a href="mailto:jonas@sachy.cz">jonas@sachy.cz</a></p>
-
-    <footer>
-      <p>&copy; 2025 Jonášův šachový web. Všechna práva vyhrazena.</p>
-    </footer>
-  </div>
+  <footer>
+    <p>&copy; 2025 Jonáš – Všechna práva vyhrazena. Královská hra navždy!</p>
+  </footer>
 </body>
 </html>
