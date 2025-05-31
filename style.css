@@ -441,3 +441,61 @@ section {
 /* -----------------------------------
    End of stylesheet
 ----------------------------------- */
+header {
+  background-color: #f5f7fa;
+  padding: 10px 20px; /* zmenšený padding místo 20px 40px */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header h1 {
+  font-size: 1.4rem; /* menší font než předtím (původně třeba 2rem) */
+  margin: 0;
+  color: #222;
+  line-height: 1.2;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 12px; /* menší mezera mezi odkazy */
+  align-items: center;
+  font-size: 0.9rem; /* menší písmo menu */
+}
+
+.navbar li a {
+  color: #0073e6;
+  text-decoration: none;
+  padding: 6px 10px; /* menší padding než dřív */
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.navbar li a:hover,
+.navbar li a:focus {
+  background-color: #d6e4ff;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 8px 16px;
+  }
+  header h1 {
+    font-size: 1.1rem;
+  }
+  .navbar ul {
+    gap: 8px;
+    font-size: 0.85rem;
+  }
+  .navbar li a {
+    padding: 4px 8px;
+  }
+}
