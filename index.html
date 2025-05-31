@@ -2,66 +2,66 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jonášův šachový web</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Šachový web Jonáše</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="container">
+    <nav>
+      <a href="#domu">Domů</a>
+      <a href="#figurky">Figurky</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
 
-  <header>
-    <h1>♟️ Šachový svět Jonáše ♟️</h1>
-    <p>Klikni na figurku a zjisti víc</p>
-  </header>
+    <h1 id="domu">♟️ Vítej na šachovém webu Jonáše ♟️</h1>
+    <p>Jsem Jonáš a miluju šachy! Tady najdeš vše o figurkách, tipech, strategiích a novinkách ze světa šachu.</p>
 
-  <section class="grid">
-    <!-- Pěšec -->
-    <div class="card" onclick="toggleCard(this)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg" alt="Pěšec">
-      <h2>Pěšec</h2>
-      <p>Pěšci jsou základní síla armády. Na začátku jich máš 8. Postupují vpřed, ale berou šikmo. Když se dostanou na poslední řadu, můžeš je proměnit na jakoukoli figuru!</p>
+    <h2 id="figurky">Šachové figurky</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Chess_plt60.png/200px-Chess_plt60.png" alt="Pěšec">
+        <p><strong>Pěšec</strong></p>
+        <a href="pesec.html">Zobrazit více</a>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Chess_rlt60.png/200px-Chess_rlt60.png" alt="Věž">
+        <p><strong>Věž</strong></p>
+        <a href="vez.html">Zobrazit více</a>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Chess_blt60.png/200px-Chess_blt60.png" alt="Střelec">
+        <p><strong>Střelec</strong></p>
+        <a href="strelec.html">Zobrazit více</a>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Chess_nlt60.png/200px-Chess_nlt60.png" alt="Jezdec">
+        <p><strong>Jezdec</strong></p>
+        <a href="jezdec.html">Zobrazit více</a>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Chess_qlt60.png/200px-Chess_qlt60.png" alt="Dáma">
+        <p><strong>Dáma</strong></p>
+        <a href="dama.html">Zobrazit více</a>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Chess_klt60.png/200px-Chess_klt60.png" alt="Král">
+        <p><strong>Král</strong></p>
+        <a href="kral.html">Zobrazit více</a>
+      </div>
     </div>
 
-    <!-- Věž -->
-    <div class="card" onclick="toggleCard(this)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg" alt="Věž">
-      <h2>Věž</h2>
-      <p>Věž se pohybuje vodorovně a svisle. Je velmi silná v koncovce. Má hodnotu 5 bodů. Ve spojení s druhou věží nebo dámou tvoří silný útok.</p>
-    </div>
+    <h2 id="kontakt">Kontakt</h2>
+    <p>Chceš se mnou hrát šachy, nebo máš dotaz? Napiš mi na e-mail: <a href="mailto:jonas@sachy.cz">jonas@sachy.cz</a></p>
 
-    <!-- Střelec -->
-    <div class="card" onclick="toggleCard(this)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Chess_blt45.svg" alt="Střelec">
-      <h2>Střelec</h2>
-      <p>Střelec se pohybuje pouze diagonálně. Každý hráč má dva – jednoho na světlá a jednoho na tmavá pole. V otevřené hře je velmi silný.</p>
-    </div>
-
-    <!-- Jezdec -->
-    <div class="card" onclick="toggleCard(this)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Chess_nlt45.svg" alt="Jezdec">
-      <h2>Jezdec</h2>
-      <p>Jezdec se pohybuje do „L“ tvaru. Jako jediný může přeskakovat ostatní figurky. Je výborný v přeplněné pozici a často vytváří vidličky.</p>
-    </div>
-
-    <!-- Dáma -->
-    <div class="card" onclick="toggleCard(this)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg" alt="Dáma">
-      <h2>Dáma</h2>
-      <p>Nejsilnější figurka. Kombinuje pohyb věže i střelce. Většinou se vyvíjí až po rozvoji ostatních figur, protože její ztráta by bolela.</p>
-    </div>
-
-    <!-- Král -->
-    <div class="card" onclick="toggleCard(this)">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Chess_klt45.svg" alt="Král">
-      <h2>Král</h2>
-      <p>Král je nejdůležitější figurka. Cílem je ho chránit a zároveň dostat soupeřova. Může rošovat a v koncovce často pomáhá útočit.</p>
-    </div>
-  </section>
-
-  <script>
-    function toggleCard(card) {
-      card.classList.toggle("open");
-    }
-  </script>
-
+    <footer>
+      <p>&copy; 2025 Jonášův šachový web. Všechna práva vyhrazena.</p>
+    </footer>
+  </div>
 </body>
 </html>
