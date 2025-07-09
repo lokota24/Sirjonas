@@ -1,1 +1,1249 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Šachy pro začátečníky | Jonas Weishauepl</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #f5f5f5;
+            --accent-color: #d4af37;
+            --text-color: #333;
+            --text-light: #666;
+            --border-color: #e0e0e0;
+            --bg-light: #fafafa;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #f5f5f5;
+            --secondary-color: #1a1a1a;
+            --accent-color: #d4af37;
+            --text-color: #e0e0e0;
+            --text-light: #a0a0a0;
+            --border-color: #404040;
+            --bg-light: #2a2a2a;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--secondary-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-light);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--bg-light) 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero .author {
+            font-size: 1rem;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .quote {
+            margin-top: 3rem;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .quote-author {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-top: 0.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--secondary-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .section-alt {
+            background: var(--bg-light);
+        }
+
+        /* Chess Board */
+        .chess-board {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 0;
+            width: 320px;
+            height: 320px;
+            margin: 2rem auto;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .chess-square {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chess-square.light {
+            background: #f0d9b5;
+        }
+
+        .chess-square.dark {
+            background: #b58863;
+        }
+
+        .chess-square:hover {
+            opacity: 0.8;
+        }
+
+        /* Expandable Content */
+        .expandable {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .expandable-header {
+            background: var(--bg-light);
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        .expandable-header:hover {
+            background: var(--border-color);
+        }
+
+        .expandable-content {
+            padding: 0 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .expandable.active .expandable-content {
+            max-height: 1000px;
+            padding: 1rem;
+        }
+
+        .expandable-toggle {
+            transition: transform 0.3s ease;
+        }
+
+        .expandable.active .expandable-toggle {
+            transform: rotate(180deg);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .author-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            margin: 0 auto;
+            display: block;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-section a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .chess-board {
+                width: 280px;
+                height: 280px;
+            }
+
+            .chess-square {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 0.5rem;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .tooltip:hover::before {
+            opacity: 1;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            background: var(--secondary-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .quiz-question {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--bg-light);
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .quiz-option.correct {
+            border-color: #4ade80;
+            background: #dcfce7;
+        }
+
+        .quiz-option.incorrect {
+            border-color: #f87171;
+            background: #fef2f2;
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .content-section h3 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem 0;
+            color: var(--primary-color);
+        }
+
+        .content-section p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, var(--accent-color) 0%, var(--accent-color) 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 0.2em;
+            background-position: 0 88%;
+            padding: 0 0.2em;
+        }
+
+        /* Interactive Elements */
+        .interactive-board {
+            position: relative;
+            margin: 2rem auto;
+        }
+
+        .board-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .board-btn {
+            padding: 0.5rem 1rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .board-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .piece-value {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.2em 0.5em;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-left: 0.5em;
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background: var(--secondary-color);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: left 0.3s ease;
+        }
+
+        .nav-menu.active {
+            left: 0;
+        }
+
+        .nav-menu a {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-chess-king"></i>
+                Šachy pro začátečníky
+            </a>
+            <ul class="nav-links">
+                <li><a href="#uvod">Úvod</a></li>
+                <li><a href="#o-mne">O mně</a></li>
+                <li><a href="#zaklady">Základy</a></li>
+                <li><a href="#strategie">Strategie</a></li>
+                <li><a href="#taktika">Taktika</a></li>
+                <li><a href="#otevreni">Otevření</a></li>
+                <li><a href="#koncovky">Koncovky</a></li>
+                <li><a href="#plan">Plán</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="mobile-menu" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="nav-menu" id="mobileMenu">
+        <div class="close-menu" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </div>
+        <a href="#uvod" onclick="toggleMobileMenu()">Úvod</a>
+        <a href="#o-mne" onclick="toggleMobileMenu()">O mně</a>
+        <a href="#zaklady" onclick="toggleMobileMenu()">Základy</a>
+        <a href="#strategie" onclick="toggleMobileMenu()">Strategie</a>
+        <a href="#taktika" onclick="toggleMobileMenu()">Taktika</a>
+        <a href="#otevreni" onclick="toggleMobileMenu()">Otevření</a>
+        <a href="#koncovky" onclick="toggleMobileMenu()">Koncovky</a>
+        <a href="#plan" onclick="toggleMobileMenu()">Plán</a>
+        <a href="#kontakt" onclick="toggleMobileMenu()">Kontakt</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="uvod">
+        <div class="container">
+            <h1>Objevte krásu šachu</h1>
+            <p class="subtitle">Naučte se královskou hru krok za krokem s jasným a srozumitelným výkladem</p>
+            <p class="author">Projekt od <strong>Jonas Weishauepl</strong></p>
+            <a href="#zaklady" class="cta-button">Začít hrát šachy</a>
+            <div class="quote">
+                <p>"Šachy jsou gymnasium pro mysl."</p>
+                <p class="quote-author">— Blaise Pascal</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="o-mne">
+        <div class="container">
+            <h2>O autorovi</h2>
+            <div class="about-content">
+                <div>
+                    <div style="width: 200px; height: 200px; background: linear-gradient(45deg, var(--accent-color), #b8941f); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                        <i class="fas fa-user" style="font-size: 4rem; color: white;"></i>
+                    </div>
+                </div>
+                <div>
+                    <h3>Jonas Weishauepl</h3>
+                    <p>Vítejte na mém webu věnovaném šachům! Jsem Jonas, vášnivý šachista s více než 15 lety zkušeností. Šachy pro mě nejsou jen hra, ale způsob myšlení, který formuje logiku, trpělivost a strategické uvažování.</p>
+                    
+                    <p>Rozhodl jsem se vytvořit tento web, protože věřím, že šachy by měly být dostupné všem. Příliš často se začátečníci setkávají s komplikovanými vysvětleními a teoretickými manuály, které je spíše odradí než nadchnou.</p>
+                    
+                    <p>Má mise je jednoduchá: <span class="highlight">ukázat vám, že šachy nejsou jen pro génie</span>. Každý může pochopit základní principy a začít si tuto nádhernou hru užívat. Věřím v učení through praktické příklady, jasné vysvětlení a postupný rozvoj dovedností.</p>
+                    
+                    <p>Na tomto webu najdete vše, co potřebujete k tomu, abyste se z úplného začátečníka stali sebevědomými šachisty. Společně projdeme cestu od prvních tahů až po pokročilé strategie.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Sections -->
+    <section class="section section-alt" id="zaklady">
+        <div class="container">
+            <h2><i class="fas fa-chess-pawn"></i> Základy šachu</h2>
+            
+            <div class="content-section">
+                <h3>Historie šachu</h3>
+                <p>Šachy mají fascinující historii sahající více než 1500 let do minulosti. Vznikly v Indii kolem 6. století našeho letopočtu jako hra zvaná "Chaturanga". Odtud se postupně rozšířily do Persie, arabského světa a nakonec do Evropy, kde získaly svou současnou podobu.</p>
+                
+                <p>Moderní šachy, jak je známe dnes, se vyvinuly v 15. století v Evropě. Zajímavé je, že dáma, která je dnes nejsilnější figurou, byla původně mnohem slabší. Tato změna učinila hru dynamičtější a vzrušivější.</p>
+
+                <h3>Šachovnice a její tajemství</h3>
+                <p>Šachovnice je bojištěm našich šachových bitev. Skládá se z 64 čtverců uspořádaných do 8 řad a 8 sloupců. Každý čtverec má své jedinečné označení - kombinaci písmena (a-h) a čísla (1-8).</p>
+                
+                <div class="chess-board" id="chessBoard">
+                    <!-- Šachovnice bude generována JavaScriptem -->
+                </div>
+
+                <p>Důležité je si zapamatovat: <span class="highlight">vždy umístěte šachovnici tak, aby v pravém dolním rohu byl světlý čtverec</span>. Dáma vždy stojí na svém čtverci - bílá dáma na světlém, černá na tmavém.</p>
+
+                <h3>Šachové figury a jejich hodnoty</h3>
+                <p>Každá figurka má své specifické možnosti pohybu a svou hodnotu. Pochopení těchto základů je klíčové pro úspěšnou hru:</p>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-pawn"></i> Pěšec - základ každé armády</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p><strong>Hodnota:</strong> <span class="piece-value">1 bod</span></p>
+                        <p><strong>Pohyb:</strong> Pěšec se pohybuje pouze dopředu, o jedno pole. Z výchozí pozice může postoupit o dvě pole najednou.</p>
+                        <p><strong>Braní:</strong> Pěšec bere úhlopříčně dopředu o jedno pole.</p>
+                        <p><strong>Speciální pravidla:</strong> En passant (braní mimochodem) a proměna pěšce při dosažení osmé řady.</p>
+                        <p><strong>Strategie:</strong> Pěšci vytváří kostru vaší pozice. Jsou to "duše šachu" - bez nich by hra byla chaos. Snažte se je podporovat navzájem a vytvářet pevné řetězce.</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-rook"></i> Věž - pevnost na šachovnici</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p><strong>Hodnota:</strong> <span class="piece-value">5 bodů</span></p>
+                        <p><strong>Pohyb:</strong> Věž se pohybuje horizontálně nebo vertikálně o libovolný počet polí.</p>
+                        <p><strong>Síla:</strong> Věž je nejsilnější v otevřených liniích a řadách. Dvě věže na sedmé řadě jsou mimořádně nebezpečné.</p>
+                        <p><strong>Strategie:</strong> Aktivujte věže na otevřené linie. Zdvojené věže na jedné linii jsou velmi silné. Věže podporují sebe navzájem a jsou ideální pro útok na krále.</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-bishop"></i> Střelec - dlouhodobý bojovník</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p><strong>Hodnota:</strong> <span class="piece-value">3 body</span></p>
+                        <p><strong>Pohyb:</strong> Střelec se pohybuje úhlopříčně o libovolný počet polí.</p>
+                        <p><strong>Speciální vlastnost:</strong> Každý střelec zůstává po celou hru na čtvercích stejné barvy.</p>
+                        <p><strong>Strategie:</strong> Střelci jsou skvělí na dlouhé diagonály. Pár střelců může být velmi nebezpečný. Snažte se neblokovat vlastní střelce pěšci.</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-knight"></i> Jezdec - jedinečný skokáč</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p><strong>Hodnota:</strong> <span class="piece-value">3 body</span></p>
+                        <p><strong>Pohyb:</strong> Jezdec se pohybuje ve tvaru písmene "L" - dvě pole jedním směrem a jedno pole kolmo.</p>
+                        <p><strong>Speciální vlastnost:</strong> Jezdec je jediná figura, která může "přeskočit" jiné figury.</p>
+                        <p><strong>Strategie:</strong> Jezdec je nejsilnější ve středu šachovnice. Skvělý pro taktické kombinace a útok na krále. Pamatujte: "Jezdec na okraji je vždy špatně."</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-queen"></i> Dáma - královna šachovnice</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p><strong>Hodnota:</strong> <span class="piece-value">9 bodů</span></p>
+                        <p><strong>Pohyb:</strong> Dáma kombinuje pohyb věže a střelce - může se pohybovat všemi směry o libovolný počet polí.</p>
+                        <p><strong>Síla:</strong> Nejsilnější figura na šachovnici. Může sama způsobit mat nebo přispět k rozhodujícímu útoku.</p>
+                        <p><strong>Strategie:</strong> Buďte opatrní - ztráta dámy je často fatální. Nevystavujte ji zbytečně útoku. Ale když přijde čas, dáma může být rozhodujícím faktorem.</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-king"></i> Král - srdce hry</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p><strong>Hodnota:</strong> <span class="piece-value">Neocenitelná</span></p>
+                        <p><strong>Pohyb:</strong> Král se pohybuje o jedno pole všemi směry.</p>
+                        <p><strong>Speciální pravidlo:</strong> Král nesmí být nikdy vystaven šachu a nesmí se dostat do pozice, kde by byl v šachu.</p>
+                        <p><strong>Strategie:</strong> V zahájení a střední hře chraňte krále. V koncovce se král stává aktivní figurou schopnou útoku.</p>
+                    </div>
+                </div>
+
+                <h3>Základní pravidla hry</h3>
+                
+                <div class="quiz-container">
+                    <h4>Šach a mat - základ šachové hry</h4>
+                    <p><strong>Šach</strong> nastává, když je král napaden protivníkovou figurou. Hráč musí okamžitě reagovat jedním ze tří způsobů:</p>
+                    <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                        <li>Posunout krále na bezpečné pole</li>
+                        <li>Blokovat útok jinou figurou</li>
+                        <li>Vzít útočící figuru</li>
+                    </ul>
+                    <p><strong>Mat</strong> nastává, když je král v šachu a neexistuje žádný legální tah, jak se šachu vyhnout. To je konec hry!</p>
+                    <p><strong>Pat</strong> nastává, když hráč na tahu nemá žádný legální tah, ale jeho král není v šachu. To je remíza.</p>
+                </div>
+
+                <h3>Speciální pravidla</h3>
+                
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-castle"></i> Rošáda - král hledá bezpečí</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Rošáda je speciální tah, který umožňuje králi a věži pohybovat se současně. Existují dva typy:</p>
+                        <p><strong>Krátká rošáda (O-O):</strong> Král se posune o dvě pole směrem k věži na h-sloupci, věž se posune na pole vedle krále.</p>
+                        <p><strong>Dlouhá rošáda (O-O-O):</strong> Král se posune o dvě pole směrem k věži na a-sloupci, věž se posune na pole vedle krále.</p>
+                        <p><strong>Podmínky pro rošádu:</strong></p>
+                        <ul style="margin-left: 2rem;">
+                            <li>Král ani věž se ještě nepohnuly</li>
+                            <li>Mezi králem a věží nejsou žádné figury</li>
+                            <li>Král není v šachu</li>
+                            <li>Král neprojde polem, kde by byl v šachu</li>
+                            <li>Král neskončí v šachu</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-pawn"></i> En passant - tajný tah pěšce</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>En passant je speciální způsob braní pěšcem. Nastává, když:</p>
+                        <ul style="margin-left: 2rem;">
+                            <li>Protivníkův pěšec postupuje o dvě pole ze základní pozice</li>
+                            <li>Váš pěšec stojí vedle něj na páté (resp. čtvrté) řadě</li>
+                            <li>Okamžitě v následujícím tahu můžete vzít "mimochodem"</li>
+                        </ul>
+                        <p>Pěšec se posune úhlopříčně, jako by bral normálně, ale protivníkův pěšec se odebere z pole, kde stál před svým pohybem.</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-queen"></i> Proměna pěšce - nová šance</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Když pěšec dosáhne osmé řady (první řady pro černého), musí se proměnit na jinou figuru:</p>
+                        <ul style="margin-left: 2rem;">
+                            <li>Dámu (nejčastější volba)</li>
+                            <li>Věž</li>
+                            <li>Střelce</li>
+                            <li>Jezdce</li>
+                        </ul>
+                        <p>Proměna na dámu je obvykle nejlepší, ale někdy může být takticky výhodné proměnit na jinou figuru (například jezdce kvůli šachu).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategy Section -->
+    <section class="section" id="strategie">
+        <div class="container">
+            <h2><i class="fas fa-chess-board"></i> Základní strategie</h2>
+            
+            <div class="content-section">
+                <h3>Zlaté pravidlo zahájení</h3>
+                <p>Zahájení je jako stavba domu - bez dobrých základů se celá stavba zhroutí. Existují tři základní principy, které by měl následovat každý začínající šachista:</p>
+
+                <div class="grid grid-3">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-crosshairs"></i>
+                        </div>
+                        <h3>1. Kontrola středu</h3>
+                        <p>Střed šachovnice (pole e4, e5, d4, d5) je nejdůležitější. Figury ve středu mají více možností a větší dosah. Začněte tahy 1.e4 nebo 1.d4.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-chess-knight"></i>
+                        </div>
+                        <h3>2. Vývoj figur</h3>
+                        <p>Vyviňte jezdce a střelce před pěšci. Každá figura má své místo v boji. Jezdci obvykle na f3, c3 (bílý) nebo f6, c6 (černý).</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>3. Bezpečnost krále</h3>
+                        <p>Proveďte rošádu brzy, obvykle do 10. tahu. Král v bezpečí vám umožní soustředit se na útok, aniž byste se museli bát o vlastní bezpečnost.</p>
+                    </div>
+                </div>
+
+                <h3>Časté chyby začátečníků</h3>
+                <p>Každý začátečník dělá podobné chyby. Důležité je je rozpoznat a postupně se jich zbavit:</p>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-exclamation-triangle"></i> Předčasné útoky dámou</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Mnoho začátečníků rychle vytáhne dámu a snaží se získat rychlý mat. To je chyba!</p>
+                        <p><strong>Proč je to špatně:</strong> Dáma může být snadno napadena slabšími figurami a bude nucena ustupovat. Ztratíte čas a tempo.</p>
+                        <p><strong>Lepší přístup:</strong> Vyviňte nejdříve lehké figury (jezdce a střelce), pak rošádu a až poté aktivujte dámu.</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-pawn"></i> Příliš mnoho pěšeckých tahů</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Pěšci jsou důležití, ale v zahájení není dobré hrát příliš mnoho pěšeckých tahů.</p>
+                        <p><strong>Problém:</strong> Každý pěšecký tah (kromě e4/e5, d4/d5) zpravidla nezlepšuje vývoj figur.</p>
+                        <p><strong>Zlaté pravidlo:</strong> V zahájení hrajte maximálně 2-3 pěšecké tahy. Zbytek věnujte vývoji figur.</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-king"></i> Zanedbání bezpečnosti krále</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Král ve středu šachovnice je v nebezpečí, zejména když jsou linie otevřené.</p>
+                        <p><strong>Řešení:</strong> Proveďte rošádu co nejdříve, ideálně mezi 6.-10. tahem.</p>
+                        <p><strong>Tip:</strong> Krátká rošáda (O-O) je obvykle bezpečnější než dlouhá (O-O-O).</p>
+                    </div>
+                </div>
+
+                <h3>Hodnocení pozice</h3>
+                <p>Dobrý šachista musí umět vyhodnotit pozici. Existuje několik klíčových faktorů:</p>
+
+                <div class="quiz-container">
+                    <div class="quiz-question">Jak hodnotíte šachovou pozici?</div>
+                    <div class="quiz-options">
+                        <div class="quiz-option">
+                            <strong>1. Materiál</strong> - Kdo má více figur a jaké?
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 30%"></div>
+                            </div>
+                        </div>
+                        <div class="quiz-option">
+                            <strong>2. Bezpečnost krále</strong> - Jak bezpečné jsou oba králové?
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 25%"></div>
+                            </div>
+                        </div>
+                        <div class="quiz-option">
+                            <strong>3. Aktivita figur</strong> - Které figury jsou lépe postavené?
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        <div class="quiz-option">
+                            <strong>4. Pěšecká struktura</strong> - Jaké jsou slabiny v pěšeckém postavení?
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 15%"></div>
+                            </div>
+                        </div>
+                        <div class="quiz-option">
+                            <strong>5. Prostor a iniciativa</strong> - Kdo kontroluje více území?
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 10%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Základní strategické koncepty</h3>
+                
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-arrows-alt"></i> Výměny figur</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Rozhodnutí o výměně figur je klíčové pro strategii:</p>
+                        <ul style="margin-left: 2rem;">
+                            <li><strong>Výměny při materiálové výhodě:</strong> Pokud máte více materiálu, výměny vám pomohou dosáhnout koncovky</li>
+                            <li><strong>Výměny při prostorové nevýhodě:</strong> Když máte méně prostoru, výměny mohou ulevit vaší pozici</li>
+                            <li><strong>Výměny aktivních figur:</strong> Snažte se vyměnit protivníkovy aktivní figury za své pasivní</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-pawn"></i> Slabá pole</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Slabé pole je čtverec, který nemůže být kontrolován vlastními pěšci.</p>
+                        <p><strong>Jak využít slabá pole:</strong></p>
+                        <ul style="margin-left: 2rem;">
+                            <li>Postavte na slabé pole jezdce nebo střelce</li>
+                            <li>Využijte slabé pole jako předmostí pro útok</li>
+                            <li>Bráňte se vytváření slabých polí v okolí vlastního krále</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tactics Section -->
+    <section class="section section-alt" id="taktika">
+        <div class="container">
+            <h2><i class="fas fa-chess-knight"></i> Taktika - řeč šachů</h2>
+            
+            <div class="content-section">
+                <h3>Co je to taktika?</h3>
+                <p>Taktika je krátká sekvence tahů, která vede k získání materiálové nebo poziční výhody. Zatímco strategie je dlouhodobé plánování, taktika je konkrétní provedení. Úspěšný šachista musí ovládat obě.</p>
+
+                <p><span class="highlight">Taktika je založena na vzorech</span> - čím více vzorů znáte, tím lépe je rozpoznáte v partii. Začněme s nejzákladnějšími:</p>
+
+                <h3>Základní taktické vzory</h3>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-rook"></i> Vidlička - útok na dvě figury</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Vidlička je útok jedné figury na dvě nebo více protivníkových figur současně. Protivník může zachránit pouze jednu z napadeních figur.</p>
+                        <p><strong>Nejčastější typy vidliček:</strong></p>
+                        <ul style="margin-left: 2rem;">
+                            <li><strong>Jezdcova vidlička:</strong> Jezdec útočí na krále a další figuru</li>
+                            <li><strong>Pěšcova vidlička:</strong> Pěšec útočí na dvě figury úhlopříčně</li>
+                            <li><strong>Královská vidlička:</strong> Král útočí na dvě figury (obvykle v koncovce)</li>
+                        </ul>
+                        <p><strong>Praktický tip:</strong> Vždy hledejte možnost vidličky po každém tahu protivníka. Zejména sledujte možnosti jezdcových vidliček.</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-bishop"></i> Vazba - figury pod tlakem</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Vazba nastává, když se figura nemůže pohnout, protože by tím vystavila cennější figuru za sebou útoku.</p>
+                        <p><strong>Typy vazeb:</strong></p>
+                        <ul style="margin-left: 2rem;">
+                            <li><strong>Absolutní vazba:</strong> Figura nemůže být pohnut legálně (např. by vystavila krále šachu)</li>
+                            <li><strong>Relativní vazba:</strong> Figura se může pohnou, ale za cenu ztráty cennější figury</li>
+                        </ul>
+                        <p><strong>Jak využít vazby:</strong> Napadejte vázané figury dalšími figurami nebo pěšci. Vázané figury se nemohou bránit.</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-queen"></i> Odtažný útok - skrytá past</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Odtažný útok nastává, když se figura pohne a odhalí útok jiné figury, která stála za ní.</p>
+                        <p><strong>Klíčové principy:</strong></p>
+                        <ul style="margin-left: 2rem;">
+                            <li>Figura, která se pohne, často útočí na jinou figuru</li>
+                            <li>Odhalená figura útočí na třetí figuru</li>
+                            <li>Protivník nemůže reagovat na oba útoky současně</li>
+                        </ul>
+                        <p><strong>Nejnebezpečnější:</strong> Odtažný šach - pohybem figury dáte šach jinou figurou a současně první figura útočí na jinou protivníkovu figuru.</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-king"></i> Dvojí útok - koordinovaný boj</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p>Dvojí útok je situace, kdy dvě vaše figury útočí na různé protivníkovy figury současně.</p>
+                        <p><strong>Výhody dvojího útoku:</strong></p>
+                        <ul style="margin-left: 2rem;">
+                            <li>Protivník nemůže bránit všechny figury</li>
+                            <li>Obvykle získáte materiálovou výhodu</li>
+                            <li>Můžete získat iniciativu a tempo</li>
+                        </ul>
+                        <p><strong>Koordinace figur:</strong> Nejlepší dvojí útoky vznikají, když vaše figury spolupracují a podporují se navzájem.</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-chess-pawn"></i> Odvlečení a odklonění</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p><strong>Odvlečení:</strong> Nutíte protivníkovu figuru opustit důležité pole nebo úkol.</p>
+                        <p><strong>Odklonění:</strong> Přivedete protivníkovu figuru na nevýhodné pole.</p>
+                        <p><strong>Praktické použití:</strong></p>
+                        <ul style="margin-left: 2rem;">
+                            <li>Odvlečte bránící figuru od chráněné figury</li>
+                            <li>Odklonite figuru od obrany krále</li>
+                            <li>Využijte obětí k odvlečení klíčových figur</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Taktické kombinace</h3>
+                <p>Skutečná síla taktiky se projevuje v kombinacích - sekvencích tahů, které kombinují několik taktických motivů dohromady.</p>
+
+                <div class="quiz-container">
+                    <div class="quiz-question">Rozpoznejte taktiku: Situace na šachovnici</div>
+                    <div class="interactive-board">
+                        <div class="chess-board" id="tacticsBoard">
+                            <!-- Taktická pozice bude zobrazena zde -->
+                        </div>
+                        <div class="board-controls">
+                            <button class="board-btn" onclick="showTactic(1)">Vidlička</button>
+                            <button class="board-btn" onclick="showTactic(2)">Vazba</button>
+                            <button class="board-btn" onclick="showTactic(3)">Odtažný útok</button>
+                            <button class="board-btn" onclick="resetBoard()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Jak trénovat taktiku?</h3>
+                <p>Taktika je dovednost, kterou lze systematicky rozvíjet. Zde je efektivní metoda:</p>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Denní trénink</h3>
+                        <p>Věnujte taktice 15-30 minut denně. Pravidelnost je důležitější než délka. Řešte 10-20 taktických úloh denně podle své úrovně.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Vzorové rozpoznávání</h3>
+                        <p>Soustřeďte se na rozpoznávání vzorů. Začněte s jednoduchými mat v 1 tahu, pak postupujte k složitějším kombinacím.</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header" onclick="toggleExpandable(this)">
+                        <span><i class="fas fa-graduation-cap"></i> Doporučené zdroje pro taktiku</span>
+                        <i class="fas fa-chevron-down expandable-toggle"></i>
+                    </div>
+                    <div class="expandable-content">
+                        <p><strong>Online platformy:</strong></p>
+                        <ul style="margin-left: 2rem;">
+                            <li><strong>Chess.com:</strong> Velká databáze taktických úloh s různými obtížnostmi</li>
+                            <li><strong>Lichess.org:</strong> Bezplatné taktické tréninky s okamžitou zpětnou vazbou</li>
+                            <li><strong>ChessTempo:</strong> Specializovaná platforma pro taktické tréninky</li>
+                        </ul>
+                        <p><strong>Mobilní aplikace:</strong></p>
+                        <ul style="margin-left: 2rem;">
+                            <li><strong>Chess Tactics Pro:</strong> Offline tréninky taktiky</li>
+                            <li><strong>CT-ART:</strong> Systematický kurz taktiky</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Openings Section -->
+    <section class="section" id="otevreni">
+        <div class="container">
+            <h2><i class="fas fa-chess-rook"></i> Zahájení - první kroky k vítězství</h2>
+            
+            <div class="content-section">
+                <h3>Filozofie zahájení</h3>
+                <p>Zahájení je jako první dojem - může rozhodnout o celém průběhu partie. Dobré zahájení vám poskytne solidní pozici, z které můžete plánovat střední hru. Špatné zahájení vás může dostat do problémů už po několika tazích.</p>
+
+                <p><span class="highlight">Cíl zahájení není získat okamžitou výhodu, ale vytvořit harmonickou pozici</span> s dobře vyvinutými figurami, bezpečným králem a kontrolou důležitých polí.</p>
