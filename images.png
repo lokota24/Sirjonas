@@ -1,17 +1,1 @@
-sachovy-web/
-│
-├── index.html           # Hlavní HTML stránka
-├── css/
-│   └── style.css        # Stylování celého webu
-├── js/
-│   └── main.js          # JavaScript pro interaktivitu (např. přepínání sekcí)
-├── images/
-│   ├── chessboard.jpg   # Obrázek šachovnice
-│   ├── pawn.png         # Pěšec
-│   ├── rook.png         # Věž
-│   ├── knight.png       # Jezdec
-│   ├── bishop.png       # Střelec
-│   ├── queen.png        # Dáma
-│   ├── king.png         # Král
-│   └── logo.png         # Logo webu
-└── README.md            # Popis projektu (volitelné)
+
